@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>载体对照实验 · Paper Trade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@400;600;700&display=swap">
+<style>
+:root{--g:#F6F7F9;--p:#FFF;--ink:#15181D;--mut:#5D6470;--hair:#DFE3EA;--h2:#EDF0F4;
+--acc:#2B3E8C;--accs:#EDF0FA;--up:#0B7A4B;--dn:#C0392B;--warn:#8A5D0A;--warnbg:#FCF6E8}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--g:#0F1216;--p:#161A20;--ink:#E7EAF0;
+--mut:#98A1B0;--hair:#272D36;--h2:#1E232A;--acc:#8FA4E8;--accs:#1A2130;--up:#4FD08A;--dn:#F2726B;
+--warn:#E0B457;--warnbg:#26210F}}
+:root[data-theme="dark"]{--g:#0F1216;--p:#161A20;--ink:#E7EAF0;--mut:#98A1B0;--hair:#272D36;--h2:#1E232A;
+--acc:#8FA4E8;--accs:#1A2130;--up:#4FD08A;--dn:#F2726B;--warn:#E0B457;--warnbg:#26210F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--g);color:var(--ink);font-family:"IBM Plex Sans Condensed",
+"Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.w{max-width:1000px;margin:0 auto;padding:26px 18px 60px;display:flex;flex-direction:column;gap:18px}
+.mast{border-bottom:2px solid var(--ink);padding-bottom:11px}
+.mast h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(24px,4vw,34px);margin:0 0 7px;
+letter-spacing:-.01em}
+.meta{display:flex;flex-wrap:wrap;gap:5px 13px;font-size:12px;color:var(--mut);
+font-family:"IBM Plex Mono",monospace}
+.meta b{color:var(--ink);font-weight:500}
+.live{display:inline-flex;align-items:center;gap:5px}
+.live i{width:7px;height:7px;border-radius:99px;background:var(--up);display:inline-block;
+animation:pulse 2s infinite}
+.live.stale i{background:var(--dn);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.kpi{background:var(--p);border:1px solid var(--hair);border-radius:9px;padding:14px 16px}
+.kpi .lb{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mut);font-weight:700;
+margin-bottom:5px}
+.kpi .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:26px;
+font-weight:600;line-height:1.1}
+.kpi .s{font-size:12px;color:var(--mut);margin-top:3px;font-family:"IBM Plex Mono",monospace}
+.panel{background:var(--p);border:1px solid var(--hair);border-radius:9px;padding:16px 18px}
+h2{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+margin:0 0 12px;padding-bottom:7px;border-bottom:1px solid var(--hair)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:620px}
+th{text-align:right;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);
+font-weight:700;padding:0 8px 6px;border-bottom:1px solid var(--hair);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:6px 8px;border-bottom:1px solid var(--h2);text-align:right;
+font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:12.5px}
+td:first-child{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;font-size:13.5px}
+tr:last-child td{border-bottom:none}
+.up{color:var(--up)}.dn{color:var(--dn)}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;
+font-family:"IBM Plex Sans Condensed",sans-serif;background:var(--accs);color:var(--acc)}
+.tag.rej{background:rgba(192,57,43,.13);color:var(--dn)}
+.tag.mine{background:rgba(11,122,75,.13);color:var(--up)}
+.warn{background:var(--warnbg);border:1px solid rgba(138,93,10,.3);border-radius:8px;padding:12px 15px;
+font-size:12.5px}
+.note{color:var(--mut);font-size:12px;margin-top:10px}
+.foot{color:var(--mut);font-size:11.5px;border-top:1px solid var(--hair);padding-top:12px;
+font-family:"IBM Plex Mono",monospace;line-height:1.7}
+</style></head><body>
+<div class="w" id="root"><p style="color:var(--mut)">载入中…</p></div>
+<script>
+const R = document.getElementById('root');
+const pc = (v,d=2)=>`<span class="${v>0?'up':(v<0?'dn':'')}">${(v*100).toFixed(d)>0?'+':''}${(v*100).toFixed(d)}%</span>`;
+const sg = (v,d=2)=>`<span class="${v>0?'up':(v<0?'dn':'')}">${v>0?'+':''}${(v*100).toFixed(d)}%</span>`;
+
+function tg(t){
+  if(t==='烦烦推荐')   return '<span class="tag mine">推荐</span>';
+  if(t==='我拒绝但照跟') return '<span class="tag rej">我拒绝</span>';
+  if(t==='两组都在')   return '<span class="tag mine">双载体</span>';
+  if(t==='perp独有')  return '<span class="tag">perp 独有</span>';
+  return '<span class="tag">筛子</span>';
+}
+
+// 数据新鲜度：这个页面每 60 秒重取一次 data.json，而 data.json 由 Soma 的电脑
+// 每 5 分钟推一次。两段都可能断，所以显示的是【数据本身的时点】不是【页面加载时点】。
+function freshness(asof){
+  const m = asof.match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/);
+  if(!m) return {min:null, txt:asof};
+  // asof 是 MYT (UTC+8)
+  const t = Date.UTC(+m[1],+m[2]-1,+m[3],+m[4]-8,+m[5]);
+  const min = (Date.now()-t)/60000;
+  return {min, txt:asof};
+}
+
+function render(d){
+  const f = freshness(d.asof);
+  const stale = f.min===null ? false : f.min > 12;
+  const gap = d.perp_ew - d.opt_ew;
+  let h = `<header class="mast"><h1>载体对照实验 · Paper Trade</h1>
+  <div class="meta">
+    <span class="live ${stale?'stale':''}"><i></i>${stale?'数据已陈':'实时'}</span><span>·</span>
+    <span>数据时点 <b>${f.txt}</b>${f.min!==null?` (${f.min.toFixed(0)} 分钟前)`:''}</span><span>·</span>
+    <span>开仓 <b>${d.opened_at}</b></span><span>·</span>
+    <span>期权 <b>${d.opt.length} 笔</b> · perp <b>${d.perp.length} 笔</b></span>
+  </div></header>`;
+
+  h += `<div class="cards">
+  <div class="kpi"><div class="lb">A 组 · 期权（等权）</div><div class="v">${sg(d.opt_ew)}</div>
+  <div class="s">资金加权 ${(d.opt_pct*100).toFixed(2)}% · 中位 ${(d.opt_med*100).toFixed(2)}%<br>
+  ${d.opt_cost.toLocaleString()} → ${Math.round(d.opt_val).toLocaleString()}</div></div>
+  <div class="kpi"><div class="lb">B 组 · perp（等权 · 保证金）</div><div class="v">${sg(d.perp_ew)}</div>
+  <div class="s">保证金 ${d.perp_margin.toLocaleString()} · P&L ${Math.round(d.perp_pnl).toLocaleString()}</div></div>
+  <div class="kpi"><div class="lb">载体差（等权口径）</div><div class="v">${sg(gap)}</div>
+  <div class="s">这就是本实验要量的那个数</div></div></div>`;
+
+  h += `<section class="panel"><h2>C 组 · 同标的双载体对照（核心实验）</h2><div class="scroll">
+  <table><thead><tr><th>标的</th><th>正股涨跌</th><th>期权 P&L</th><th>perp P&L</th><th>载体差</th></tr></thead>
+  <tbody>${d.cmp.map(c=>`<tr><td>${c.t}</td><td>${sg(c.und)}</td><td>${sg(c.opt)}</td>
+  <td>${sg(c.perp)}</td><td><b>${sg(c.gap)}</b></td></tr>`).join('')}</tbody></table></div>
+  <p class="note">同一天、同一标的、同一方向，<b>只有载体不同</b>。回测量到期权单笔中位 −40.4% vs perp +10.11%；
+  这三只是那个差值的前瞻检验。期权按 ask 进 / bid 出计价，是最保守口径。</p></section>`;
+
+  h += `<section class="panel"><h2>A 组 · 期权（止损 = 权利金 −50%）</h2><div class="scroll">
+  <table><thead><tr><th>标的</th><th>行权</th><th>到期</th><th>张</th><th>入场</th><th>现 bid</th>
+  <th>投入</th><th>P&L</th><th>IV</th><th>距止损</th></tr></thead><tbody>
+  ${[...d.opt].sort((a,b)=>b.pnl_pct-a.pnl_pct).map(o=>`<tr>
+  <td>${o.t} ${tg(o.tag)}</td><td>${o.K.toFixed(1)}</td><td>${o.exp.slice(5)}</td><td>${o.n}</td>
+  <td>${o.entry.toFixed(2)}</td><td>${o.bid_now.toFixed(2)}</td><td>${o.cost.toLocaleString()}</td>
+  <td>${sg(o.pnl_pct,1)}</td><td>${o.iv.toFixed(0)}%</td>
+  <td>${o.hit?'🔴':sg(o.to_stop,0)}</td></tr>`).join('')}</tbody></table></div></section>`;
+
+  h += `<section class="panel"><h2>B 组 · perp 3x（止损 = CE 动态线）</h2><div class="scroll">
+  <table><thead><tr><th>标的</th><th>入场</th><th>现价</th><th>标的</th><th>保证金 P&L</th>
+  <th>CE 线</th><th>距 CE</th><th>爆仓线</th></tr></thead><tbody>
+  ${[...d.perp].sort((a,b)=>b.pnl_pct-a.pnl_pct).map(p=>`<tr>
+  <td>${p.t} ${tg(p.tag)}</td><td>${p.entry.toFixed(2)}</td><td>${p.last.toFixed(2)}</td>
+  <td>${sg(p.und_pct)}</td><td>${sg(p.pnl_pct)}</td><td>${p.ce_line.toFixed(2)}</td>
+  <td>${p.hit?'🔴':sg(p.to_ce,1)}</td><td>${p.liq_und.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>
+  <p class="note">CE = Chandelier Exit（最高价 14 周期 − 2.0×ATR，棘轮只上不下）。
+  回测显示它在 3x/5x 上都比固定百分比止损收益更高且回撤更低。</p></section>`;
+
+  h += `<div class="warn"><b>为什么期权组起始资金不是整数。</b>期权最小单位是 1 张 = 100 股，
+  贵的票 1 张就超过目标仓位：单笔权重从 ${(d.w_min*100).toFixed(1)}% 到 ${(d.w_max*100).toFixed(1)}%，
+  相差 ${(d.w_max/d.w_min).toFixed(1)} 倍。perp 组则是严格等权。<b>所以两组只能用等权口径比。</b><br><br>
+  <b>已知混杂项。</b>${d.note}</div>`;
+
+  h += `<div class="foot">数据由本地程序每 5 分钟从券商快照生成并推送；本页每 60 秒重取一次。
+  <b>两段都可能断，所以上方显示的是数据本身的时点，不是页面加载时点。</b><br>
+  期权按 ask 进 / bid 出计价（最保守）；perp P&L 为保证金口径，已含杠杆，未计资金费与滑点。<br>
+  <b>模拟仓，非真实成交。本页为方法记录，不构成投资建议。</b> 烦烦 · 金融宇宙</div>`;
+  R.innerHTML = h;
+}
+
+async function load(){
+  try{
+    const r = await fetch('./data.json?t='+Date.now(), {cache:'no-store'});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    render(await r.json());
+  }catch(e){
+    R.innerHTML = `<div class="warn"><b>拿不到数据。</b>${String(e)}<br>
+    这可能是推送端断了，也可能是网络问题。<b>不要把「读不到」当成「没有仓位」。</b></div>`;
+  }
+}
+load();
+setInterval(load, 60000);
+</script></body></html>
