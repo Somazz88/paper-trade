@@ -1,158 +1,308 @@
 <!doctype html>
-<html lang="zh"><head>
+<html lang="zh">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>载体对照实验 · Paper Trade</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Trade · 三组对照</title>
+<meta name="description" content="itrd → itrd+烦烦 → itrd+烦烦+Soma：一层层加人的判断，绩效变好还是变坏。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
-:root{--g:#F6F7F9;--p:#FFF;--ink:#15181D;--mut:#5D6470;--hair:#DFE3EA;--h2:#EDF0F4;
---acc:#2B3E8C;--accs:#EDF0FA;--up:#0B7A4B;--dn:#C0392B;--warn:#8A5D0A;--warnbg:#FCF6E8}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--g:#0F1216;--p:#161A20;--ink:#E7EAF0;
---mut:#98A1B0;--hair:#272D36;--h2:#1E232A;--acc:#8FA4E8;--accs:#1A2130;--up:#4FD08A;--dn:#F2726B;
---warn:#E0B457;--warnbg:#26210F}}
-:root[data-theme="dark"]{--g:#0F1216;--p:#161A20;--ink:#E7EAF0;--mut:#98A1B0;--hair:#272D36;--h2:#1E232A;
---acc:#8FA4E8;--accs:#1A2130;--up:#4FD08A;--dn:#F2726B;--warn:#E0B457;--warnbg:#26210F}
+:root{
+  --void:#0A0E11;
+  --ground:#0E1418;
+  --panel:#141C21;
+  --panel-2:#1A242A;
+  --line:#223037;
+  --line-soft:#1A252B;
+  --ink:#E6EDF0;
+  --dim:#8C9BA3;
+  --faint:#5C6B73;
+  --amber:#E8853C;
+  --amber-dim:#8A5426;
+  --amber-wash:#1F1710;
+  --cyan:#4FBFA8;
+  --pos:#5BC98D;
+  --neg:#E5615A;
+  --mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+  --sans:"Noto Sans SC","Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei",sans-serif;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--g);color:var(--ink);font-family:"IBM Plex Sans Condensed",
-"Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
-.w{max-width:1000px;margin:0 auto;padding:26px 18px 60px;display:flex;flex-direction:column;gap:18px}
-.mast{border-bottom:2px solid var(--ink);padding-bottom:11px}
-.mast h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(24px,4vw,34px);margin:0 0 7px;
-letter-spacing:-.01em}
-.meta{display:flex;flex-wrap:wrap;gap:5px 13px;font-size:12px;color:var(--mut);
-font-family:"IBM Plex Mono",monospace}
-.meta b{color:var(--ink);font-weight:500}
-.live{display:inline-flex;align-items:center;gap:5px}
-.live i{width:7px;height:7px;border-radius:99px;background:var(--up);display:inline-block;
-animation:pulse 2s infinite}
-.live.stale i{background:var(--dn);animation:none}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
-.kpi{background:var(--p);border:1px solid var(--hair);border-radius:9px;padding:14px 16px}
-.kpi .lb{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mut);font-weight:700;
-margin-bottom:5px}
-.kpi .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:26px;
-font-weight:600;line-height:1.1}
-.kpi .s{font-size:12px;color:var(--mut);margin-top:3px;font-family:"IBM Plex Mono",monospace}
-.panel{background:var(--p);border:1px solid var(--hair);border-radius:9px;padding:16px 18px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
-margin:0 0 12px;padding-bottom:7px;border-bottom:1px solid var(--hair)}
-.scroll{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:13px;min-width:620px}
-th{text-align:right;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);
-font-weight:700;padding:0 8px 6px;border-bottom:1px solid var(--hair);white-space:nowrap}
-th:first-child,td:first-child{text-align:left}
-td{padding:6px 8px;border-bottom:1px solid var(--h2);text-align:right;
-font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:12.5px}
-td:first-child{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;font-size:13.5px}
+html{background:var(--void)}
+body{
+  margin:0;background:var(--void);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(ellipse 900px 420px at 50% -8%, rgba(232,133,60,.10), transparent 70%),
+    linear-gradient(var(--void), var(--void));
+}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px 90px}
+
+/* ── hero ── */
+header{padding:52px 0 30px;text-align:center}
+.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--amber);font-weight:600}
+h1{margin:16px 0 0;font-family:var(--mono);font-size:clamp(30px,7vw,52px);
+  font-weight:700;letter-spacing:-.02em;line-height:1.05}
+h1 .sep{color:var(--amber);font-weight:400;margin:0 .18em}
+.q{margin:18px auto 0;max-width:44ch;color:var(--dim);font-size:15px;line-height:1.7}
+.q b{color:var(--ink);font-weight:700}
+.stamp{margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--faint);
+  letter-spacing:.06em}
+.stamp .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--amber);margin-right:7px;vertical-align:1px;
+  box-shadow:0 0 0 3px rgba(232,133,60,.18)}
+
+/* ── funnel ── */
+.funnel{margin:40px 0 8px}
+.fnl{width:100%;height:auto;display:block}
+.fnl text{font-family:var(--mono)}
+
+/* ── groups ── */
+.groups{margin-top:18px;display:flex;flex-direction:column;gap:0}
+.g{position:relative;border:1px solid var(--line);border-radius:2px;
+  background:var(--panel);padding:18px 20px 18px 22px;margin-top:-1px}
+.g::before{content:"";position:absolute;left:0;top:-1px;bottom:-1px;width:3px;background:var(--amber-dim)}
+.g[data-i="0"]{margin-left:0}
+.g[data-i="1"]{margin-left:26px}
+.g[data-i="2"]{margin-left:52px}
+.g[data-i="1"]::before{background:var(--amber)}
+.g[data-i="2"]::before{background:var(--cyan)}
+.ghead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.gid{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--amber)}
+.g[data-i="2"] .gid{color:var(--cyan)}
+.gname{font-family:var(--mono);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.gsub{margin:6px 0 0;font-size:13.5px;color:var(--dim);line-height:1.65}
+.gstats{margin-top:14px;display:flex;flex-wrap:wrap;gap:0;
+  border-top:1px solid var(--line-soft);padding-top:12px}
+.st{padding-right:26px;margin-right:26px;border-right:1px solid var(--line-soft)}
+.st:last-child{border-right:none;padding-right:0;margin-right:0}
+.st .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:3px}
+.st .v{font-family:var(--mono);font-size:20px;font-weight:600;
+  font-variant-numeric:tabular-nums;line-height:1.1}
+.st .v.dim{color:var(--faint);font-weight:400}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+
+/* ── sections ── */
+h2{margin:52px 0 4px;font-family:var(--mono);font-size:12px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+h2 + .lede{margin:0 0 16px;font-size:17px;font-weight:700;line-height:1.45;color:var(--ink)}
+
+.card{border:1px solid var(--line);border-radius:2px;background:var(--panel);
+  padding:18px 20px;margin-top:14px}
+.card p{margin:0 0 10px;font-size:14px;line-height:1.75;color:var(--dim)}
+.card p:last-child{margin-bottom:0}
+.card b{color:var(--ink);font-weight:700}
+.formula{font-family:var(--mono);font-size:13px;color:var(--ink);
+  background:var(--void);border:1px solid var(--line);border-radius:2px;
+  padding:12px 14px;margin:12px 0 0;overflow-x:auto;white-space:nowrap}
+.formula .op{color:var(--amber)}
+
+.empty{margin-top:14px;border:1px dashed var(--line);border-radius:2px;
+  background:var(--panel);padding:34px 22px;text-align:center}
+.empty .big{font-family:var(--mono);font-size:15px;color:var(--dim);letter-spacing:.02em}
+.empty .when{margin-top:10px;font-family:var(--mono);font-size:22px;
+  font-weight:600;color:var(--amber);letter-spacing:-.01em}
+.empty .sub{margin-top:8px;font-size:13px;color:var(--faint)}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:2px;
+  background:var(--panel);margin-top:14px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);font-weight:500;
+  padding:10px 13px;border-bottom:1px solid var(--line);background:var(--panel-2);white-space:nowrap}
+td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--dim)}
 tr:last-child td{border-bottom:none}
-.up{color:var(--up)}.dn{color:var(--dn)}
-.tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;
-font-family:"IBM Plex Sans Condensed",sans-serif;background:var(--accs);color:var(--acc)}
-.tag.rej{background:rgba(192,57,43,.13);color:var(--dn)}
-.tag.mine{background:rgba(11,122,75,.13);color:var(--up)}
-.warn{background:var(--warnbg);border:1px solid rgba(138,93,10,.3);border-radius:8px;padding:12px 15px;
-font-size:12.5px}
-.note{color:var(--mut);font-size:12px;margin-top:10px}
-.foot{color:var(--mut);font-size:11.5px;border-top:1px solid var(--hair);padding-top:12px;
-font-family:"IBM Plex Mono",monospace;line-height:1.7}
-</style></head><body>
-<div class="w" id="root"><p style="color:var(--mut)">载入中…</p></div>
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);
+  font-size:12.5px;white-space:nowrap;color:var(--ink)}
+td.sym{font-family:var(--mono);font-weight:600;color:var(--ink)}
+.tag{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:600;
+  letter-spacing:.1em;padding:1px 6px;border-radius:2px;margin-right:4px;
+  border:1px solid var(--amber-dim);color:var(--amber)}
+.tag.g3{border-color:var(--cyan);color:var(--cyan)}
+
+.warn{margin-top:14px;border:1px solid var(--amber-dim);border-radius:2px;
+  background:var(--amber-wash);padding:15px 17px;font-size:13.5px;line-height:1.72;color:var(--dim)}
+.warn b{color:var(--amber)}
+
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;color:var(--faint);line-height:2}
+
+@media (max-width:640px){
+  .g[data-i="1"]{margin-left:12px}
+  .g[data-i="2"]{margin-left:24px}
+  .st{padding-right:16px;margin-right:16px}
+  .st .v{font-size:17px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .g{transition:border-color .18s ease, background .18s ease}
+  .g:hover{border-color:var(--amber-dim);background:var(--panel-2)}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="kicker">Paper Trade · v2</div>
+  <h1>itrd<span class="sep">→</span>烦烦<span class="sep">→</span>我</h1>
+  <p class="q">一层一层加上人的判断，<b>绩效是变好还是变坏</b>？<br>
+  三组嵌套，同一个信号只开一份仓，靠标签分层读数。</p>
+  <div class="stamp"><span class="dot"></span><span id="stamp">载入中…</span></div>
+</header>
+
+<div class="funnel">
+  <svg class="fnl" viewBox="0 0 900 128" role="img" aria-label="从 71 只候选池收窄到三层筛选">
+    <defs>
+      <linearGradient id="fg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#223037"/>
+        <stop offset="0.42" stop-color="#8A5426"/>
+        <stop offset="0.75" stop-color="#E8853C"/>
+        <stop offset="1" stop-color="#4FBFA8"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,18 L900,50 L900,78 L0,110 Z" fill="url(#fg)" opacity="0.22"/>
+    <path d="M0,18 L900,50" stroke="url(#fg)" stroke-width="1.5" fill="none"/>
+    <path d="M0,110 L900,78" stroke="url(#fg)" stroke-width="1.5" fill="none"/>
+    <g stroke="#223037" stroke-width="1" stroke-dasharray="3 4">
+      <line x1="300" y1="10" x2="300" y2="118"/>
+      <line x1="560" y1="10" x2="560" y2="118"/>
+      <line x1="780" y1="10" x2="780" y2="118"/>
+    </g>
+    <g font-size="10.5" fill="#5C6B73" letter-spacing="1.6">
+      <text x="8" y="126">候选池</text>
+      <text x="308" y="126">G1 · itrd</text>
+      <text x="568" y="126">G2 · +烦烦</text>
+      <text x="788" y="126">G3 · +我</text>
+    </g>
+    <g font-size="21" font-weight="600" fill="#E6EDF0">
+      <text x="8" y="70" id="f0">71</text>
+      <text x="308" y="70" id="f1">—</text>
+      <text x="568" y="70" id="f2">—</text>
+      <text x="788" y="70" id="f3" fill="#4FBFA8">—</text>
+    </g>
+  </svg>
+</div>
+
+<div class="groups" id="groups"></div>
+
+<h2>台账</h2>
+<p class="lede" id="ledger-lede">还没有仓位</p>
+<div id="ledger"></div>
+
+<h2>怎么比</h2>
+<p class="lede">比「选中 vs 未选中」，不是子集比全集</p>
+<div class="card">
+  <p>G2 是 G1 的子集，G3 是 G2 的子集。<b>直接拿 G2 比全 G1 会被重叠稀释</b> —— 因为 G2 的每一笔也算在 G1 里。</p>
+  <div class="formula">烦烦的过滤层：<span class="op">G2</span> vs <span class="op">(G1 ∖ G2)</span>　　　Soma 的过滤层：<span class="op">G3</span> vs <span class="op">(G2 ∖ G3)</span></div>
+  <p style="margin-top:12px"><b>先验设为「三组无差别」。</b>要证明的是「加人的判断有用」，
+  举证责任在那一边，不在「没用」这一边。<b>≥20 个独立挑选决策之前只记不判。</b></p>
+</div>
+
+<h2>口径 · 三组完全一致</h2>
+<p class="lede">出场不一致的比较是假的</p>
+<div class="tw"><table>
+  <thead><tr><th>项</th><th>值</th></tr></thead>
+  <tbody>
+    <tr><td>信号源</td><td class="n">每日 21:00 简报的 Top 3</td></tr>
+    <tr><td>入场</td><td class="n">下一 RTH 开盘后 15 分钟内 · moomoo 真报价</td></tr>
+    <tr><td>载体</td><td class="n">1 个月 ATM call · 每腿目标 $2,000</td></tr>
+    <tr><td>出场</td><td class="n">权利金 −50% 硬止损 · 无固定止盈 · 最多 20 交易日</td></tr>
+    <tr><td>重复上榜</td><td class="n">已持有则 skipped_already_held，不重开</td></tr>
+    <tr><td>Soma 没表态</td><td class="n">G3 记 missed —— 与「表态了但全不要」严格区分</td></tr>
+  </tbody>
+</table></div>
+<div class="warn">
+  <b>入场闹钟是硬的。</b>开仓器由计划任务 21:32 MYT 自动跑，不靠人记得 ——
+  v1 有一笔就是因为没闹钟漏跑了开盘入场，实际晚了六小时才建仓，+2.02% 的漂移全记在那一腿头上。
+</div>
+
+<h2>v1 已归档</h2>
+<p class="lede" id="v1-lede">载体对照 · 期权 vs perp</p>
+<div class="tw"><table>
+  <thead><tr><th>项目</th><th class="n">值</th></tr></thead>
+  <tbody id="v1"></tbody>
+</table></div>
+
+<footer>
+  只开一份仓，靠标签分层读数（g1 / g2 / g3）—— 不是开三份，否则同一个信号会被记三次，绩效数字全是假的。<br>
+  报价取 moomoo RTH 内真实 bid/ask · 出场口径三组完全一致 · 每笔结算必判「赢/输的理由是不是当初写的那个」。
+</footer>
+
+</div>
+
 <script>
-const R = document.getElementById('root');
-const pc = (v,d=2)=>`<span class="${v>0?'up':(v<0?'dn':'')}">${(v*100).toFixed(d)>0?'+':''}${(v*100).toFixed(d)}%</span>`;
-const sg = (v,d=2)=>`<span class="${v>0?'up':(v<0?'dn':'')}">${v>0?'+':''}${(v*100).toFixed(d)}%</span>`;
+fetch("data.json?t=" + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
+  document.getElementById("stamp").textContent =
+    (d.headline || "三组对照") + "　·　更新 " + (d.asof || "—");
 
-function tg(t){
-  if(t==='烦烦推荐')   return '<span class="tag mine">推荐</span>';
-  if(t==='我拒绝但照跟') return '<span class="tag rej">我拒绝</span>';
-  if(t==='两组都在')   return '<span class="tag mine">双载体</span>';
-  if(t==='perp独有')  return '<span class="tag">perp 独有</span>';
-  return '<span class="tag">筛子</span>';
-}
+  var gs = d.groups || [];
+  gs.forEach(function (g, i) {
+    var el = document.getElementById("f" + (i + 1));
+    if (el) el.textContent = g.legs > 0 ? g.legs : "—";
+  });
 
-// 数据新鲜度：这个页面每 60 秒重取一次 data.json，而 data.json 由 Soma 的电脑
-// 每 5 分钟推一次。两段都可能断，所以显示的是【数据本身的时点】不是【页面加载时点】。
-function freshness(asof){
-  const m = asof.match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/);
-  if(!m) return {min:null, txt:asof};
-  // asof 是 MYT (UTC+8)
-  const t = Date.UTC(+m[1],+m[2]-1,+m[3],+m[4]-8,+m[5]);
-  const min = (Date.now()-t)/60000;
-  return {min, txt:asof};
-}
+  document.getElementById("groups").innerHTML = gs.map(function (g, i) {
+    var pct = (g.cost > 0) ? ((g.val / g.cost - 1) * 100) : null;
+    var cls = pct === null ? "dim" : (pct >= 0 ? "pos" : "neg");
+    var pctTxt = pct === null ? "—" : (pct >= 0 ? "+" : "") + pct.toFixed(1) + "%";
+    return '<div class="g" data-i="' + i + '">' +
+      '<div class="ghead"><span class="gid">' + g.id + '</span>' +
+      '<span class="gname">' + g.name + '</span></div>' +
+      '<p class="gsub">' + g.who + '</p>' +
+      '<div class="gstats">' +
+        '<div class="st"><span class="l">腿数</span><span class="v' +
+          (g.legs ? '' : ' dim') + '">' + g.legs + '</span></div>' +
+        '<div class="st"><span class="l">投入</span><span class="v' +
+          (g.cost ? '' : ' dim') + '">$' + (g.cost || 0).toLocaleString() + '</span></div>' +
+        '<div class="st"><span class="l">现值</span><span class="v' +
+          (g.val ? '' : ' dim') + '">$' + (g.val || 0).toLocaleString() + '</span></div>' +
+        '<div class="st"><span class="l">收益</span><span class="v ' + cls + '">' + pctTxt + '</span></div>' +
+      '</div></div>';
+  }).join("");
 
-function render(d){
-  const f = freshness(d.asof);
-  const stale = f.min===null ? false : f.min > 12;
-  const gap = d.perp_ew - d.opt_ew;
-  let h = `<header class="mast"><h1>载体对照实验 · Paper Trade</h1>
-  <div class="meta">
-    <span class="live ${stale?'stale':''}"><i></i>${stale?'数据已陈':'实时'}</span><span>·</span>
-    <span>数据时点 <b>${f.txt}</b>${f.min!==null?` (${f.min.toFixed(0)} 分钟前)`:''}</span><span>·</span>
-    <span>开仓 <b>${d.opened_at}</b></span><span>·</span>
-    <span>期权 <b>${d.opt.length} 笔</b> · perp <b>${d.perp.length} 笔</b></span>
-  </div></header>`;
-
-  h += `<div class="cards">
-  <div class="kpi"><div class="lb">A 组 · 期权（等权）</div><div class="v">${sg(d.opt_ew)}</div>
-  <div class="s">资金加权 ${(d.opt_pct*100).toFixed(2)}% · 中位 ${(d.opt_med*100).toFixed(2)}%<br>
-  ${d.opt_cost.toLocaleString()} → ${Math.round(d.opt_val).toLocaleString()}</div></div>
-  <div class="kpi"><div class="lb">B 组 · perp（等权 · 保证金）</div><div class="v">${sg(d.perp_ew)}</div>
-  <div class="s">保证金 ${d.perp_margin.toLocaleString()} · P&L ${Math.round(d.perp_pnl).toLocaleString()}</div></div>
-  <div class="kpi"><div class="lb">载体差（等权口径）</div><div class="v">${sg(gap)}</div>
-  <div class="s">这就是本实验要量的那个数</div></div></div>`;
-
-  h += `<section class="panel"><h2>C 组 · 同标的双载体对照（核心实验）</h2><div class="scroll">
-  <table><thead><tr><th>标的</th><th>正股涨跌</th><th>期权 P&L</th><th>perp P&L</th><th>载体差</th></tr></thead>
-  <tbody>${d.cmp.map(c=>`<tr><td>${c.t}</td><td>${sg(c.und)}</td><td>${sg(c.opt)}</td>
-  <td>${sg(c.perp)}</td><td><b>${sg(c.gap)}</b></td></tr>`).join('')}</tbody></table></div>
-  <p class="note">同一天、同一标的、同一方向，<b>只有载体不同</b>。回测量到期权单笔中位 −40.4% vs perp +10.11%；
-  这三只是那个差值的前瞻检验。期权按 ask 进 / bid 出计价，是最保守口径。</p></section>`;
-
-  h += `<section class="panel"><h2>A 组 · 期权（止损 = 权利金 −50%）</h2><div class="scroll">
-  <table><thead><tr><th>标的</th><th>行权</th><th>到期</th><th>张</th><th>入场</th><th>现 bid</th>
-  <th>投入</th><th>P&L</th><th>IV</th><th>距止损</th></tr></thead><tbody>
-  ${[...d.opt].sort((a,b)=>b.pnl_pct-a.pnl_pct).map(o=>`<tr>
-  <td>${o.t} ${tg(o.tag)}</td><td>${o.K.toFixed(1)}</td><td>${o.exp.slice(5)}</td><td>${o.n}</td>
-  <td>${o.entry.toFixed(2)}</td><td>${o.bid_now.toFixed(2)}</td><td>${o.cost.toLocaleString()}</td>
-  <td>${sg(o.pnl_pct,1)}</td><td>${o.iv.toFixed(0)}%</td>
-  <td>${o.hit?'🔴':sg(o.to_stop,0)}</td></tr>`).join('')}</tbody></table></div></section>`;
-
-  h += `<section class="panel"><h2>B 组 · perp 3x（止损 = CE 动态线）</h2><div class="scroll">
-  <table><thead><tr><th>标的</th><th>入场</th><th>现价</th><th>标的</th><th>保证金 P&L</th>
-  <th>CE 线</th><th>距 CE</th><th>爆仓线</th></tr></thead><tbody>
-  ${[...d.perp].sort((a,b)=>b.pnl_pct-a.pnl_pct).map(p=>`<tr>
-  <td>${p.t} ${tg(p.tag)}</td><td>${p.entry.toFixed(2)}</td><td>${p.last.toFixed(2)}</td>
-  <td>${sg(p.und_pct)}</td><td>${sg(p.pnl_pct)}</td><td>${p.ce_line.toFixed(2)}</td>
-  <td>${p.hit?'🔴':sg(p.to_ce,1)}</td><td>${p.liq_und.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>
-  <p class="note">CE = Chandelier Exit（最高价 14 周期 − 2.0×ATR，棘轮只上不下）。
-  回测显示它在 3x/5x 上都比固定百分比止损收益更高且回撤更低。</p></section>`;
-
-  h += `<div class="warn"><b>为什么期权组起始资金不是整数。</b>期权最小单位是 1 张 = 100 股，
-  贵的票 1 张就超过目标仓位：单笔权重从 ${(d.w_min*100).toFixed(1)}% 到 ${(d.w_max*100).toFixed(1)}%，
-  相差 ${(d.w_max/d.w_min).toFixed(1)} 倍。perp 组则是严格等权。<b>所以两组只能用等权口径比。</b><br><br>
-  <b>已知混杂项。</b>${d.note}</div>`;
-
-  h += `<div class="foot">数据由本地程序每 5 分钟从券商快照生成并推送；本页每 60 秒重取一次。
-  <b>两段都可能断，所以上方显示的是数据本身的时点，不是页面加载时点。</b><br>
-  期权按 ask 进 / bid 出计价（最保守）；perp P&L 为保证金口径，已含杠杆，未计资金费与滑点。<br>
-  <b>模拟仓，非真实成交。本页为方法记录，不构成投资建议。</b> 烦烦 · 金融宇宙</div>`;
-  R.innerHTML = h;
-}
-
-async function load(){
-  try{
-    const r = await fetch('./data.json?t='+Date.now(), {cache:'no-store'});
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    render(await r.json());
-  }catch(e){
-    R.innerHTML = `<div class="warn"><b>拿不到数据。</b>${String(e)}<br>
-    这可能是推送端断了，也可能是网络问题。<b>不要把「读不到」当成「没有仓位」。</b></div>`;
+  var led = document.getElementById("ledger");
+  var pos = d.positions || [];
+  if (pos.length === 0) {
+    document.getElementById("ledger-lede").textContent = "实验待启动";
+    led.innerHTML = '<div class="empty">' +
+      '<div class="big">第一批信号来自当天 21:00 的日简报 Top 3</div>' +
+      '<div class="when">2026-09-02　21:30 MYT</div>' +
+      '<div class="sub">开盘后 15 分钟内建仓 · 三组同一批信号、同一组报价</div></div>';
+  } else {
+    document.getElementById("ledger-lede").textContent = pos.length + " 笔在场";
+    led.innerHTML = '<div class="tw"><table><thead><tr>' +
+      '<th>标的</th><th class="n">行权</th><th class="n">到期</th><th class="n">张</th>' +
+      '<th class="n">入场</th><th class="n">现值</th><th class="n">P&L</th><th>分组</th>' +
+      '</tr></thead><tbody>' + pos.map(function (p) {
+        var pl = (p.now / p.entry - 1) * 100;
+        var tags = ["g1", "g2", "g3"].filter(function (k) { return p[k]; })
+          .map(function (k) {
+            return '<span class="tag' + (k === "g3" ? " g3" : "") + '">' + k.toUpperCase() + '</span>';
+          }).join("");
+        return '<tr><td class="sym">' + p.symbol + '</td><td class="n">' + p.strike +
+          '</td><td class="n">' + p.expiry + '</td><td class="n">' + p.qty +
+          '</td><td class="n">' + p.entry.toFixed(2) + '</td><td class="n">' +
+          p.now.toFixed(2) + '</td><td class="n ' + (pl >= 0 ? "pos" : "neg") + '">' +
+          (pl >= 0 ? "+" : "") + pl.toFixed(1) + '%</td><td>' + tags + '</td></tr>';
+      }).join("") + '</tbody></table></div>';
   }
-}
-load();
-setInterval(load, 60000);
-</script></body></html>
+
+  var v = d.v1_archived || {};
+  document.getElementById("v1").innerHTML =
+    '<tr><td>腿数</td><td class="n">' + (v.legs || "—") + '</td></tr>' +
+    '<tr><td>开仓</td><td class="n">' + (v.opened || "—") + '</td></tr>' +
+    '<tr><td>结果</td><td class="n">' + (v.result || "—") + '</td></tr>' +
+    '<tr><td>已知混杂</td><td class="n">' + (v.caveat || "—") + '</td></tr>';
+}).catch(function (e) {
+  document.getElementById("ledger").innerHTML =
+    '<div class="empty"><div class="big">读 data.json 失败</div>' +
+    '<div class="sub">' + e + '</div></div>';
+});
+</script>
+</body>
+</html>
