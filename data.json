@@ -1,68 +1,253 @@
 {
  "version": "v2",
- "asof": "2026-09-01 10:58 MYT",
- "state": "empty",
- "headline": "四组对照 —— 等第一批（2026-09-02 21:30 MYT）",
- "note": "2026-09-01 打掉重练。v1（载体对照 期权 vs perp）已归档。v2 要分离出三件事：烦烦这一层有没有用、我这一层有没有用、两层串起来比我单独好不好。",
- "groups": [
+ "season": "S1",
+ "asof": "2026-09-01 11:01 MYT",
+ "state": "pre_season",
+ "kickoff": "2026-09-02 21:30 MYT",
+ "day": 0,
+ "season_days": null,
+ "question": "一层一层加上人的判断，绩效是变好还是变坏？",
+ "leagues": [
   {
-   "id": "G1",
-   "name": "itrd",
-   "who": "纯 itrd Top 3，照单全开，无人筛 —— 对照组",
-   "legs": 0,
-   "cost": 0,
-   "val": 0
+   "id": "equity",
+   "name": "股票联赛",
+   "venue": "moomoo · 1 个月 ATM call",
+   "capital_per_team": 20000,
+   "currency": "USD",
+   "per_leg": 2000,
+   "max_legs": 10,
+   "teams": [
+    {
+     "id": "equity-G1",
+     "league": "equity",
+     "gid": "G1",
+     "role": "machine",
+     "name": "机器",
+     "full": "itrd",
+     "desc": "照单全开，无人筛。对照组 —— 它赢就说明人这一层是负担。",
+     "color": "steel",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    },
+    {
+     "id": "equity-G2",
+     "league": "equity",
+     "gid": "G2",
+     "role": "ai",
+     "name": "AI 分析师",
+     "full": "itrd + 烦烦",
+     "desc": "烦烦从候选里挑，每只附一句理由。",
+     "color": "amber",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    },
+    {
+     "id": "equity-G3",
+     "league": "equity",
+     "gid": "G3",
+     "role": "ai_human",
+     "name": "AI + 人",
+     "full": "itrd + 烦烦 + 我",
+     "desc": "我在烦烦挑中的里面再拍板。串联。",
+     "color": "violet",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    },
+    {
+     "id": "equity-G4",
+     "league": "equity",
+     "gid": "G4",
+     "role": "human",
+     "name": "人",
+     "full": "itrd + 我",
+     "desc": "我直接从候选里挑，不看烦烦的意见。🔴 必须在看到烦烦意见之前锁定。",
+     "color": "teal",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    }
+   ]
   },
   {
-   "id": "G2",
-   "name": "itrd + 烦烦",
-   "who": "烦烦从 G1 候选里挑，附一句理由",
-   "legs": 0,
-   "cost": 0,
-   "val": 0
-  },
-  {
-   "id": "G3",
-   "name": "itrd + 烦烦 + 我",
-   "who": "Soma 在烦烦挑中的里面再拍板（串联）",
-   "legs": 0,
-   "cost": 0,
-   "val": 0
-  },
-  {
-   "id": "G4",
-   "name": "itrd + 我",
-   "who": "Soma 直接从 G1 挑 —— 🔴 必须在看到烦烦意见之前",
-   "legs": 0,
-   "cost": 0,
-   "val": 0
+   "id": "perp",
+   "name": "PERP 联赛",
+   "venue": "OKX · USDT 永续 3x",
+   "capital_per_team": 2000,
+   "currency": "USDT",
+   "per_leg": 200,
+   "max_legs": 10,
+   "teams": [
+    {
+     "id": "perp-G1",
+     "league": "perp",
+     "gid": "G1",
+     "role": "machine",
+     "name": "机器",
+     "full": "itrd",
+     "desc": "照单全开，无人筛。对照组 —— 它赢就说明人这一层是负担。",
+     "color": "steel",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    },
+    {
+     "id": "perp-G2",
+     "league": "perp",
+     "gid": "G2",
+     "role": "ai",
+     "name": "AI 分析师",
+     "full": "itrd + 烦烦",
+     "desc": "烦烦从候选里挑，每只附一句理由。",
+     "color": "amber",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    },
+    {
+     "id": "perp-G3",
+     "league": "perp",
+     "gid": "G3",
+     "role": "ai_human",
+     "name": "AI + 人",
+     "full": "itrd + 烦烦 + 我",
+     "desc": "我在烦烦挑中的里面再拍板。串联。",
+     "color": "violet",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    },
+    {
+     "id": "perp-G4",
+     "league": "perp",
+     "gid": "G4",
+     "role": "human",
+     "name": "人",
+     "full": "itrd + 我",
+     "desc": "我直接从候选里挑，不看烦烦的意见。🔴 必须在看到烦烦意见之前锁定。",
+     "color": "teal",
+     "legs": 0,
+     "open": 0,
+     "closed": 0,
+     "cost": 0,
+     "val": 0,
+     "pct": null,
+     "rank": null,
+     "prev_rank": null,
+     "wins": 0,
+     "losses": 0
+    }
+   ]
   }
  ],
- "read_rule": "三个独立问题：① 烦烦有没有用 = G2 vs (G1∖G2)；② 我有没有用 = G4 vs (G1∖G4)；③ 串联比我单独好吗 = G3 vs G4。G3⊂G2⊂G1，G4⊂G1；G3 与 G4 可重叠也可不重叠。",
- "prior": "先验设为三组无差别；≥20 个独立挑选决策之前只记不判。",
- "v1_archived": {
-  "legs": 15,
-  "opened": "2026-08-28 21:40",
-  "result": "期权 −18.8% vs perp −2.4%，载体差 +14.6pp",
-  "caveat": "已知混杂：当日 22:00 MYT 有 Warsh 首场 Jackson Hole keynote"
+ "cross_check": {
+  "label": "两榜顺序一致吗",
+  "why": "同一个决策者在两条支线各有一支队。两榜名次顺序一致 = 那是真信号；不一致 = 至少有一榜是杠杆或运气在说话。",
+  "agreement": null
  },
- "positions": [],
- "order_discipline": "🔴 G4 必须在【看到烦烦的挑选之前】做完并锁定。先看烦烦再挑，G4 就被污染成 G3 的变体，第②③个问题同时失效。简报会分两次发：第一次只给 G1 候选（等 Soma 的 G4），第二次才给烦烦的 G2。",
  "universe": {
   "total": 120,
   "itrd": 71,
   "added": 49,
-  "rule": "加的 49 只必须 OKX 有 USDT 永续，且只补 itrd 池的结构性空洞"
+  "rule": "加的 49 只必须 OKX 有 USDT 永续，且只补 itrd 池的结构性空洞 —— 不按我看好哪只来选"
  },
- "capital": {
-  "equity_per_group_usd": 20000,
-  "equity_per_leg_usd": 2000,
-  "perp_per_group_usdt": 2000,
-  "perp_leverage": 3,
-  "max_legs": 10
+ "scoring": {
+  "formula": "cycle 分 + CE 多头天数(封顶30)×35 + 未实现 pnl 归一×20 + signalStatus",
+  "max": 100,
+  "backtest": "🔴 无回测背书。只保证可复算、序可解释，不是预测力的证据。",
+  "note": "板块强度降级为注记，不进分数 —— 新加的 49 只没有 itrd 板块归属，算进去会系统性压低它们。"
  },
- "branches": [
-  "股票（moomoo 期权）",
-  "perp（OKX USDT 永续，3x）"
- ]
+ "read_rule": [
+  {
+   "n": "①",
+   "q": "烦烦有没有用",
+   "f": "G2 vs (G1 ∖ G2)"
+  },
+  {
+   "n": "②",
+   "q": "我有没有用",
+   "f": "G4 vs (G1 ∖ G4)"
+  },
+  {
+   "n": "③",
+   "q": "串联加不加分",
+   "f": "G3 vs G4"
+  }
+ ],
+ "discipline": [
+  {
+   "t": "顺序纪律",
+   "d": "G4 必须在看到烦烦的挑选之前锁定。先看再挑，G4 就变成 G3 的变体，问题 ②③ 同时失效。简报因此分两次发。"
+  },
+  {
+   "t": "先验",
+   "d": "设为「四组无差别」。要证明的是「加人的判断有用」，举证责任在那一边。≥20 个独立挑选决策之前只记不判。"
+  },
+  {
+   "t": "满仓约束",
+   "d": "每队最多同时 10 笔，满了记 skipped_full。这是实验的一部分 —— G1 照单全开最先满仓，挑得少的有余量，「能等更好的」会在数字上显形。"
+  },
+  {
+   "t": "入场闹钟",
+   "d": "开仓器由计划任务 21:32 MYT 自动跑，不靠人记得。v1 有一笔漏跑开盘、晚六小时建仓，+2.02% 漂移全记在那腿头上。"
+  }
+ ],
+ "v1_archived": {
+  "legs": 15,
+  "opened": "2026-08-28 21:40",
+  "result": "载体对照：期权 −18.8% vs perp −2.4%，载体差 +14.6pp",
+  "caveat": "已知混杂：当日 22:00 MYT 有 Warsh 首场 Jackson Hole keynote"
+ },
+ "positions": []
 }

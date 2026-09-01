@@ -3,337 +3,350 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paper Trade · 四组对照</title>
-<meta name="description" content="itrd 之后分两路：烦烦挑 vs 我直接挑。把两层判断拆开单独计分。">
+<title>四人赛 · 机器 vs AI vs 人</title>
+<meta name="description" content="同一批信号，四个决策者，两条支线。一层层加上人的判断，绩效是变好还是变坏。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
 :root{
-  --void:#0A0E11;
-  --ground:#0E1418;
-  --panel:#141C21;
-  --panel-2:#1A242A;
-  --line:#223037;
-  --line-soft:#1A252B;
-  --ink:#E6EDF0;
-  --dim:#8C9BA3;
-  --faint:#5C6B73;
-  --amber:#E8853C;
-  --amber-dim:#8A5426;
-  --amber-wash:#1F1710;
-  --cyan:#4FBFA8;
-  --pos:#5BC98D;
-  --neg:#E5615A;
+  --void:#070A0D; --deep:#0C1216; --panel:#111A20; --panel-2:#16222A;
+  --line:#1F2E37; --line-soft:#182530;
+  --ink:#EAF1F4; --dim:#8DA0AA; --faint:#5A6B76;
+  --steel:#8496A1; --amber:#E8853C; --violet:#B47CE8; --teal:#3FC0A6;
+  --gold:#E5C158; --pos:#4FD18B; --neg:#E5615A;
   --mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
   --sans:"Noto Sans SC","Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei",sans-serif;
 }
 *{box-sizing:border-box}
 html{background:var(--void)}
-body{
-  margin:0;background:var(--void);color:var(--ink);
-  font-family:var(--sans);font-size:15px;line-height:1.75;
-  -webkit-font-smoothing:antialiased;
+body{margin:0;background:var(--void);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;
   background-image:
-    radial-gradient(ellipse 900px 420px at 50% -8%, rgba(232,133,60,.10), transparent 70%),
-    linear-gradient(var(--void), var(--void));
-}
-.wrap{max-width:900px;margin:0 auto;padding:0 22px 90px}
+    radial-gradient(ellipse 1100px 500px at 50% -10%, rgba(232,133,60,.09), transparent 68%),
+    radial-gradient(ellipse 700px 380px at 88% 8%, rgba(63,192,166,.055), transparent 62%);
+  background-repeat:no-repeat}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px 96px}
 
-/* ── hero ── */
-header{padding:52px 0 30px;text-align:center}
-.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.34em;
+header{padding:56px 0 26px;text-align:center}
+.season{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(232,133,60,.35);border-radius:99px;padding:5px 15px;font-weight:600}
+.season .pip{width:5px;height:5px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 0 3px rgba(232,133,60,.16)}
+h1{margin:20px 0 0;font-family:var(--mono);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(32px,8vw,64px);line-height:1}
+h1 .vs{color:var(--faint);font-weight:400;font-size:.52em;margin:0 .22em;vertical-align:.12em}
+h1 .m{color:var(--steel)}h1 .a{color:var(--amber)}h1 .h{color:var(--teal)}
+.tag{margin:20px auto 0;max-width:46ch;color:var(--dim);font-size:15.5px}
+.tag b{color:var(--ink);font-weight:700}
+.meta{margin-top:22px;font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.05em}
+
+.kick{margin:32px auto 0;max-width:520px;border:1px dashed var(--line);border-radius:3px;
+  background:linear-gradient(180deg, rgba(232,133,60,.05), transparent);padding:22px 20px;text-align:center}
+.kick .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--faint)}
+.kick .d{margin-top:9px;font-family:var(--mono);font-size:26px;font-weight:600;
+  color:var(--amber);letter-spacing:-.01em}
+.kick .s{margin-top:7px;font-size:12.5px;color:var(--dim)}
+
+.boards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.board{border:1px solid var(--line);border-radius:3px;background:var(--panel);overflow:hidden}
+.bhead{padding:14px 17px;background:var(--panel-2);border-bottom:1px solid var(--line)}
+.bname{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.02em}
+.bsub{margin-top:3px;font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.06em}
+.row{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;
+  padding:13px 17px;border-bottom:1px solid var(--line-soft);position:relative}
+.row:last-child{border-bottom:none}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+.row[data-c="steel"]{--c:var(--steel)}
+.row[data-c="amber"]{--c:var(--amber)}
+.row[data-c="violet"]{--c:var(--violet)}
+.row[data-c="teal"]{--c:var(--teal)}
+.row.lead{background:linear-gradient(90deg, rgba(229,193,88,.07), transparent 62%)}
+.pos{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--faint);text-align:center}
+.row.lead .pos{color:var(--gold)}
+.who{min-width:0}
+.wn{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--c);
+  display:flex;align-items:baseline;gap:7px}
+.wn .gid{font-size:10px;color:var(--faint);letter-spacing:.1em;font-weight:500}
+.wf{margin-top:2px;font-size:11.5px;color:var(--faint);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.sc{text-align:right;white-space:nowrap}
+.sc .v{font-family:var(--mono);font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}
+.sc .v.idle{color:var(--faint);font-weight:400;font-size:16px}
+.sc .k{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:2px}
+.up{color:var(--pos)}.dn{color:var(--neg)}
+
+.cross{margin-top:22px;border:1px solid var(--line);border-radius:3px;background:var(--panel);
+  padding:18px 20px}
+.cross h3{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--amber);font-weight:600}
-h1{margin:16px 0 0;font-family:var(--mono);font-size:clamp(30px,7vw,52px);
-  font-weight:700;letter-spacing:-.02em;line-height:1.05}
-h1 .sep{color:var(--amber);font-weight:400;margin:0 .18em}
-.q{margin:18px auto 0;max-width:44ch;color:var(--dim);font-size:15px;line-height:1.7}
-.q b{color:var(--ink);font-weight:700}
-.stamp{margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--faint);
-  letter-spacing:.06em}
-.stamp .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
-  background:var(--amber);margin-right:7px;vertical-align:1px;
-  box-shadow:0 0 0 3px rgba(232,133,60,.18)}
+.cross p{margin:9px 0 0;font-size:13.5px;color:var(--dim);line-height:1.7}
+.cross p b{color:var(--ink)}
+.xgrid{margin-top:15px;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.xcell{border:1px solid var(--line-soft);border-radius:3px;background:var(--deep);
+  padding:11px 13px;font-family:var(--mono);font-size:12px}
+.xcell .r{color:var(--faint);font-size:10px;letter-spacing:.1em}
+.xcell .n{margin-top:3px;font-size:14px;font-weight:600}
+.xmid{font-family:var(--mono);font-size:11px;color:var(--faint);text-align:center}
 
-/* ── funnel ── */
-.funnel{margin:40px 0 8px}
-.fnl{width:100%;height:auto;display:block}
-.fnl text{font-family:var(--mono)}
-
-/* ── groups ── */
-.groups{margin-top:18px;display:flex;flex-direction:column;gap:0}
-.g{position:relative;border:1px solid var(--line);border-radius:2px;
-  background:var(--panel);padding:18px 20px 18px 22px;margin-top:-1px}
-.g::before{content:"";position:absolute;left:0;top:-1px;bottom:-1px;width:3px;background:var(--amber-dim)}
-.g[data-i="0"]{margin-left:0}
-.g[data-i="1"]{margin-left:26px}
-.g[data-i="2"]{margin-left:52px}
-.g[data-i="3"]{margin-left:0;margin-top:16px;border-color:#2A4A44}
-.g[data-i="3"]::before{background:var(--cyan)}
-.g[data-i="3"] .gid{color:var(--cyan)}
-.g[data-i="1"]::before{background:var(--amber)}
-.g[data-i="2"]::before{background:var(--amber)}
-.ghead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.gid{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--amber)}
-
-.gname{font-family:var(--mono);font-size:19px;font-weight:600;letter-spacing:-.01em}
-.gsub{margin:6px 0 0;font-size:13.5px;color:var(--dim);line-height:1.65}
-.gstats{margin-top:14px;display:flex;flex-wrap:wrap;gap:0;
-  border-top:1px solid var(--line-soft);padding-top:12px}
-.st{padding-right:26px;margin-right:26px;border-right:1px solid var(--line-soft)}
-.st:last-child{border-right:none;padding-right:0;margin-right:0}
-.st .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:3px}
-.st .v{font-family:var(--mono);font-size:20px;font-weight:600;
-  font-variant-numeric:tabular-nums;line-height:1.1}
-.st .v.dim{color:var(--faint);font-weight:400}
-.pos{color:var(--pos)}.neg{color:var(--neg)}
-
-/* ── sections ── */
-h2{margin:52px 0 4px;font-family:var(--mono);font-size:12px;font-weight:600;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
-h2 + .lede{margin:0 0 16px;font-size:17px;font-weight:700;line-height:1.45;color:var(--ink)}
-
-.card{border:1px solid var(--line);border-radius:2px;background:var(--panel);
-  padding:18px 20px;margin-top:14px}
-.card p{margin:0 0 10px;font-size:14px;line-height:1.75;color:var(--dim)}
+h2{margin:56px 0 5px;font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--amber)}
+.lede{margin:0 0 16px;font-size:19px;font-weight:700;line-height:1.4}
+.card{border:1px solid var(--line);border-radius:3px;background:var(--panel);padding:18px 20px;margin-top:13px}
+.card p{margin:0 0 10px;font-size:13.8px;color:var(--dim);line-height:1.75}
 .card p:last-child{margin-bottom:0}
 .card b{color:var(--ink);font-weight:700}
-.formula{font-family:var(--mono);font-size:13px;color:var(--ink);
-  background:var(--void);border:1px solid var(--line);border-radius:2px;
-  padding:12px 14px;margin:12px 0 0;overflow-x:auto;white-space:nowrap}
-.formula .op{color:var(--amber)}
 
-.empty{margin-top:14px;border:1px dashed var(--line);border-radius:2px;
-  background:var(--panel);padding:34px 22px;text-align:center}
-.empty .big{font-family:var(--mono);font-size:15px;color:var(--dim);letter-spacing:.02em}
-.empty .when{margin-top:10px;font-family:var(--mono);font-size:22px;
-  font-weight:600;color:var(--amber);letter-spacing:-.01em}
-.empty .sub{margin-top:8px;font-size:13px;color:var(--faint)}
+.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:13px;margin-top:14px}
+.pl{border:1px solid var(--line);border-radius:3px;background:var(--panel);
+  padding:16px 17px;border-top:2px solid var(--c)}
+.pl[data-c="steel"]{--c:var(--steel)}
+.pl[data-c="amber"]{--c:var(--amber)}
+.pl[data-c="violet"]{--c:var(--violet)}
+.pl[data-c="teal"]{--c:var(--teal)}
+.pl .g{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
+.pl .n{margin-top:5px;font-family:var(--mono);font-size:19px;font-weight:700;color:var(--c)}
+.pl .f{margin-top:3px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.pl .d{margin-top:10px;font-size:12.8px;color:var(--faint);line-height:1.65}
 
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:2px;
-  background:var(--panel);margin-top:14px}
-table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+.match{display:grid;grid-template-columns:24px 1fr auto;gap:13px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--line-soft)}
+.match:last-child{border-bottom:none}
+.match .no{font-family:var(--mono);font-size:13px;color:var(--amber);font-weight:700}
+.match .q{font-size:14.5px;font-weight:700}
+.match .f{font-family:var(--mono);font-size:12.5px;color:var(--dim);white-space:nowrap}
+
+.rule{padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.rule:last-child{border-bottom:none}
+.rule .t{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--amber);letter-spacing:.06em}
+.rule .d{margin-top:5px;font-size:13.3px;color:var(--dim);line-height:1.7}
+.rule .d b{color:var(--ink)}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--panel);margin-top:13px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:480px}
 th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--faint);font-weight:500;
-  padding:10px 13px;border-bottom:1px solid var(--line);background:var(--panel-2);white-space:nowrap}
+  text-transform:uppercase;color:var(--faint);font-weight:500;padding:10px 13px;
+  border-bottom:1px solid var(--line);background:var(--panel-2);white-space:nowrap}
 td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--dim)}
 tr:last-child td{border-bottom:none}
-td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);
-  font-size:12.5px;white-space:nowrap;color:var(--ink)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);color:var(--ink)}
 td.sym{font-family:var(--mono);font-weight:600;color:var(--ink)}
-.tag{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:600;
+.chip{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:600;
   letter-spacing:.1em;padding:1px 6px;border-radius:2px;margin-right:4px;
-  border:1px solid var(--amber-dim);color:var(--amber)}
-.tag.g3{border-color:var(--cyan);color:var(--cyan)}
-
-.warn{margin-top:14px;border:1px solid var(--amber-dim);border-radius:2px;
-  background:var(--amber-wash);padding:15px 17px;font-size:13.5px;line-height:1.72;color:var(--dim)}
-.warn b{color:var(--amber)}
+  border:1px solid var(--c);color:var(--c)}
+.chip[data-c="steel"]{--c:var(--steel)}.chip[data-c="amber"]{--c:var(--amber)}
+.chip[data-c="violet"]{--c:var(--violet)}.chip[data-c="teal"]{--c:var(--teal)}
 
 footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:11px;color:var(--faint);line-height:2}
 
-@media (max-width:640px){
-  .g[data-i="1"]{margin-left:12px}
-  .g[data-i="2"]{margin-left:24px}
-  .g[data-i="3"]{margin-left:0}
-  .st{padding-right:16px;margin-right:16px}
-  .st .v{font-size:17px}
+@media (max-width:820px){
+  .boards{grid-template-columns:1fr}
+  .xgrid{grid-template-columns:1fr;gap:7px}
+  .xmid{padding:2px 0}
 }
 @media (prefers-reduced-motion:no-preference){
-  .g{transition:border-color .18s ease, background .18s ease}
-  .g:hover{border-color:var(--amber-dim);background:var(--panel-2)}
+  .row,.pl{transition:background .18s ease,border-color .18s ease}
+  .row:hover{background:var(--panel-2)}
+  .pl:hover{border-color:var(--c)}
 }
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
 <header>
-  <div class="kicker">Paper Trade · v2</div>
-  <h1>itrd<span class="sep">→</span>烦烦<span class="sep">?</span>我</h1>
-  <p class="q">加上人的判断，<b>绩效是变好还是变坏</b>？<br>四组同时跑，把<b>烦烦这一层</b>和<b>我这一层</b>拆开单独计分。</p>
-  <div class="stamp"><span class="dot"></span><span id="stamp">载入中…</span></div>
+  <div class="season"><span class="pip"></span><span id="season">S1</span></div>
+  <h1><span class="m">机器</span><span class="vs">vs</span><span class="a">AI</span><span class="vs">vs</span><span class="h">人</span></h1>
+  <p class="tag" id="tagline">同一批信号，四个决策者，两条支线。<b>一层层加上人的判断，绩效是变好还是变坏？</b></p>
+  <div class="meta" id="meta">载入中…</div>
 </header>
 
-<div class="funnel">
-  <svg class="fnl" viewBox="-10 0 930 214" role="img" aria-label="从 71 只候选池分叉出四条筛选路径">
-    <defs>
-      <linearGradient id="ga" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#223037"/><stop offset="1" stop-color="#E8853C"/>
-      </linearGradient>
-    </defs>
+<div id="kick"></div>
+<div class="boards" id="boards"></div>
+<div class="cross" id="cross"></div>
 
-    <!-- 主干 池 → G1 -->
-    <line x1="70" y1="105" x2="255" y2="105" stroke="url(#ga)" stroke-width="2"/>
-    <!-- 分叉 G1 → G2（上） / G1 → G4（下） -->
-    <path d="M300,105 C360,105 360,55 420,55" stroke="#8A5426" stroke-width="2" fill="none"/>
-    <path d="M300,105 C360,105 360,163 420,163" stroke="#4FBFA8" stroke-width="2" fill="none"/>
-    <!-- G2 → G3 -->
-    <line x1="500" y1="55" x2="660" y2="55" stroke="#E8853C" stroke-width="2"/>
+<h2>参赛者</h2>
+<p class="lede">四个决策者，每人在两条支线各带一支队</p>
+<div class="roster" id="roster"></div>
 
-    <!-- 节点 -->
-    <g>
-      <circle cx="40" cy="105" r="26" fill="#141C21" stroke="#223037" stroke-width="1.5"/>
-      <text x="40" y="111" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0">71</text>
-      <text x="40" y="150" text-anchor="middle" font-size="9.5" fill="#5C6B73" letter-spacing="1.4">候选池</text>
-    </g>
-    <g>
-      <rect x="255" y="82" width="46" height="46" rx="3" fill="#141C21" stroke="#8A5426" stroke-width="1.5"/>
-      <text x="278" y="111" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f1">—</text>
-      <text x="278" y="150" text-anchor="middle" font-size="9.5" fill="#8A5426" letter-spacing="1.4">G1 · itrd</text>
-    </g>
-    <g>
-      <rect x="420" y="32" width="46" height="46" rx="3" fill="#141C21" stroke="#E8853C" stroke-width="1.5"/>
-      <text x="443" y="61" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f2">—</text>
-      <text x="443" y="22" text-anchor="middle" font-size="9" fill="#E8853C" letter-spacing="1.1">G2 · itrd+烦烦</text>
-    </g>
-    <g>
-      <rect x="660" y="32" width="46" height="46" rx="3" fill="#141C21" stroke="#E8853C" stroke-width="1.5"/>
-      <text x="683" y="61" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f3">—</text>
-      <text x="683" y="22" text-anchor="middle" font-size="9" fill="#E8853C" letter-spacing="1.1">G3 · itrd+烦烦+我</text>
-    </g>
-    <g>
-      <rect x="420" y="140" width="46" height="46" rx="3" fill="#141C21" stroke="#4FBFA8" stroke-width="1.5"/>
-      <text x="443" y="169" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f4">—</text>
-      <text x="443" y="204" text-anchor="middle" font-size="9" fill="#4FBFA8" letter-spacing="1.1">G4 · itrd+我</text>
-    </g>
-
-    <text x="760" y="140" font-size="10" fill="#5C6B73">G3 vs G4</text>
-    <text x="760" y="156" font-size="10" fill="#8C9BA3">= 串联有没有加分</text>
-    <path d="M700,80 C740,100 740,118 755,128" stroke="#223037" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
-    <path d="M470,163 C560,163 700,150 752,136" stroke="#223037" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
-  </svg>
+<h2>三场对决</h2>
+<p class="lede">名次好看不算数 —— 要比的是「选中 vs 没选中」</p>
+<div class="card" id="matches"></div>
+<div class="card">
+  <p>G2 是 G1 的子集，G3 是 G2 的子集，G4 也是 G1 的子集。
+  <b>直接拿 G2 比全 G1 会被重叠稀释</b> —— 因为 G2 的每一笔也算在 G1 里。所以比的是「被选中的」对「没被选中的」。</p>
+  <p><b>为什么要有 G4：</b>在 G3 里我只能从烦烦挑剩的里面选。
+  <b>烦烦如果筛掉一只好票，我永远碰不到它 —— 但那笔的损失会记在我头上。</b>
+  G4 让我直接从候选池挑，两层判断才能各自计分。</p>
 </div>
-
-<div class="groups" id="groups"></div>
 
 <h2>台账</h2>
 <p class="lede" id="ledger-lede">还没有仓位</p>
 <div id="ledger"></div>
 
-<h2>怎么比</h2>
-<p class="lede">四组不是一条链，是一个分叉 —— 为的是把两层判断拆开算</p>
-<div class="card">
-  <p><b>加 G4（itrd + 我）是为了解决一个问题：</b>在 G3 里，我只能从烦烦挑剩的里面选。
-  <b>烦烦如果筛掉了一只好票，我永远没机会碰它 —— 那笔的损失会被记在我头上。</b>
-  G4 让我直接从 G1 全集挑，两层判断才能各自计分。</p>
-  <div class="formula">① 烦烦有没有用　<span class="op">G2</span> vs <span class="op">(G1 ∖ G2)</span></div>
-  <div class="formula">② 我有没有用　　<span class="op">G4</span> vs <span class="op">(G1 ∖ G4)</span></div>
-  <div class="formula">③ 串联加不加分　<span class="op">G3</span> vs <span class="op">G4</span></div>
-  <p style="margin-top:14px">G3 ⊂ G2 ⊂ G1，G4 ⊂ G1；<b>G3 和 G4 可能重叠也可能完全不重叠</b> —— 那本身就是数据。</p>
-  <p><b>先验设为「四组无差别」。</b>要证明的是「加人的判断有用」，举证责任在那一边。
-  <b>≥20 个独立挑选决策之前只记不判。</b></p>
-</div>
-<div class="warn">
-  <b>🔴 顺序纪律 —— 这一条不守，第 ② ③ 问同时失效。</b>
-  <b>G4 必须在看到烦烦的挑选之前做完并锁定。</b>先看烦烦再挑，G4 就变成 G3 的变体，两层就分不开了。
-  <br><br>
-  所以简报<b>分两次发</b>：<b>21:00 第一次只给 G1 候选</b>（等你的 G4）→
-  你锁定后 <b>21:1x 第二次才给烦烦的 G2 和理由</b> → 你在 G2 里再挑 G3 → 21:32 开仓。
-</div>
-
-<h2>口径 · 四组完全一致</h2>
-<p class="lede">出场不一致的比较是假的</p>
+<h2>规则</h2>
+<p class="lede">先写死，防以后自己搬龙门</p>
+<div class="card" id="rules"></div>
 <div class="tw"><table>
-  <thead><tr><th>项</th><th>值</th></tr></thead>
-  <tbody>
-    <tr><td>信号源</td><td class="n">每日 21:00 简报的 Top 3</td></tr>
-    <tr><td>入场</td><td class="n">下一 RTH 开盘后 15 分钟内 · moomoo 真报价</td></tr>
-    <tr><td>载体</td><td class="n">1 个月 ATM call · 每腿目标 $2,000</td></tr>
-    <tr><td>出场</td><td class="n">权利金 −50% 硬止损 · 无固定止盈 · 最多 20 交易日</td></tr>
-    <tr><td>重复上榜</td><td class="n">已持有则 skipped_already_held，不重开</td></tr>
-    <tr><td>Soma 没表态</td><td class="n">G3 / G4 各记 missed —— 与「表态了但全不要」严格区分</td></tr>
-  </tbody>
+  <thead><tr><th>项</th><th class="n">股票联赛</th><th class="n">PERP 联赛</th></tr></thead>
+  <tbody id="spec"></tbody>
 </table></div>
-<div class="warn">
-  <b>入场闹钟是硬的。</b>开仓器由计划任务 21:32 MYT 自动跑，不靠人记得 ——
-  v1 有一笔就是因为没闹钟漏跑了开盘入场，实际晚了六小时才建仓，+2.02% 的漂移全记在那一腿头上。
-</div>
 
-<h2>v1 已归档</h2>
-<p class="lede" id="v1-lede">载体对照 · 期权 vs perp</p>
+<h2>候选池与评分</h2>
+<p class="lede" id="pool-lede">120 只</p>
+<div class="card" id="pool"></div>
+
+<h2>上届已归档</h2>
 <div class="tw"><table>
   <thead><tr><th>项目</th><th class="n">值</th></tr></thead>
   <tbody id="v1"></tbody>
 </table></div>
 
 <footer>
-  只开一份仓，靠标签分层读数（g1 / g2 / g3 / g4）—— 不是开三份，否则同一个信号会被记三次，绩效数字全是假的。<br>
-  报价取 moomoo RTH 内真实 bid/ask · 出场口径四组完全一致 · 每笔结算必判「赢/输的理由是不是当初写的那个」。
+  同一个信号只开一份仓，靠标签分层读数（G1 / G2 / G3 / G4）—— 不是开四份，否则一个信号被记四次，绩效全是假的。<br>
+  出场口径四队完全一致：权利金 −50% 硬止损 · 无固定止盈 · 最多 20 个交易日。<br>
+  股票报价取 moomoo RTH 内真实 bid/ask · perp 取 OKX USDT 永续 · 本金是虚拟的，不是真实账户。
 </footer>
 
 </div>
 
 <script>
-fetch("data.json?t=" + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
-  document.getElementById("stamp").textContent =
-    (d.headline || "三组对照") + "　·　更新 " + (d.asof || "—");
+function pctTxt(p){return (p===null||p===undefined)?"—":((p>=0?"+":"")+p.toFixed(1)+"%");}
+function arrow(cur,prev){
+  if(cur===null||prev===null||cur===undefined||prev===undefined) return "";
+  if(cur<prev) return '<span class="up">▲'+(prev-cur)+'</span> ';
+  if(cur>prev) return '<span class="dn">▼'+(cur-prev)+'</span> ';
+  return '<span style="color:var(--faint)">—</span> ';
+}
+function isLive(ts){return ts.some(function(t){return t.pct!==null&&t.pct!==undefined;});}
 
-  var gs = d.groups || [];
-  gs.forEach(function (g, i) {
-    var el = document.getElementById("f" + (i + 1));
-    if (el) el.textContent = g.legs > 0 ? g.legs : "—";
-  });
+fetch("data.json?t="+Date.now()).then(function(r){return r.json();}).then(function(d){
+  document.getElementById("season").textContent =
+    "Season "+(d.season||"1")+" · 第 "+(d.day||0)+" 天";
+  if(d.question){
+    document.getElementById("tagline").innerHTML =
+      "同一批信号，四个决策者，两条支线。<b>"+d.question+"</b>";
+  }
+  document.getElementById("meta").textContent =
+    "更新 "+(d.asof||"—")+"　·　候选池 "+((d.universe||{}).total||"?")+" 只";
 
-  document.getElementById("groups").innerHTML = gs.map(function (g, i) {
-    var pct = (g.cost > 0) ? ((g.val / g.cost - 1) * 100) : null;
-    var cls = pct === null ? "dim" : (pct >= 0 ? "pos" : "neg");
-    var pctTxt = pct === null ? "—" : (pct >= 0 ? "+" : "") + pct.toFixed(1) + "%";
-    return '<div class="g" data-i="' + i + '">' +
-      '<div class="ghead"><span class="gid">' + g.id + '</span>' +
-      '<span class="gname">' + g.name + '</span></div>' +
-      '<p class="gsub">' + g.who + '</p>' +
-      '<div class="gstats">' +
-        '<div class="st"><span class="l">腿数</span><span class="v' +
-          (g.legs ? '' : ' dim') + '">' + g.legs + '</span></div>' +
-        '<div class="st"><span class="l">投入</span><span class="v' +
-          (g.cost ? '' : ' dim') + '">$' + (g.cost || 0).toLocaleString() + '</span></div>' +
-        '<div class="st"><span class="l">现值</span><span class="v' +
-          (g.val ? '' : ' dim') + '">$' + (g.val || 0).toLocaleString() + '</span></div>' +
-        '<div class="st"><span class="l">收益</span><span class="v ' + cls + '">' + pctTxt + '</span></div>' +
-      '</div></div>';
-  }).join("");
-
-  var led = document.getElementById("ledger");
-  var pos = d.positions || [];
-  if (pos.length === 0) {
-    document.getElementById("ledger-lede").textContent = "实验待启动";
-    led.innerHTML = '<div class="empty">' +
-      '<div class="big">第一批信号来自当天 21:00 的日简报 Top 3</div>' +
-      '<div class="when">2026-09-02　21:30 MYT</div>' +
-      '<div class="sub">开盘后 15 分钟内建仓 · 四组同一批信号、同一组报价</div></div>';
-  } else {
-    document.getElementById("ledger-lede").textContent = pos.length + " 笔在场";
-    led.innerHTML = '<div class="tw"><table><thead><tr>' +
-      '<th>标的</th><th class="n">行权</th><th class="n">到期</th><th class="n">张</th>' +
-      '<th class="n">入场</th><th class="n">现值</th><th class="n">P&L</th><th>分组</th>' +
-      '</tr></thead><tbody>' + pos.map(function (p) {
-        var pl = (p.now / p.entry - 1) * 100;
-        var tags = ["g1", "g2", "g3", "g4"].filter(function (k) { return p[k]; })
-          .map(function (k) {
-            return '<span class="tag' + ((k === "g3" || k === "g4") ? " g3" : "") + '">' + k.toUpperCase() + '</span>';
-          }).join("");
-        return '<tr><td class="sym">' + p.symbol + '</td><td class="n">' + p.strike +
-          '</td><td class="n">' + p.expiry + '</td><td class="n">' + p.qty +
-          '</td><td class="n">' + p.entry.toFixed(2) + '</td><td class="n">' +
-          p.now.toFixed(2) + '</td><td class="n ' + (pl >= 0 ? "pos" : "neg") + '">' +
-          (pl >= 0 ? "+" : "") + pl.toFixed(1) + '%</td><td>' + tags + '</td></tr>';
-      }).join("") + '</tbody></table></div>';
+  if(d.state==="pre_season"){
+    document.getElementById("kick").innerHTML =
+      '<div class="kick"><div class="l">开赛</div><div class="d">'+(d.kickoff||"待定")+'</div>'+
+      '<div class="s">信号来自当天 21:00 的盘面简报 · 八支队同一批信号、同一组报价</div></div>';
   }
 
-  var v = d.v1_archived || {};
+  var lgs = d.leagues||[];
+  document.getElementById("boards").innerHTML = lgs.map(function(lg){
+    var ts=(lg.teams||[]).slice(), live=isLive(ts);
+    if(live) ts.sort(function(a,b){return (b.pct||0)-(a.pct||0);});
+    var rows = ts.map(function(t,i){
+      return '<div class="row'+(live&&i===0?" lead":"")+'" data-c="'+t.color+'">'+
+        '<div class="pos">'+(live?(i+1):"·")+'</div>'+
+        '<div class="who"><div class="wn">'+t.name+'<span class="gid">'+t.gid+'</span></div>'+
+        '<div class="wf">'+t.full+'</div></div>'+
+        '<div class="sc"><div class="v'+(live?(t.pct>=0?" up":" dn"):" idle")+'">'+
+        (live?(arrow(i+1,t.prev_rank)+pctTxt(t.pct)):"待发")+'</div>'+
+        '<div class="k">'+t.legs+" / "+lg.max_legs+' 笔</div></div></div>';
+    }).join("");
+    return '<div class="board"><div class="bhead"><div class="bname">'+lg.name+'</div>'+
+      '<div class="bsub">'+lg.venue+'　·　每队 '+lg.capital_per_team.toLocaleString()+
+      ' '+lg.currency+'</div></div>'+rows+'</div>';
+  }).join("");
+
+  var cc=d.cross_check||{};
+  function order(lg){
+    var ts=(lg.teams||[]).slice();
+    if(!isLive(ts)) return null;
+    ts.sort(function(a,b){return (b.pct||0)-(a.pct||0);});
+    return ts;
+  }
+  var oA=lgs[0]?order(lgs[0]):null, oB=lgs[1]?order(lgs[1]):null;
+  var x='<h3>'+(cc.label||"两榜顺序一致吗")+'</h3><p>'+(cc.why||"")+'</p>';
+  if(oA&&oB){
+    var same=oA.every(function(t,i){return t.role===oB[i].role;});
+    x+='<div class="xgrid"><div class="xcell"><div class="r">'+lgs[0].name+'</div><div class="n">'+
+      oA.map(function(t){return t.name;}).join(" › ")+'</div></div><div class="xmid">'+
+      (same?"✅ 一致":"⚠️ 不一致")+'</div><div class="xcell"><div class="r">'+lgs[1].name+
+      '</div><div class="n">'+oB.map(function(t){return t.name;}).join(" › ")+'</div></div></div>';
+  }else{
+    x+='<div class="xgrid"><div class="xcell"><div class="r">'+(lgs[0]?lgs[0].name:"")+
+      '</div><div class="n">待开赛</div></div><div class="xmid">?</div>'+
+      '<div class="xcell"><div class="r">'+(lgs[1]?lgs[1].name:"")+
+      '</div><div class="n">待开赛</div></div></div>';
+  }
+  document.getElementById("cross").innerHTML=x;
+
+  var roles=(lgs[0]||{}).teams||[];
+  document.getElementById("roster").innerHTML = roles.map(function(t){
+    return '<div class="pl" data-c="'+t.color+'"><div class="g">'+t.gid+'</div>'+
+      '<div class="n">'+t.name+'</div><div class="f">'+t.full+'</div>'+
+      '<div class="d">'+t.desc+'</div></div>';
+  }).join("");
+
+  document.getElementById("matches").innerHTML = (d.read_rule||[]).map(function(m){
+    return '<div class="match"><div class="no">'+m.n+'</div><div class="q">'+m.q+
+      '</div><div class="f">'+m.f+'</div></div>';
+  }).join("");
+
+  document.getElementById("rules").innerHTML = (d.discipline||[]).map(function(r){
+    return '<div class="rule"><div class="t">'+r.t+'</div><div class="d">'+r.d+'</div></div>';
+  }).join("");
+
+  var a=lgs[0]||{}, b=lgs[1]||{};
+  document.getElementById("spec").innerHTML =
+    '<tr><td>本金 / 队</td><td class="n">$'+(a.capital_per_team||0).toLocaleString()+
+      '</td><td class="n">'+(b.capital_per_team||0).toLocaleString()+' USDT</td></tr>'+
+    '<tr><td>每腿</td><td class="n">$'+(a.per_leg||0).toLocaleString()+
+      '</td><td class="n">'+(b.per_leg||0).toLocaleString()+' USDT 保证金 · 3x</td></tr>'+
+    '<tr><td>同时最多</td><td class="n">'+(a.max_legs||0)+' 笔</td><td class="n">'+
+      (b.max_legs||0)+' 笔</td></tr>'+
+    '<tr><td>载体</td><td class="n">1 个月 ATM call</td><td class="n">USDT 永续</td></tr>'+
+    '<tr><td>场地</td><td class="n">moomoo</td><td class="n">OKX</td></tr>';
+
+  var u=d.universe||{}, sc=d.scoring||{};
+  document.getElementById("pool-lede").textContent =
+    (u.total||"?")+" 只 = itrd "+(u.itrd||"?")+" + 加的 "+(u.added||"?");
+  document.getElementById("pool").innerHTML =
+    "<p><b>加的规则：</b>"+(u.rule||"")+"</p>"+
+    "<p><b>评分：</b>"+(sc.formula||"")+"，满分 "+(sc.max||"?")+"。</p>"+
+    "<p>"+(sc.note||"")+"</p>"+
+    '<p style="color:var(--neg)"><b>'+(sc.backtest||"")+"</b></p>";
+
+  var pos=d.positions||[];
+  var led=document.getElementById("ledger");
+  if(pos.length===0){
+    document.getElementById("ledger-lede").textContent="还没有仓位 —— 第一批等开赛";
+    led.innerHTML='<div class="card"><p>开赛后这里会列出每一笔：标的、行权、到期、张数、入场、现值、P&L，'+
+      '以及它属于哪几支队（一笔可以同时挂 G1 / G2 / G3 / G4 的标签）。</p></div>';
+  }else{
+    document.getElementById("ledger-lede").textContent=pos.length+" 笔在场";
+    var cmap={g1:"steel",g2:"amber",g3:"violet",g4:"teal"};
+    led.innerHTML='<div class="tw"><table><thead><tr><th>标的</th><th class="n">行权</th>'+
+      '<th class="n">到期</th><th class="n">张</th><th class="n">入场</th><th class="n">现值</th>'+
+      '<th class="n">P&L</th><th>属于</th></tr></thead><tbody>'+pos.map(function(p){
+        var pl=(p.now/p.entry-1)*100;
+        var tags=["g1","g2","g3","g4"].filter(function(k){return p[k];}).map(function(k){
+          return '<span class="chip" data-c="'+cmap[k]+'">'+k.toUpperCase()+'</span>';}).join("");
+        return '<tr><td class="sym">'+p.symbol+'</td><td class="n">'+p.strike+
+          '</td><td class="n">'+p.expiry+'</td><td class="n">'+p.qty+
+          '</td><td class="n">'+p.entry.toFixed(2)+'</td><td class="n">'+p.now.toFixed(2)+
+          '</td><td class="n '+(pl>=0?"up":"dn")+'">'+(pl>=0?"+":"")+pl.toFixed(1)+
+          '%</td><td>'+tags+'</td></tr>';
+      }).join("")+'</tbody></table></div>';
+  }
+
+  var v=d.v1_archived||{};
   document.getElementById("v1").innerHTML =
-    '<tr><td>腿数</td><td class="n">' + (v.legs || "—") + '</td></tr>' +
-    '<tr><td>开仓</td><td class="n">' + (v.opened || "—") + '</td></tr>' +
-    '<tr><td>结果</td><td class="n">' + (v.result || "—") + '</td></tr>' +
-    '<tr><td>已知混杂</td><td class="n">' + (v.caveat || "—") + '</td></tr>';
-}).catch(function (e) {
-  document.getElementById("ledger").innerHTML =
-    '<div class="empty"><div class="big">读 data.json 失败</div>' +
-    '<div class="sub">' + e + '</div></div>';
+    '<tr><td>腿数</td><td class="n">'+(v.legs||"—")+'</td></tr>'+
+    '<tr><td>开仓</td><td class="n">'+(v.opened||"—")+'</td></tr>'+
+    '<tr><td>结果</td><td class="n">'+(v.result||"—")+'</td></tr>'+
+    '<tr><td>已知混杂</td><td class="n">'+(v.caveat||"—")+'</td></tr>';
+}).catch(function(e){
+  document.getElementById("meta").textContent="读 data.json 失败："+e;
 });
 </script>
 </body>
