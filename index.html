@@ -196,6 +196,10 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
   <tbody id="spec"></tbody>
 </table></div>
 
+<h2>信号从哪来</h2>
+<p class="lede" id="sig-lede">CE 新翻多，不是排名 Top 3</p>
+<div class="card" id="signal"></div>
+
 <h2>候选池与评分</h2>
 <p class="lede" id="pool-lede">120 只</p>
 <div class="card" id="pool"></div>
@@ -309,6 +313,15 @@ fetch("data.json?t="+Date.now()).then(function(r){return r.json();}).then(functi
     '<tr><td>载体</td><td class="n">1 个月 ATM call</td><td class="n">USDT 永续</td></tr>'+
     '<tr><td>场地</td><td class="n">moomoo</td><td class="n">OKX</td></tr>';
 
+  var sg=d.signal||{};
+  if(sg.rule){
+    document.getElementById("sig-lede").textContent=sg.rule;
+    var mm=sg.measured_2026_09_01||{};
+    document.getElementById("signal").innerHTML=
+      "<p><b>为什么改：</b>"+(sg.why||"").replace(/\*\*(.+?)\*\*/g,"<b>$1</b>")+"</p>"+
+      "<p><b>实测（2026-09-01）：</b>"+Object.keys(mm).map(function(k){return k+" "+mm[k];}).join("　·　")+"</p>"+
+      "<p style=\"color:var(--faint)\">"+(sg.found_by||"")+"</p>";
+  }
   var u=d.universe||{}, sc=d.scoring||{};
   document.getElementById("pool-lede").textContent =
     (u.total||"?")+" 只 = P1 "+(u.p1||"?")+" + 加的 "+(u.added||"?");
