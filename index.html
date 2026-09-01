@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>四人赛 · 机器 vs AI vs 人</title>
-<meta name="description" content="同一批信号，四个决策者，两条支线。一层层加上人的判断，绩效是变好还是变坏。">
+<title>四人赛 · 算法 vs AI vs 人</title>
+<meta name="description" content="同一批信号，四种取舍方式，两条支线。一层层加上人的判断，绩效是变好还是变坏。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
@@ -159,8 +159,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 
 <header>
   <div class="season"><span class="pip"></span><span id="season">S1</span></div>
-  <h1><span class="m">机器</span><span class="vs">vs</span><span class="a">AI</span><span class="vs">vs</span><span class="h">人</span></h1>
-  <p class="tag" id="tagline">同一批信号，四个决策者，两条支线。<b>一层层加上人的判断，绩效是变好还是变坏？</b></p>
+  <h1><span class="m">算法</span><span class="vs">vs</span><span class="a">AI</span><span class="vs">vs</span><span class="h">人</span></h1>
+  <p class="tag" id="tagline">同一批信号，四种取舍方式，两条支线。<b>一层层加上人的判断，绩效是变好还是变坏？</b></p>
   <div class="meta" id="meta">载入中…</div>
 </header>
 
@@ -169,7 +169,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 <div class="cross" id="cross"></div>
 
 <h2>参赛者</h2>
-<p class="lede">四个决策者，每人在两条支线各带一支队</p>
+<p class="lede">四种取舍方式，每种在两条支线各带一支队</p>
+<div class="card" id="axis"></div>
 <div class="roster" id="roster"></div>
 
 <h2>三场对决</h2>
@@ -228,7 +229,7 @@ fetch("data.json?t="+Date.now()).then(function(r){return r.json();}).then(functi
     "Season "+(d.season||"1")+" · 第 "+(d.day||0)+" 天";
   if(d.question){
     document.getElementById("tagline").innerHTML =
-      "同一批信号，四个决策者，两条支线。<b>"+d.question+"</b>";
+      "同一批信号，四种取舍方式，两条支线。<b>"+d.question+"</b>";
   }
   document.getElementById("meta").textContent =
     "更新 "+(d.asof||"—")+"　·　候选池 "+((d.universe||{}).total||"?")+" 只";
@@ -281,10 +282,11 @@ fetch("data.json?t="+Date.now()).then(function(r){return r.json();}).then(functi
   document.getElementById("cross").innerHTML=x;
 
   var roles=(lgs[0]||{}).teams||[];
+  if(d.axis_note){document.getElementById("axis").innerHTML="<p>"+d.axis_note.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>")+"</p>";}
   document.getElementById("roster").innerHTML = roles.map(function(t){
     return '<div class="pl" data-c="'+t.color+'"><div class="g">'+t.gid+'</div>'+
       '<div class="n">'+t.name+'</div><div class="f">'+t.full+'</div>'+
-      '<div class="d">'+t.desc+'</div></div>';
+      '<div class="d">'+t.desc.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</div></div>';
   }).join("");
 
   document.getElementById("matches").innerHTML = (d.read_rule||[]).map(function(m){
