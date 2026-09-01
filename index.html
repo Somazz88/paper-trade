@@ -30,7 +30,6 @@
 body{
   margin:0;background:var(--void);color:var(--text);
   font:15px/1.7 var(--body);
-  -webkit-font-smoothing:antialiased;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),
                    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
   background-size:52px 52px;
@@ -67,7 +66,7 @@ b,strong{font-weight:600;color:#fff}
 .eyebrow{font:600 11px/1 var(--disp);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:20px}
 h1{
   font:700 clamp(30px,5.1vw,52px)/1.14 var(--disp);
-  margin:0 0 22px;text-wrap:balance;letter-spacing:.004em;max-width:26ch;
+  margin:0 0 22px;text-wrap:balance;letter-spacing:.004em;max-width:16em;
 }
 .hero p{max-width:660px;color:var(--dim);margin:0}
 h1 .cl{display:inline-block}
@@ -153,6 +152,21 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);verti
 th{font:600 10px/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
 td.k{white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--p1)}
 .scroll{overflow-x:auto}
+.dumb{padding:16px 0;border-bottom:1px solid var(--rule)}
+.dumb:last-child{border-bottom:0}
+.dh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:11px}
+.dh .n{font:700 19px/1 var(--disp);color:var(--rule-hi);flex:none;width:22px}
+.dh .txt{font:700 17px/1.25 var(--disp);letter-spacing:.02em}
+.dh .f{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--p1);white-space:nowrap}
+.track{width:100%;height:52px;display:block}
+.dl{display:flex;gap:16px;margin-top:7px;font-family:var(--mono);font-size:10.5px;
+  color:var(--faint);flex-wrap:wrap;align-items:center}
+.dl .sw{display:inline-flex;align-items:center;gap:5px}
+.dl .sw i{width:9px;height:9px;border-radius:50%;display:block}
+.dl .sw i.hollow{background:none;border:1.5px solid var(--rule-hi)}
+.dl .dv{margin-left:auto;font-weight:700;font-size:14px;color:var(--rule-hi)}
+.dl .dv.up{color:var(--up)} .dl .dv.down{color:var(--down)}
+.dl .dv.inband{color:var(--faint)}
 .q{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline}
 .q:last-child{border-bottom:0}
 .q .n{font:700 20px/1 var(--disp);color:var(--rule-hi);flex:none;width:24px}
@@ -349,9 +363,57 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
     `<p class="lede" style="margin-top:0">${esc(x.label||"")}</p><p>${md(x.why||"")}</p>` +
     `<p class="mono" style="color:var(--faint)">当前：${x.agreement==null?"两榜都还没开赛，无从比对":esc(x.agreement)}</p>`;
 
-  document.getElementById("rr").innerHTML = (d.read_rule||[]).map(r =>
-    `<div class="q"><span class="n">${esc(r.n)}</span><span class="txt">${esc(r.q)}</span>
-     <span class="f">${esc(r.f)}</span></div>`).join("");
+  const bd = d.read_rule_band || {};
+  const BAND = bd.pp || 13.8, SPAN = Math.max(BAND*2.6, 36);   // 轴半程
+
+  /* 判决轨：横轴 Δ = 选中 − 弃子。灰带 = 这把尺子分不出来的范围。
+     带子在开赛前就画好，所以先看见「差多少才算数」，再看差了多少。 */
+  function track(r){
+    const W=600,H=52,mid=H*0.52,x=v=>W/2+(v/SPAN)*(W/2-14);
+    const ink={ff:INK.ff,som:INK.som,chain:INK.som}[r.pen]||INK.p1;
+    const ticks=[-SPAN,-SPAN/2,0,SPAN/2,SPAN].map(v=>
+      `<line x1="${x(v).toFixed(1)}" y1="${mid-9}" x2="${x(v).toFixed(1)}" y2="${mid+9}"
+        stroke="${v===0?"#4A5764":"#1E2732"}" stroke-width="1"/>
+       <text x="${x(v).toFixed(1)}" y="${H-4}" fill="#5D6A76" font-size="9"
+        font-family="JetBrains Mono,monospace" text-anchor="middle">${v>0?"+":""}${v.toFixed(0)}</text>`).join("");
+    const band=`<rect x="${x(-BAND).toFixed(1)}" y="${mid-15}" width="${(x(BAND)-x(-BAND)).toFixed(1)}"
+        height="30" fill="rgba(138,149,155,.11)"/>
+      <text x="${x(0).toFixed(1)}" y="${mid-20}" fill="#5D6A76" font-size="8.5"
+        font-family="JetBrains Mono,monospace" text-anchor="middle">±${BAND} 分不出来</text>`;
+    // 待发令：放到带子右外侧，别压 0 刻度
+    let marks=`<text x="${x(SPAN*0.66).toFixed(1)}" y="${mid+3.5}" fill="#3A4652" font-size="10"
+        font-family="JetBrains Mono,monospace" text-anchor="middle">待发令</text>`;
+    if (r.sel!=null && r.unsel!=null)
+      marks=`<line x1="${x(r.unsel).toFixed(1)}" y1="${mid}" x2="${x(r.sel).toFixed(1)}" y2="${mid}"
+          stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="${x(r.unsel).toFixed(1)}" cy="${mid}" r="5" fill="#12171E" stroke="#4A5764" stroke-width="1.6"/>
+        <circle cx="${x(r.sel).toFixed(1)}" cy="${mid}" r="5" fill="${ink}"/>`;
+    return `<svg class="track" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"
+      role="img" aria-label="${esc(r.q)} 的判决轨">
+      <line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="#1E2732" stroke-width="1"/>
+      ${band}${ticks}${marks}</svg>`;
+  }
+
+  document.getElementById("rr").innerHTML =
+    `<p style="margin:0 0 6px">${md(bd.why||"")}</p>
+     <p class="mono" style="color:var(--faint);font-size:11.5px;margin-bottom:16px">${esc(bd.note||"")}</p>` +
+    (d.read_rule||[]).map(r => {
+      const has = r.delta != null;
+      const inb = has && Math.abs(r.delta) <= BAND;
+      const k = !has ? "" : inb ? "inband" : (r.delta>0 ? "up" : "down");
+      const ink = {ff:INK.ff, som:INK.som, chain:INK.som}[r.pen] || INK.p1;
+      return `<div class="dumb">
+        <div class="dh"><span class="n">${esc(r.n)}</span><span class="txt">${esc(r.q)}</span>
+          <span class="f">${esc(r.f)}</span></div>
+        ${track(r)}
+        <div class="dl">
+          <span class="sw"><i style="background:${ink}"></i>${esc(r.a)}</span>
+          <span class="sw"><i class="hollow"></i>${esc(r.b)}（弃子）</span>
+          <span class="dv ${k}">${!has ? "Δ —" : (inb
+            ? "Δ "+n2(r.delta)+" · 未过分辨率"
+            : "Δ "+n2(r.delta))}</span>
+        </div></div>`;
+    }).join("");
 
   const rz = d.resolution || {};
   if (rz.headline) {
