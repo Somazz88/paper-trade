@@ -68,11 +68,14 @@ h1 .sep{color:var(--amber);font-weight:400;margin:0 .18em}
 .g[data-i="0"]{margin-left:0}
 .g[data-i="1"]{margin-left:26px}
 .g[data-i="2"]{margin-left:52px}
+.g[data-i="3"]{margin-left:0;margin-top:16px;border-color:#2A4A44}
+.g[data-i="3"]::before{background:var(--cyan)}
+.g[data-i="3"] .gid{color:var(--cyan)}
 .g[data-i="1"]::before{background:var(--amber)}
-.g[data-i="2"]::before{background:var(--cyan)}
+.g[data-i="2"]::before{background:var(--amber)}
 .ghead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .gid{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--amber)}
-.g[data-i="2"] .gid{color:var(--cyan)}
+
 .gname{font-family:var(--mono);font-size:19px;font-weight:600;letter-spacing:-.01em}
 .gsub{margin:6px 0 0;font-size:13.5px;color:var(--dim);line-height:1.65}
 .gstats{margin-top:14px;display:flex;flex-wrap:wrap;gap:0;
@@ -134,6 +137,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 @media (max-width:640px){
   .g[data-i="1"]{margin-left:12px}
   .g[data-i="2"]{margin-left:24px}
+  .g[data-i="3"]{margin-left:0}
   .st{padding-right:16px;margin-right:16px}
   .st .v{font-size:17px}
 }
@@ -149,42 +153,58 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 
 <header>
   <div class="kicker">Paper Trade · v2</div>
-  <h1>itrd<span class="sep">→</span>烦烦<span class="sep">→</span>我</h1>
-  <p class="q">一层一层加上人的判断，<b>绩效是变好还是变坏</b>？<br>
-  三组嵌套，同一个信号只开一份仓，靠标签分层读数。</p>
+  <h1>itrd<span class="sep">→</span>烦烦<span class="sep">?</span>我</h1>
+  <p class="q">加上人的判断，<b>绩效是变好还是变坏</b>？<br>四组同时跑，把<b>烦烦这一层</b>和<b>我这一层</b>拆开单独计分。</p>
   <div class="stamp"><span class="dot"></span><span id="stamp">载入中…</span></div>
 </header>
 
 <div class="funnel">
-  <svg class="fnl" viewBox="0 0 900 128" role="img" aria-label="从 71 只候选池收窄到三层筛选">
+  <svg class="fnl" viewBox="0 0 900 210" role="img" aria-label="从 71 只候选池分叉出四条筛选路径">
     <defs>
-      <linearGradient id="fg" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#223037"/>
-        <stop offset="0.42" stop-color="#8A5426"/>
-        <stop offset="0.75" stop-color="#E8853C"/>
-        <stop offset="1" stop-color="#4FBFA8"/>
+      <linearGradient id="ga" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#223037"/><stop offset="1" stop-color="#E8853C"/>
       </linearGradient>
     </defs>
-    <path d="M0,18 L900,50 L900,78 L0,110 Z" fill="url(#fg)" opacity="0.22"/>
-    <path d="M0,18 L900,50" stroke="url(#fg)" stroke-width="1.5" fill="none"/>
-    <path d="M0,110 L900,78" stroke="url(#fg)" stroke-width="1.5" fill="none"/>
-    <g stroke="#223037" stroke-width="1" stroke-dasharray="3 4">
-      <line x1="300" y1="10" x2="300" y2="118"/>
-      <line x1="560" y1="10" x2="560" y2="118"/>
-      <line x1="780" y1="10" x2="780" y2="118"/>
+
+    <!-- 主干 池 → G1 -->
+    <line x1="70" y1="105" x2="255" y2="105" stroke="url(#ga)" stroke-width="2"/>
+    <!-- 分叉 G1 → G2（上） / G1 → G4（下） -->
+    <path d="M300,105 C360,105 360,55 420,55" stroke="#8A5426" stroke-width="2" fill="none"/>
+    <path d="M300,105 C360,105 360,163 420,163" stroke="#4FBFA8" stroke-width="2" fill="none"/>
+    <!-- G2 → G3 -->
+    <line x1="500" y1="55" x2="660" y2="55" stroke="#E8853C" stroke-width="2"/>
+
+    <!-- 节点 -->
+    <g>
+      <circle cx="40" cy="105" r="26" fill="#141C21" stroke="#223037" stroke-width="1.5"/>
+      <text x="40" y="111" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0">71</text>
+      <text x="40" y="150" text-anchor="middle" font-size="9.5" fill="#5C6B73" letter-spacing="1.4">候选池</text>
     </g>
-    <g font-size="10.5" fill="#5C6B73" letter-spacing="1.6">
-      <text x="8" y="126">候选池</text>
-      <text x="308" y="126">G1 · itrd</text>
-      <text x="568" y="126">G2 · +烦烦</text>
-      <text x="788" y="126">G3 · +我</text>
+    <g>
+      <rect x="255" y="82" width="46" height="46" rx="3" fill="#141C21" stroke="#8A5426" stroke-width="1.5"/>
+      <text x="278" y="111" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f1">—</text>
+      <text x="278" y="150" text-anchor="middle" font-size="9.5" fill="#8A5426" letter-spacing="1.4">G1 · itrd</text>
     </g>
-    <g font-size="21" font-weight="600" fill="#E6EDF0">
-      <text x="8" y="70" id="f0">71</text>
-      <text x="308" y="70" id="f1">—</text>
-      <text x="568" y="70" id="f2">—</text>
-      <text x="788" y="70" id="f3" fill="#4FBFA8">—</text>
+    <g>
+      <rect x="420" y="32" width="46" height="46" rx="3" fill="#141C21" stroke="#E8853C" stroke-width="1.5"/>
+      <text x="443" y="61" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f2">—</text>
+      <text x="443" y="22" text-anchor="middle" font-size="9.5" fill="#E8853C" letter-spacing="1.4">G2 · 烦烦挑</text>
     </g>
+    <g>
+      <rect x="660" y="32" width="46" height="46" rx="3" fill="#141C21" stroke="#E8853C" stroke-width="1.5"/>
+      <text x="683" y="61" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f3">—</text>
+      <text x="683" y="22" text-anchor="middle" font-size="9.5" fill="#E8853C" letter-spacing="1.4">G3 · 烦烦+我</text>
+    </g>
+    <g>
+      <rect x="420" y="140" width="46" height="46" rx="3" fill="#141C21" stroke="#4FBFA8" stroke-width="1.5"/>
+      <text x="443" y="169" text-anchor="middle" font-size="17" font-weight="600" fill="#E6EDF0" id="f4">—</text>
+      <text x="443" y="204" text-anchor="middle" font-size="9.5" fill="#4FBFA8" letter-spacing="1.4">G4 · 我直接挑</text>
+    </g>
+
+    <text x="760" y="140" font-size="10" fill="#5C6B73">G3 vs G4</text>
+    <text x="760" y="156" font-size="10" fill="#8C9BA3">= 串联有没有加分</text>
+    <path d="M700,80 C740,100 740,118 755,128" stroke="#223037" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+    <path d="M470,163 C560,163 700,150 752,136" stroke="#223037" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
   </svg>
 </div>
 
@@ -195,15 +215,27 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 <div id="ledger"></div>
 
 <h2>怎么比</h2>
-<p class="lede">比「选中 vs 未选中」，不是子集比全集</p>
+<p class="lede">四组不是一条链，是一个分叉 —— 为的是把两层判断拆开算</p>
 <div class="card">
-  <p>G2 是 G1 的子集，G3 是 G2 的子集。<b>直接拿 G2 比全 G1 会被重叠稀释</b> —— 因为 G2 的每一笔也算在 G1 里。</p>
-  <div class="formula">烦烦的过滤层：<span class="op">G2</span> vs <span class="op">(G1 ∖ G2)</span>　　　Soma 的过滤层：<span class="op">G3</span> vs <span class="op">(G2 ∖ G3)</span></div>
-  <p style="margin-top:12px"><b>先验设为「三组无差别」。</b>要证明的是「加人的判断有用」，
-  举证责任在那一边，不在「没用」这一边。<b>≥20 个独立挑选决策之前只记不判。</b></p>
+  <p><b>加 G4（itrd + 我）是为了解决一个问题：</b>在 G3 里，我只能从烦烦挑剩的里面选。
+  <b>烦烦如果筛掉了一只好票，我永远没机会碰它 —— 那笔的损失会被记在我头上。</b>
+  G4 让我直接从 G1 全集挑，两层判断才能各自计分。</p>
+  <div class="formula">① 烦烦有没有用　<span class="op">G2</span> vs <span class="op">(G1 ∖ G2)</span></div>
+  <div class="formula">② 我有没有用　　<span class="op">G4</span> vs <span class="op">(G1 ∖ G4)</span></div>
+  <div class="formula">③ 串联加不加分　<span class="op">G3</span> vs <span class="op">G4</span></div>
+  <p style="margin-top:14px">G3 ⊂ G2 ⊂ G1，G4 ⊂ G1；<b>G3 和 G4 可能重叠也可能完全不重叠</b> —— 那本身就是数据。</p>
+  <p><b>先验设为「四组无差别」。</b>要证明的是「加人的判断有用」，举证责任在那一边。
+  <b>≥20 个独立挑选决策之前只记不判。</b></p>
+</div>
+<div class="warn">
+  <b>🔴 顺序纪律 —— 这一条不守，第 ② ③ 问同时失效。</b>
+  <b>G4 必须在看到烦烦的挑选之前做完并锁定。</b>先看烦烦再挑，G4 就变成 G3 的变体，两层就分不开了。
+  <br><br>
+  所以简报<b>分两次发</b>：<b>21:00 第一次只给 G1 候选</b>（等你的 G4）→
+  你锁定后 <b>21:1x 第二次才给烦烦的 G2 和理由</b> → 你在 G2 里再挑 G3 → 21:32 开仓。
 </div>
 
-<h2>口径 · 三组完全一致</h2>
+<h2>口径 · 四组完全一致</h2>
 <p class="lede">出场不一致的比较是假的</p>
 <div class="tw"><table>
   <thead><tr><th>项</th><th>值</th></tr></thead>
@@ -213,7 +245,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
     <tr><td>载体</td><td class="n">1 个月 ATM call · 每腿目标 $2,000</td></tr>
     <tr><td>出场</td><td class="n">权利金 −50% 硬止损 · 无固定止盈 · 最多 20 交易日</td></tr>
     <tr><td>重复上榜</td><td class="n">已持有则 skipped_already_held，不重开</td></tr>
-    <tr><td>Soma 没表态</td><td class="n">G3 记 missed —— 与「表态了但全不要」严格区分</td></tr>
+    <tr><td>Soma 没表态</td><td class="n">G3 / G4 各记 missed —— 与「表态了但全不要」严格区分</td></tr>
   </tbody>
 </table></div>
 <div class="warn">
@@ -229,8 +261,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 </table></div>
 
 <footer>
-  只开一份仓，靠标签分层读数（g1 / g2 / g3）—— 不是开三份，否则同一个信号会被记三次，绩效数字全是假的。<br>
-  报价取 moomoo RTH 内真实 bid/ask · 出场口径三组完全一致 · 每笔结算必判「赢/输的理由是不是当初写的那个」。
+  只开一份仓，靠标签分层读数（g1 / g2 / g3 / g4）—— 不是开三份，否则同一个信号会被记三次，绩效数字全是假的。<br>
+  报价取 moomoo RTH 内真实 bid/ask · 出场口径四组完全一致 · 每笔结算必判「赢/输的理由是不是当初写的那个」。
 </footer>
 
 </div>
@@ -272,7 +304,7 @@ fetch("data.json?t=" + Date.now()).then(function (r) { return r.json(); }).then(
     led.innerHTML = '<div class="empty">' +
       '<div class="big">第一批信号来自当天 21:00 的日简报 Top 3</div>' +
       '<div class="when">2026-09-02　21:30 MYT</div>' +
-      '<div class="sub">开盘后 15 分钟内建仓 · 三组同一批信号、同一组报价</div></div>';
+      '<div class="sub">开盘后 15 分钟内建仓 · 四组同一批信号、同一组报价</div></div>';
   } else {
     document.getElementById("ledger-lede").textContent = pos.length + " 笔在场";
     led.innerHTML = '<div class="tw"><table><thead><tr>' +
@@ -280,9 +312,9 @@ fetch("data.json?t=" + Date.now()).then(function (r) { return r.json(); }).then(
       '<th class="n">入场</th><th class="n">现值</th><th class="n">P&L</th><th>分组</th>' +
       '</tr></thead><tbody>' + pos.map(function (p) {
         var pl = (p.now / p.entry - 1) * 100;
-        var tags = ["g1", "g2", "g3"].filter(function (k) { return p[k]; })
+        var tags = ["g1", "g2", "g3", "g4"].filter(function (k) { return p[k]; })
           .map(function (k) {
-            return '<span class="tag' + (k === "g3" ? " g3" : "") + '">' + k.toUpperCase() + '</span>';
+            return '<span class="tag' + ((k === "g3" || k === "g4") ? " g3" : "") + '">' + k.toUpperCase() + '</span>';
           }).join("");
         return '<tr><td class="sym">' + p.symbol + '</td><td class="n">' + p.strike +
           '</td><td class="n">' + p.expiry + '</td><td class="n">' + p.qty +

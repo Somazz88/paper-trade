@@ -1,14 +1,14 @@
 {
  "version": "v2",
- "asof": "2026-09-01 10:09 MYT",
+ "asof": "2026-09-01 10:40 MYT",
  "state": "empty",
- "headline": "v2 · 三组对照 —— 等第一批（2026-09-02 21:30 MYT）",
- "note": "2026-09-01 打掉重练。v1（载体对照 期权 vs perp，8/28 开的 15 腿）已归档，不再显示。v2 检验的是：itrd → itrd+烦烦 → itrd+烦烦+Soma，一层层加人的判断，绩效变好还是变坏。",
+ "headline": "四组对照 —— 等第一批（2026-09-02 21:30 MYT）",
+ "note": "2026-09-01 打掉重练。v1（载体对照 期权 vs perp）已归档。v2 要分离出三件事：烦烦这一层有没有用、我这一层有没有用、两层串起来比我单独好不好。",
  "groups": [
   {
    "id": "G1",
    "name": "itrd",
-   "who": "纯 itrd Top N，照单全开，无人筛",
+   "who": "纯 itrd Top 3，照单全开，无人筛 —— 对照组",
    "legs": 0,
    "cost": 0,
    "val": 0
@@ -16,21 +16,29 @@
   {
    "id": "G2",
    "name": "itrd + 烦烦",
-   "who": "G1 候选里烦烦挑，附一句理由",
+   "who": "烦烦从 G1 候选里挑，附一句理由",
    "legs": 0,
    "cost": 0,
    "val": 0
   },
   {
    "id": "G3",
-   "name": "itrd + 烦烦 + Soma",
-   "who": "G2 挑中的里 Soma 拍板",
+   "name": "itrd + 烦烦 + 我",
+   "who": "Soma 在烦烦挑中的里面再拍板（串联）",
+   "legs": 0,
+   "cost": 0,
+   "val": 0
+  },
+  {
+   "id": "G4",
+   "name": "itrd + 我",
+   "who": "Soma 直接从 G1 挑 —— 🔴 必须在看到烦烦意见之前",
    "legs": 0,
    "cost": 0,
    "val": 0
   }
  ],
- "read_rule": "比「选中 vs 未选中」：G2 vs (G1∖G2)、G3 vs (G2∖G3)。子集比全集会被重叠稀释。",
+ "read_rule": "三个独立问题：① 烦烦有没有用 = G2 vs (G1∖G2)；② 我有没有用 = G4 vs (G1∖G4)；③ 串联比我单独好吗 = G3 vs G4。G3⊂G2⊂G1，G4⊂G1；G3 与 G4 可重叠也可不重叠。",
  "prior": "先验设为三组无差别；≥20 个独立挑选决策之前只记不判。",
  "v1_archived": {
   "legs": 15,
@@ -38,5 +46,6 @@
   "result": "期权 −18.8% vs perp −2.4%，载体差 +14.6pp",
   "caveat": "已知混杂：当日 22:00 MYT 有 Warsh 首场 Jackson Hole keynote"
  },
- "positions": []
+ "positions": [],
+ "order_discipline": "🔴 G4 必须在【看到烦烦的挑选之前】做完并锁定。先看烦烦再挑，G4 就被污染成 G3 的变体，第②③个问题同时失效。简报会分两次发：第一次只给 G1 候选（等 Soma 的 G4），第二次才给烦烦的 G2。"
 }
