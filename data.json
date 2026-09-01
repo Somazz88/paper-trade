@@ -1,6 +1,6 @@
 {
  "version": "v2",
- "asof": "2026-09-01 10:40 MYT",
+ "asof": "2026-09-01 10:58 MYT",
  "state": "empty",
  "headline": "四组对照 —— 等第一批（2026-09-02 21:30 MYT）",
  "note": "2026-09-01 打掉重练。v1（载体对照 期权 vs perp）已归档。v2 要分离出三件事：烦烦这一层有没有用、我这一层有没有用、两层串起来比我单独好不好。",
@@ -47,5 +47,22 @@
   "caveat": "已知混杂：当日 22:00 MYT 有 Warsh 首场 Jackson Hole keynote"
  },
  "positions": [],
- "order_discipline": "🔴 G4 必须在【看到烦烦的挑选之前】做完并锁定。先看烦烦再挑，G4 就被污染成 G3 的变体，第②③个问题同时失效。简报会分两次发：第一次只给 G1 候选（等 Soma 的 G4），第二次才给烦烦的 G2。"
+ "order_discipline": "🔴 G4 必须在【看到烦烦的挑选之前】做完并锁定。先看烦烦再挑，G4 就被污染成 G3 的变体，第②③个问题同时失效。简报会分两次发：第一次只给 G1 候选（等 Soma 的 G4），第二次才给烦烦的 G2。",
+ "universe": {
+  "total": 120,
+  "itrd": 71,
+  "added": 49,
+  "rule": "加的 49 只必须 OKX 有 USDT 永续，且只补 itrd 池的结构性空洞"
+ },
+ "capital": {
+  "equity_per_group_usd": 20000,
+  "equity_per_leg_usd": 2000,
+  "perp_per_group_usdt": 2000,
+  "perp_leverage": 3,
+  "max_legs": 10
+ },
+ "branches": [
+  "股票（moomoo 期权）",
+  "perp（OKX USDT 永续，3x）"
+ ]
 }
