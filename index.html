@@ -212,6 +212,10 @@ footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
 <p class="note">🔴 比的是<b>「选中 vs 没选中」</b>，不是子集比全集 —— G2 本来就在 G1 里面，直接比会被重叠稀释成一摊糊。</p>
 <div class="card" id="rr"></div>
 
+<h2>这把尺子有多细 <em>resolution · 开跑前先量尺子</em></h2>
+<p class="lede" id="rz-h">—</p>
+<div class="card" id="rz"></div>
+
 <h2>信号从哪来 <em>signal</em></h2>
 <p class="lede" id="sig-lede">—</p>
 <div class="card" id="signal"></div>
@@ -348,6 +352,21 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById("rr").innerHTML = (d.read_rule||[]).map(r =>
     `<div class="q"><span class="n">${esc(r.n)}</span><span class="txt">${esc(r.q)}</span>
      <span class="f">${esc(r.f)}</span></div>`).join("");
+
+  const rz = d.resolution || {};
+  if (rz.headline) {
+    document.getElementById("rz-h").textContent = rz.headline;
+    document.getElementById("rz").innerHTML =
+      `<p>${md(rz.why||"")}</p>` +
+      `<div class="scroll"><table><thead><tr><th>主终点</th><th>单腿 SD</th>
+         <th>6 周能测出</th><th>12 周</th><th>半年</th><th>想测 10pp 要</th></tr></thead><tbody>` +
+      (rz.rows||[]).map(r=>`<tr><td class="k">${esc(r.e)}</td><td class="mono">${esc(r.sd)}</td>
+         <td class="mono">${esc(r.w6)}</td><td class="mono">${esc(r.w12)}</td>
+         <td class="mono">${esc(r.half)}</td><td class="mono">${esc(r.d10)}</td></tr>`).join("") +
+      `</tbody></table></div><p style="margin-top:14px">${md(rz.amplify||"")}</p>` +
+      `<p class="flag">${md(rz.guard||"")}</p>` +
+      `<p class="mono" style="color:var(--faint);font-size:11.5px">${md(rz.method||"")}</p>`;
+  }
 
   const sg = d.signal || {};
   if (sg.rule) {
