@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>四人赛 · 算法 vs AI vs 人</title>
-<meta name="description" content="同一批信号，四种取舍方式，两条支线。一层层加上人的判断，绩效是变好还是变坏。">
+<title>四人赛 · P1 AI vs 烦烦 AI vs 我</title>
+<meta name="description" content="两个 AI 加一个人，同一批信号，两条支线。一层层加上人的判断，绩效是变好还是变坏。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
@@ -35,7 +35,7 @@ header{padding:56px 0 26px;text-align:center}
 .season .pip{width:5px;height:5px;border-radius:50%;background:var(--amber);
   box-shadow:0 0 0 3px rgba(232,133,60,.16)}
 h1{margin:20px 0 0;font-family:var(--mono);font-weight:700;letter-spacing:-.03em;
-  font-size:clamp(32px,8vw,64px);line-height:1}
+  font-size:clamp(30px,7.4vw,60px);line-height:1}
 h1 .vs{color:var(--faint);font-weight:400;font-size:.52em;margin:0 .22em;vertical-align:.12em}
 h1 .m{color:var(--steel)}h1 .a{color:var(--amber)}h1 .h{color:var(--teal)}
 .tag{margin:20px auto 0;max-width:46ch;color:var(--dim);font-size:15.5px}
@@ -159,8 +159,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 
 <header>
   <div class="season"><span class="pip"></span><span id="season">S1</span></div>
-  <h1><span class="m">算法</span><span class="vs">vs</span><span class="a">AI</span><span class="vs">vs</span><span class="h">人</span></h1>
-  <p class="tag" id="tagline">同一批信号，四种取舍方式，两条支线。<b>一层层加上人的判断，绩效是变好还是变坏？</b></p>
+  <h1><span class="m">P1</span><span class="vs">vs</span><span class="a">烦烦</span><span class="vs">vs</span><span class="h">我</span></h1>
+  <p class="tag" id="tagline">两个 AI 加一个人，同一批信号，两条支线。<b>一层层加上人的判断，绩效是变好还是变坏？</b></p>
   <div class="meta" id="meta">载入中…</div>
 </header>
 
@@ -169,7 +169,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
 <div class="cross" id="cross"></div>
 
 <h2>参赛者</h2>
-<p class="lede">四种取舍方式，每种在两条支线各带一支队</p>
+<p class="lede">两个 AI 加一个人 —— 四种叠法，每种在两条支线各带一支队</p>
 <div class="card" id="axis"></div>
 <div class="roster" id="roster"></div>
 
@@ -229,7 +229,7 @@ fetch("data.json?t="+Date.now()).then(function(r){return r.json();}).then(functi
     "Season "+(d.season||"1")+" · 第 "+(d.day||0)+" 天";
   if(d.question){
     document.getElementById("tagline").innerHTML =
-      "同一批信号，四种取舍方式，两条支线。<b>"+d.question+"</b>";
+      "两个 AI 加一个人，同一批信号，两条支线。<b>"+d.question+"</b>";
   }
   document.getElementById("meta").textContent =
     "更新 "+(d.asof||"—")+"　·　候选池 "+((d.universe||{}).total||"?")+" 只";
