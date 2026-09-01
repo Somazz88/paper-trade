@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-01 12:02 MYT",
+ "asof": "2026-09-01 12:03 MYT",
  "state": "pre_season",
  "kickoff": "2026-09-02 21:30 MYT",
  "day": 0,
@@ -23,7 +23,7 @@
      "gid": "G1",
      "role": "machine",
      "name": "P1 AI",
-     "full": "itrd · P1research 排名，照单全开",
+     "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
      "legs": 0,
@@ -114,7 +114,7 @@
      "gid": "G1",
      "role": "machine",
      "name": "P1 AI",
-     "full": "itrd · P1research 排名，照单全开",
+     "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
      "legs": 0,
@@ -198,15 +198,15 @@
  },
  "universe": {
   "total": 120,
-  "itrd": 71,
   "added": 49,
-  "rule": "加的 49 只必须 OKX 有 USDT 永续，且只补 itrd 池的结构性空洞 —— 不按我看好哪只来选"
+  "rule": "加的 49 只必须 OKX 有 USDT 永续，且只补 P1 池的结构性空洞 —— 不按我看好哪只来选",
+  "p1": 71
  },
  "scoring": {
   "formula": "cycle 分 + CE 多头天数(封顶30)×35 + 未实现 pnl 归一×20 + signalStatus",
   "max": 100,
   "backtest": "🔴 无回测背书。只保证可复算、序可解释，不是预测力的证据。",
-  "note": "板块强度降级为注记，不进分数 —— 新加的 49 只没有 itrd 板块归属，算进去会系统性压低它们。"
+  "note": "板块强度降级为注记，不进分数 —— 新加的 49 只没有 P1 的板块归属，算进去会系统性压低它们。"
  },
  "read_rule": [
   {

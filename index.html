@@ -311,7 +311,7 @@ fetch("data.json?t="+Date.now()).then(function(r){return r.json();}).then(functi
 
   var u=d.universe||{}, sc=d.scoring||{};
   document.getElementById("pool-lede").textContent =
-    (u.total||"?")+" 只 = itrd "+(u.itrd||"?")+" + 加的 "+(u.added||"?");
+    (u.total||"?")+" 只 = P1 "+(u.p1||"?")+" + 加的 "+(u.added||"?");
   document.getElementById("pool").innerHTML =
     "<p><b>加的规则：</b>"+(u.rule||"")+"</p>"+
     "<p><b>评分：</b>"+(sc.formula||"")+"，满分 "+(sc.max||"?")+"。</p>"+
