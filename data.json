@@ -1,11 +1,11 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-03 21:30 MYT",
- "state": "pre_season",
- "kickoff": null,
- "day": 0,
- "season_days": null,
+ "asof": "2026-09-03 21:35 MYT",
+ "state": "live",
+ "kickoff": "2026-09-03 21:30 MYT",
+ "day": 1,
+ "season_days": 1,
  "question": "两个 AI 加一个人，一层层往上叠取舍，绩效是变好还是变坏？",
  "leagues": [
   {
@@ -117,13 +117,13 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 0,
-     "open": 0,
+     "legs": 1,
+     "open": 1,
      "closed": 0,
-     "cost": 0,
-     "val": 0,
-     "pct": null,
-     "rank": null,
+     "cost": 200.0,
+     "val": 197.3,
+     "pct": -1.35,
+     "rank": 1,
      "prev_rank": null,
      "wins": 0,
      "losses": 0
@@ -271,7 +271,48 @@
   "result": "载体对照：期权 −18.8% vs perp −2.4%，载体差 +14.6pp",
   "caveat": "已知混杂：当日 22:00 MYT 有 Warsh 首场 Jackson Hole keynote"
  },
- "positions": [],
+ "positions": [
+  {
+   "id": "PT2-2026-09-03-DELL-P",
+   "status": "open",
+   "opened_at": "2026-09-03T21:30:05",
+   "entry_date_et": "2026-09-03",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "DELL",
+   "branch": "perp",
+   "inst_id": "DELL-USDT-SWAP",
+   "side": "long",
+   "entry": 487.035,
+   "bid": 486.87,
+   "ask": 487.2,
+   "spread_pct": 0.068,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 1.2319,
+   "cycle": "Cycle1",
+   "ce_streak": 1,
+   "sector": "INFRASTRUCTURE",
+   "strength": -25,
+   "tags": {
+    "g1": true,
+    "g2": false,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 405.8625,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "low_seen": 485.55
+  }
+ ],
  "axis_note": "场上是**两个 AI 和一个人**。P1 AI 给的是固定排名、一只都不删；烦烦 AI 和我每天都在说「这只不要」。**测的是取舍这个动作值不值钱** —— 不是测谁的技术栈更好，也不是「机器 vs 人」。P1 AI 赢，就说明后面两层取舍都是负担。",
  "signal": {
   "rule": "CE 新翻多（ceStreak ≤ 2），按评分排序取前 3",
@@ -323,7 +364,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-03 21:30 MYT",
+ "rank_asof": "2026-09-03 21:35 MYT",
  "quote_context": {
   "equity": "RTH · 实时",
   "perp": "OKX 24 小时实时",
