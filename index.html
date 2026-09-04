@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>三笔记录仪</title>
 <meta name="description" content="两个 AI 加一个人，一层层往上叠取舍，绩效是变好还是变坏。">
+<!-- 🔴 2026-09-04：公网页 console 一直报 favicon.ico 404（GitHub Pages 会去根目录找）。
+     用内联 data URI，不新增文件、不再有 404。三根竖条 = 三支笔，取的是页面自己的
+     三个身份色：P1 #43C6E8 / 烦烦 #F0A23C / 我 #E85D9E，底色 --void #0A0D11。 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230A0D11%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%222.2%22%20fill%3D%22%2343C6E8%22%2F%3E%3Crect%20x%3D%2213.75%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%222.2%22%20fill%3D%22%23F0A23C%22%2F%3E%3Crect%20x%3D%2220.5%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%222.2%22%20fill%3D%22%23E85D9E%22%2F%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap">
@@ -124,6 +128,16 @@ h2 em{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:
   color:var(--faint);border:1px solid var(--rule-hi);padding:2px 7px;white-space:nowrap;
 }
 .desc{margin-top:8px;font-size:13px;color:var(--dim);line-height:1.62;max-width:70ch}
+/* 🔴 2026-09-04：零腿的队为什么空。原本八支队里七支显示同一个「—」，
+   而背后是五种不同状态（该开没开成 / 没表态 / 无载体 / 全不要 / 无候选）。
+   把真缺口和合法空仓显示成同一个字符，等于让读者读不出实验有没有在跑。
+   左侧竖线用 --down，因为「该开而没开成」是缺陷；文字仍用 dim，不抢记分板的注意力。 */
+.wempty{margin-top:9px;padding:7px 11px;border-left:2px solid var(--down);
+  background:rgba(242,84,91,.055);border-radius:0 4px 4px 0;
+  font-size:12.5px;line-height:1.6;color:var(--dim);max-width:70ch}
+.wempty b{color:var(--text)}
+.wempty .k{font:600 9.5px/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--down);margin-right:8px;vertical-align:1px}
 .strip{margin-top:12px}
 .trace{width:100%;height:26px;display:block}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
@@ -336,6 +350,7 @@ function teamRow(t, L){
         <span class="tag">${esc(TAG[t.role]||"")}</span>
       </div>
       <div class="desc">${md(t.desc)}</div>
+      ${t.why_empty ? `<div class="wempty"><span class="k">零腿</span>${md(t.why_empty)}</div>` : ""}
       <div class="strip">${trace(t.trace, t.role)}</div>
     </div>
     <div class="stats">
@@ -362,10 +377,22 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
     const cand = (inc.candidates || []).length
       ? `当天有候选：${inc.candidates.join("、")} —— 信号是出了的，是建仓没跑成。`
       : "当天没产出候选。";
+    // 🔴 2026-09-04：正文原本写死「这一天没有任何一组建成仓」。
+    //   对 partial（一条支线建成、另一条零腿）那种日子，**这句是假的** ——
+    //   2026-09-03 perp 确实建成了 DELL，只有股票联赛零腿。
+    //   一条把真缺陷说小的事故条，和不亮的事故条一样坏。按 kind 分文案。
+    const K = inc.kind;
+    const built = (inc.opened_legs || []).length
+      ? `已建成：${(inc.opened_legs || []).join("、")}` : "";
+    const tag = K === "lost" ? "今日丢了" : (K === "partial" ? "半边没跑成" : "读不到");
+    const head = K === "partial"
+      ? `${esc(inc.date_et || "")} 这一天只有一条支线建成，另一条零腿 —— 不是「还没开赛」，也不是「今天全丢」。`
+      : `${esc(inc.date_et || "")} 这一天没有任何一组建成仓 —— 不是「还没开赛」，是这一天坏了。`;
     box.innerHTML = `<div class="in">
-      <span class="tag">${esc(inc.kind === "lost" ? "今日丢了" : "读不到")}</span>
-      <div class="txt"><b>${esc(inc.date_et || "")} 这一天没有任何一组建成仓 —— 不是「还没开赛」，是这一天坏了。</b><br>
+      <span class="tag">${esc(tag)}</span>
+      <div class="txt"><b>${head}</b><br>
         ${esc(inc.why || "")}<br><span class="sub">${esc(cand)}${
+          built ? " · " + esc(built) : ""}${
           inc.at ? " · 记于 " + esc(inc.at) : ""}</span></div></div>`;
     box.hidden = false;
   } else {
