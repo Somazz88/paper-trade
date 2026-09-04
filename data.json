@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-04 22:20 MYT",
+ "asof": "2026-09-04 22:25 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 2,
@@ -30,15 +30,15 @@
      "open": 2,
      "closed": 0,
      "cost": 3645.0,
-     "val": 3987.04,
-     "pct": 9.38,
+     "val": 3792.04,
+     "pct": 4.03,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      9.38
+      4.03
      ]
     },
     {
@@ -54,15 +54,15 @@
      "open": 2,
      "closed": 0,
      "cost": 3645.0,
-     "val": 3987.04,
-     "pct": 9.38,
+     "val": 3792.04,
+     "pct": 4.03,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      9.38
+      4.03
      ]
     },
     {
@@ -133,8 +133,8 @@
      "open": 2,
      "closed": 0,
      "cost": 400.0,
-     "val": 439.13,
-     "pct": 9.78,
+     "val": 433.08,
+     "pct": 8.27,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -142,7 +142,7 @@
      "why_empty": null,
      "trace": [
       18.29,
-      9.78
+      8.27
      ]
     },
     {
@@ -158,15 +158,15 @@
      "open": 1,
      "closed": 0,
      "cost": 200.0,
-     "val": 197.72,
-     "pct": -1.14,
+     "val": 197.89,
+     "pct": -1.06,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      -1.14
+      -1.06
      ]
     },
     {
@@ -242,7 +242,7 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": 9.04,
+   "sel": 3.48,
    "unsel": null,
    "delta": null,
    "n_sel": 2,
@@ -256,7 +256,7 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": 9.04,
+   "unsel": 3.48,
    "delta": null,
    "n_sel": 0,
    "n_unsel": 2
@@ -520,7 +520,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-04 22:15 MYT",
+ "rank_asof": "2026-09-04 22:20 MYT",
  "quote_context": {
   "equity": "RTH · 实时",
   "perp": "OKX 24 小时实时",
@@ -560,9 +560,9 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 520.65,
+   "mark": 515.6,
    "stop": 405.8625,
-   "to_stop_pct": 22.05,
+   "to_stop_pct": 21.28,
    "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
@@ -589,7 +589,7 @@
    "symbol": "SNOW",
    "branch": "equity",
    "entry": 17.55,
-   "mark": 17.5,
+   "mark": 15.55,
    "stop": null,
    "to_stop_pct": null,
    "held_days": 1,
@@ -604,9 +604,9 @@
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 347.04,
+   "mark": 347.14,
    "stop": 290.304167,
-   "to_stop_pct": 16.35,
+   "to_stop_pct": 16.37,
    "held_days": 1,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
