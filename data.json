@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-05 03:45 MYT",
+ "asof": "2026-09-05 03:50 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 2,
@@ -133,8 +133,8 @@
      "open": 2,
      "closed": 0,
      "cost": 400.0,
-     "val": 426.44,
-     "pct": 6.61,
+     "val": 427.51,
+     "pct": 6.88,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -142,7 +142,7 @@
      "why_empty": null,
      "trace": [
       18.29,
-      6.61
+      6.88
      ]
     },
     {
@@ -158,15 +158,15 @@
      "open": 1,
      "closed": 0,
      "cost": 200.0,
-     "val": 182.87,
-     "pct": -8.57,
+     "val": 182.99,
+     "pct": -8.5,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      -8.57
+      -8.5
      ]
     },
     {
@@ -520,7 +520,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-05 03:40 MYT",
+ "rank_asof": "2026-09-05 03:45 MYT",
  "quote_context": {
   "equity": "RTH · 实时",
   "perp": "OKX 24 小时实时",
@@ -560,9 +560,9 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 522.4,
+   "mark": 523.17,
    "stop": 405.8625,
-   "to_stop_pct": 22.31,
+   "to_stop_pct": 22.42,
    "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
@@ -604,9 +604,9 @@
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 338.42,
+   "mark": 338.49,
    "stop": 290.304167,
-   "to_stop_pct": 14.22,
+   "to_stop_pct": 14.24,
    "held_days": 1,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
