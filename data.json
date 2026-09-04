@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-05 00:25 MYT",
+ "asof": "2026-09-05 00:30 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 2,
@@ -30,15 +30,15 @@
      "open": 2,
      "closed": 0,
      "cost": 3645.0,
-     "val": 3702.04,
-     "pct": 1.56,
+     "val": 3572.04,
+     "pct": -2.0,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      1.56
+      -2.0
      ]
     },
     {
@@ -54,15 +54,15 @@
      "open": 2,
      "closed": 0,
      "cost": 3645.0,
-     "val": 3702.04,
-     "pct": 1.56,
+     "val": 3572.04,
+     "pct": -2.0,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      1.56
+      -2.0
      ]
     },
     {
@@ -133,8 +133,8 @@
      "open": 2,
      "closed": 0,
      "cost": 400.0,
-     "val": 438.91,
-     "pct": 9.73,
+     "val": 437.23,
+     "pct": 9.31,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -142,7 +142,7 @@
      "why_empty": null,
      "trace": [
       18.29,
-      9.73
+      9.31
      ]
     },
     {
@@ -158,15 +158,15 @@
      "open": 1,
      "closed": 0,
      "cost": 200.0,
-     "val": 193.86,
-     "pct": -3.07,
+     "val": 192.9,
+     "pct": -3.55,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      -3.07
+      -3.55
      ]
     },
     {
@@ -242,7 +242,7 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": 0.92,
+   "sel": -2.78,
    "unsel": null,
    "delta": null,
    "n_sel": 2,
@@ -256,7 +256,7 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": 0.92,
+   "unsel": -2.78,
    "delta": null,
    "n_sel": 0,
    "n_unsel": 2
@@ -466,7 +466,7 @@
    },
    "stop_price": 290.304167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 344.8
+   "low_seen": 344.24
   }
  ],
  "axis_note": "场上是**两个 AI 和一个人**。P1 AI 给的是固定排名、一只都不删；烦烦 AI 和我每天都在说「这只不要」。**测的是取舍这个动作值不值钱** —— 不是测谁的技术栈更好，也不是「机器 vs 人」。P1 AI 赢，就说明后面两层取舍都是负担。",
@@ -520,7 +520,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-05 00:20 MYT",
+ "rank_asof": "2026-09-05 00:25 MYT",
  "quote_context": {
   "equity": "RTH · 实时",
   "perp": "OKX 24 小时实时",
@@ -560,9 +560,9 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 523.6,
+   "mark": 523.02,
    "stop": 405.8625,
-   "to_stop_pct": 22.49,
+   "to_stop_pct": 22.4,
    "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
@@ -589,7 +589,7 @@
    "symbol": "SNOW",
    "branch": "equity",
    "entry": 17.55,
-   "mark": 14.65,
+   "mark": 13.35,
    "stop": null,
    "to_stop_pct": null,
    "held_days": 1,
@@ -604,9 +604,9 @@
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 344.8,
+   "mark": 344.24,
    "stop": 290.304167,
-   "to_stop_pct": 15.81,
+   "to_stop_pct": 15.67,
    "held_days": 1,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
