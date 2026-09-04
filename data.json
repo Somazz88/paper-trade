@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-04 21:35 MYT",
+ "asof": "2026-09-04 21:40 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 2,
@@ -26,18 +26,20 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 0,
-     "open": 0,
+     "legs": 2,
+     "open": 2,
      "closed": 0,
-     "cost": 0,
-     "val": 0,
-     "pct": null,
-     "rank": null,
+     "cost": 3645.0,
+     "val": 4437.65,
+     "pct": 21.75,
+     "rank": 1,
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "选了 DELL、TECK、SNOW，**建仓没跑成**",
-     "trace": null
+     "why_empty": null,
+     "trace": [
+      21.75
+     ]
     },
     {
      "id": "equity-G2",
@@ -48,18 +50,20 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 0,
-     "open": 0,
+     "legs": 2,
+     "open": 2,
      "closed": 0,
-     "cost": 0,
-     "val": 0,
-     "pct": null,
-     "rank": null,
+     "cost": 3645.0,
+     "val": 4437.65,
+     "pct": 21.75,
+     "rank": 2,
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "选了 TECK、SNOW，**建仓没跑成**",
-     "trace": null
+     "why_empty": null,
+     "trace": [
+      21.75
+     ]
     },
     {
      "id": "equity-G3",
@@ -125,12 +129,12 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 1,
-     "open": 1,
+     "legs": 2,
+     "open": 2,
      "closed": 0,
-     "cost": 200.0,
-     "val": 241.14,
-     "pct": 20.57,
+     "cost": 400.0,
+     "val": 458.36,
+     "pct": 14.59,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -138,7 +142,7 @@
      "why_empty": null,
      "trace": [
       18.29,
-      20.57
+      14.59
      ]
     },
     {
@@ -150,18 +154,20 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 0,
-     "open": 0,
+     "legs": 1,
+     "open": 1,
      "closed": 0,
-     "cost": 0,
-     "val": 0,
-     "pct": null,
-     "rank": null,
+     "cost": 200.0,
+     "val": 200.71,
+     "pct": 0.35,
+     "rank": 2,
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "**TECK** 无永续（载体不存在）；**SNOW** 该开而零腿（建仓没跑成）",
-     "trace": null
+     "why_empty": null,
+     "trace": [
+      0.35
+     ]
     },
     {
      "id": "perp-G3",
@@ -236,10 +242,10 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": null,
+   "sel": 21.88,
    "unsel": null,
    "delta": null,
-   "n_sel": 0,
+   "n_sel": 2,
    "n_unsel": 0
   },
   {
@@ -250,10 +256,10 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": null,
+   "unsel": 21.88,
    "delta": null,
    "n_sel": 0,
-   "n_unsel": 0
+   "n_unsel": 2
   },
   {
    "n": "③",
@@ -337,6 +343,130 @@
    "stop_price": 405.8625,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "low_seen": 485.55
+  },
+  {
+   "id": "PT2-2026-09-04-TECK-E",
+   "status": "open",
+   "opened_at": "2026-09-04T21:35:04",
+   "entry_date_et": "2026-09-04",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "picked",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "TECK",
+   "code": "US.TECK261002C68000",
+   "strike": 68.0,
+   "expiry": "2026-10-02",
+   "spot": 67.67,
+   "bid": 2.6,
+   "ask": 3.7,
+   "mid": 3.15,
+   "spread_pct": 34.9,
+   "qty": 6,
+   "cost": 1890.0,
+   "iv": 42.337,
+   "delta": 0.520151606,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": "COPPER",
+   "strength": 117,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 3.15,
+   "stop_premium": 1.575,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-04-SNOW-E",
+   "status": "open",
+   "opened_at": "2026-09-04T21:35:04",
+   "entry_date_et": "2026-09-04",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "picked",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "SNOW",
+   "code": "US.SNOW261002C350000",
+   "strike": 350.0,
+   "expiry": "2026-10-02",
+   "spot": 348.52,
+   "bid": 15.55,
+   "ask": 19.55,
+   "mid": 17.55,
+   "spread_pct": 22.8,
+   "qty": 1,
+   "cost": 1755.0,
+   "iv": 44.495,
+   "delta": 0.548954387,
+   "cycle": "Cycle1",
+   "ce_streak": 1,
+   "sector": "SOFTWARE",
+   "strength": 120,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 17.55,
+   "stop_premium": 8.775,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-04-SNOW-P",
+   "status": "open",
+   "opened_at": "2026-09-04T21:35:04",
+   "entry_date_et": "2026-09-04",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "picked",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "SNOW",
+   "branch": "perp",
+   "inst_id": "SNOW-USDT-SWAP",
+   "side": "long",
+   "entry": 348.365,
+   "bid": 348.36,
+   "ask": 348.37,
+   "spread_pct": 0.003,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 1.7223,
+   "cycle": "Cycle1",
+   "ce_streak": 1,
+   "sector": "SOFTWARE",
+   "strength": 120,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 290.304167,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "low_seen": 348.78
   }
  ],
  "axis_note": "场上是**两个 AI 和一个人**。P1 AI 给的是固定排名、一只都不删；烦烦 AI 和我每天都在说「这只不要」。**测的是取舍这个动作值不值钱** —— 不是测谁的技术栈更好，也不是「机器 vs 人」。P1 AI 赢，就说明后面两层取舍都是负担。",
@@ -390,7 +520,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-04 21:30 MYT",
+ "rank_asof": "2026-09-04 21:35 MYT",
  "quote_context": {
   "equity": "RTH · 实时",
   "perp": "OKX 24 小时实时",
@@ -423,17 +553,6 @@
     "perp": 1
    },
    "pre_kickoff": false
-  },
-  {
-   "date_et": "2026-09-04",
-   "kind": "lost",
-   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
-   "n_cand": 3,
-   "legs": {
-    "equity": 0,
-    "perp": 0
-   },
-   "pre_kickoff": false
   }
  ],
  "open_positions": [
@@ -441,14 +560,59 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 520.43,
+   "mark": 533.83,
    "stop": 405.8625,
-   "to_stop_pct": 22.01,
+   "to_stop_pct": 23.97,
    "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
     "G1"
+   ]
+  },
+  {
+   "symbol": "TECK",
+   "branch": "equity",
+   "entry": 3.15,
+   "mark": 3.7284,
+   "stop": null,
+   "to_stop_pct": null,
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "SNOW",
+   "branch": "equity",
+   "entry": 17.55,
+   "mark": 22.0061,
+   "stop": null,
+   "to_stop_pct": null,
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "SNOW",
+   "branch": "perp",
+   "entry": 348.365,
+   "mark": 348.78,
+   "stop": 290.304167,
+   "to_stop_pct": 16.77,
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
    ]
   }
  ],
