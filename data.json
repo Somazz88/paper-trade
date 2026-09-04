@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-04 04:10 MYT",
+ "asof": "2026-09-04 21:25 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 2,
@@ -35,7 +35,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "选了 DELL、TECK、SNOW，**建仓没跑成**",
+     "trace": null
     },
     {
      "id": "equity-G2",
@@ -55,7 +57,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "trace": null
     },
     {
      "id": "equity-G3",
@@ -75,7 +79,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "trace": null
     },
     {
      "id": "equity-G4",
@@ -95,7 +101,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "trace": null
     }
    ]
   },
@@ -121,12 +129,17 @@
      "open": 1,
      "closed": 0,
      "cost": 200.0,
-     "val": 232.96,
-     "pct": 16.48,
+     "val": 231.93,
+     "pct": 15.97,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": null,
+     "trace": [
+      18.29,
+      15.97
+     ]
     },
     {
      "id": "perp-G2",
@@ -146,7 +159,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "trace": null
     },
     {
      "id": "perp-G3",
@@ -166,7 +181,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "trace": null
     },
     {
      "id": "perp-G4",
@@ -186,7 +203,9 @@
      "rank": null,
      "prev_rank": null,
      "wins": 0,
-     "losses": 0
+     "losses": 0,
+     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "trace": null
     }
    ]
   }
@@ -194,7 +213,8 @@
  "cross_check": {
   "label": "两榜顺序一致吗",
   "why": "同一个决策者在两条支线各有一支队。两榜名次顺序一致 = 那是真信号；不一致 = 至少有一榜是杠杆或运气在说话。",
-  "agreement": null
+  "agreement": null,
+  "why_null": "两榜都还没满员，无从比对"
  },
  "universe": {
   "total": 120,
@@ -218,7 +238,9 @@
    "b": "G1 里烦烦弃掉的",
    "sel": null,
    "unsel": null,
-   "delta": null
+   "delta": null,
+   "n_sel": 0,
+   "n_unsel": 0
   },
   {
    "n": "②",
@@ -229,7 +251,9 @@
    "b": "G1 里我弃掉的",
    "sel": null,
    "unsel": null,
-   "delta": null
+   "delta": null,
+   "n_sel": 0,
+   "n_unsel": 0
   },
   {
    "n": "③",
@@ -240,7 +264,9 @@
    "b": "G4 单层",
    "sel": null,
    "unsel": null,
-   "delta": null
+   "delta": null,
+   "n_sel": 0,
+   "n_unsel": 0
   }
  ],
  "discipline": [
@@ -364,12 +390,67 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-04 04:10 MYT",
+ "rank_asof": "2026-09-04 12:34 MYT",
  "quote_context": {
   "equity": "非 RTH · 上一收盘价，不是现价",
   "perp": "OKX 24 小时实时",
   "caveat": "两条支线的「现在」不是同一个现在：美股收盘后 perp 榜还在动、股票榜是冻的。跨榜比较只在两边都处于 RTH 时才严格成立。",
+  "returns": "**「投入回报」是投入资金口径**（Σ盈亏 ÷ Σ投入），**不是账面口径**。一支队只投了本金的一小部分时，这两个数会差好几倍 —— 右边的「权益」才是账面。记分板和 ±13.8pp 分辨率带都用投入口径。（另：队伍这个数是**资本加权**，而记分板三行的 Δ 是**等权**每腿收益率之差 —— 后者才与带子的两样本均值差同口径。）",
+  "pricing": "建仓与估值**都按 mid**（bid/ask 中点）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
   "unpriced_legs": []
  },
- "incident": null
+ "incident": null,
+ "read_rule_scope": "只统计股票（期权）腿 —— ±13.8pp 那条带来自期权腿实测 SD 23.4pp；perp 腿是 3x 杠杆、SD 不同，混进来这条带就不适用。等权（每腿收益率的算术均值之差），与带子的两样本均值差同口径。",
+ "incident_log": [
+  {
+   "date_et": "2026-09-02",
+   "kind": "lost",
+   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
+   "n_cand": 2,
+   "legs": {
+    "equity": 0,
+    "perp": 0
+   },
+   "pre_kickoff": true
+  },
+  {
+   "date_et": "2026-09-03",
+   "kind": "partial",
+   "why": "股票支线零腿（股票 0 腿 / perp 1 腿）",
+   "n_cand": 2,
+   "legs": {
+    "equity": 0,
+    "perp": 1
+   },
+   "pre_kickoff": false
+  },
+  {
+   "date_et": "2026-09-04",
+   "kind": "lost",
+   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
+   "n_cand": 3,
+   "legs": {
+    "equity": 0,
+    "perp": 0
+   },
+   "pre_kickoff": false
+  }
+ ],
+ "open_positions": [
+  {
+   "symbol": "DELL",
+   "branch": "perp",
+   "entry": 487.035,
+   "mark": 512.95,
+   "stop": 405.8625,
+   "to_stop_pct": 20.88,
+   "held_days": 2,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1"
+   ]
+  }
+ ],
+ "day_status": null
 }
