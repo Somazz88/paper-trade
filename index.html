@@ -109,6 +109,11 @@ h2 em{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:
 @media(min-width:880px){.row{grid-template-columns:6px 62px minmax(0,1fr) 246px}}
 .row:first-of-type{border-top:0}
 .rail{background:var(--chain)}
+/* 🔴 2026-09-05 审计：390px 下 .row 只有 3 列，.stats 被 grid 自动放置塞进第 1 列（6px 色带列），
+   四格数字挤在行的左 55%，色带也不盖统计区。让色带跨两行、统计区落到第 2 行的 slot+main 列。 */
+.rail{grid-row:span 2}
+.stats{grid-column:2/-1}
+@media(min-width:880px){.rail{grid-row:auto}.stats{grid-column:auto}}
 .slot{
   border-right:1px solid var(--rule);display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:4px;padding:14px 0;
@@ -138,19 +143,38 @@ h2 em{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:
 .wempty b{color:var(--text)}
 .wempty .k{font:600 9.5px/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;
   color:var(--down);margin-right:8px;vertical-align:1px}
+/* 🔴 2026-09-04：Δ 旁边必须有分母。整页都在讲「先量尺子再看数」，
+   而这三条结论此前只印 Δ 不印 n —— n=1 vs n=1 和 n=20 vs n=20 长得一模一样。
+   一个不报分母的 Δ，正是这块板自己在防的那种数。 */
+/* 🔴 2026-09-04：读数口径条。pt_update_page 一直在写 quote_context / rank_asof /
+   unpriced_legs，而**页面从来没有引用过它们** —— 那个工具的 docstring 甚至明写
+   「这一条不许在页面上被抹平」。它不是被抹平，是从没上过页。
+   名次画了 ▲▼ 却不说相对什么时候，也是同一个洞。 */
+#qc .qh{font:600 10px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:10px}
+#qc dl{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;margin:0;font-size:12.5px;line-height:1.6}
+#qc dt{font-family:var(--mono);font-size:10.5px;color:var(--faint);white-space:nowrap;padding-top:2px}
+#qc dd{margin:0;color:var(--dim)}
+#qc dd b{color:var(--text)}
+#qc dd.warn{color:var(--down)}
+#qc dd.warn b{color:var(--down)}
+em.nn{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--faint);
+  letter-spacing:.02em;margin-left:3px}
 .strip{margin-top:12px}
 .trace{width:100%;height:26px;display:block}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+/* 🔴 手机原本是 repeat(4,1fr): 375px 下每格内容区只剩 ~11px,
+   「投入回报」「持仓 / 已结」「胜负」全被压成**每行一个字的竖条**(2026-09-04 实拍)。
+   桌面反而一直是 2x2。改成两处都 2x2 —— 每格 ~170px, 标签一行放得下。 */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);
   border-top:1px solid var(--rule)}
-@media(min-width:880px){.stats{grid-template-columns:repeat(2,1fr);
-  border-top:0;border-left:1px solid var(--rule)}}
+@media(min-width:880px){.stats{border-top:0;border-left:1px solid var(--rule)}}
 .st{background:var(--panel);padding:10px 12px;text-align:right;
   display:flex;flex-direction:column;justify-content:center}
 .st b{display:block;font:700 18px/1.15 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
 .st b.na{color:#4A5764;font-weight:400;font-size:17px}
 .st b.up{color:var(--up)} .st b.down{color:var(--down)}
 .st span{display:block;margin-top:3px;font:600 9.5px/1 var(--disp);
-  letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+  letter-spacing:.15em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
 
 /* ── 卡 / 表 ── */
 .card{border:1px solid var(--rule);background:var(--panel);padding:17px 19px;margin-top:20px}
@@ -195,8 +219,18 @@ td.k{white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--p1)}
 #incident .txt{font-size:13px;color:var(--text);line-height:1.65;flex:1;min-width:240px}
 #incident .txt b{color:var(--down)}
 #incident .sub{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.03em}
+/* 赛季损伤记录：**历史**坏掉的日子。刻意做成灰的 ——
+   红色是「今天是坏的」的专用信号，历史损伤是读记分板时要带着的上下文。 */
+#dmg{border-bottom:1px solid var(--rule);background:rgba(255,255,255,.012)}
+#dmg .in{max-width:1080px;margin:0 auto;padding:9px 26px;
+  display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+#dmg .hd{font:600 9.5px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);white-space:nowrap}
+#dmg .d{font:11.5px/1.5 var(--mono);color:#8A98A6;white-space:nowrap}
+#dmg .d b{color:#C2CCD6;font-weight:600}
+#dmg .d em{font-style:normal;color:var(--faint)}
 footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
-  font-family:var(--mono);font-size:11px;color:var(--rule-hi);line-height:1.9}
+  font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.9}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -207,12 +241,17 @@ footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
   <dl><dt>赛季</dt><dd id="b-season">—</dd></dl>
   <dl><dt>第</dt><dd id="b-day">—</dd></dl>
   <dl><dt>发令</dt><dd id="b-kick">—</dd></dl>
-  <div class="live"><span class="dot" id="b-dot"></span><span id="b-state">载入中</span></div>
+  <dl><dt>数据</dt><dd id="b-asof">—</dd></dl>
+  <div class="live"><span class="dot" id="b-dot"></span><span id="b-state">载入中</span><span id="b-age"></span></div>
 </div></div>
 
 <!-- 事故条。空状态原本被刻意写成「笔还没动」，开赛日丢掉之后那套文案就变成了
      一句安抚的谎。这条横幅是唯一能说「今天是坏的，不是还没开始」的地方。 -->
 <div id="incident" hidden></div>
+
+<!-- 赛季损伤记录。事故条只说「今天」——ET 09-04 一正常，09-03 那次 partial 就消失了，
+     而少掉的那批腿会永远留在记分板上没有解释。这条负责让六周里坏掉的日子一直可见。 -->
+<div id="dmg" hidden></div>
 
 <div class="wrap">
 
@@ -243,13 +282,23 @@ footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
   </p>
 </section>
 
+<!-- 日状态。一支队零腿有三种原因，这里只说**日级**那一种（今天还没到建仓时刻 /
+     不是交易日）。逐队的差异由每行的「零腿」条负责。 -->
+<p class="note" id="daystat" hidden></p>
 <div id="boards"></div>
+<div class="card" id="qc"></div>
+
+<!-- 在场持仓。纪律区块列的是**规则**，这里列的是规则**此刻作用在什么上** ——
+     止损价、离止损多远、还剩几天。这三件读者自己算不出来。 -->
+<h2 id="opos-h" hidden>在场持仓 <em>open positions</em></h2>
+<div class="card" id="opos" hidden></div>
 
 <h2>两榜顺序一致吗 <em>cross-check</em></h2>
 <div class="card" id="xc"></div>
 
 <h2>怎么读 <em>read rule · 预注册</em></h2>
 <p class="note">🔴 比的是<b>「选中 vs 没选中」</b>，不是子集比全集 —— G2 本来就在 G1 里面，直接比会被重叠稀释成一摊糊。</p>
+<p class="note" id="rrscope" hidden></p>
 <div class="card" id="rr"></div>
 
 <h2>这把尺子有多细 <em>resolution · 开跑前先量尺子</em></h2>
@@ -340,7 +389,8 @@ function teamRow(t, L){
   return `<div class="row" style="--chain:${railCss(t.role)}">
     <div class="rail"></div>
     <div class="slot">
-      <span class="gid ${placed?"placed":""}">${placed?t.rank:esc(t.gid)}</span>
+      <span class="gid ${placed?"placed":""}">${placed ? (t.rank + (t.tied ? "=" : ""))
+        : ((L.teams||[]).some(x=>x.rank!=null) ? "—" : esc(t.gid))}</span>
       <span class="mv">${mv}</span>
     </div>
     <div class="main">
@@ -354,7 +404,7 @@ function teamRow(t, L){
       <div class="strip">${trace(t.trace, t.role)}</div>
     </div>
     <div class="stats">
-      ${st(t.pct==null?"—":n2(t.pct), "收益", t.pct==null?"na":cls)}
+      ${st(t.pct==null?"—":n2(t.pct), "投入回报", t.pct==null?"na":cls)}
       ${st(money((L.capital_per_team||0)-(t.cost||0)+(t.val||0), L.currency), "权益")}
       ${st(t.legs?`${t.open}/${t.closed}`:"—", "持仓 / 已结", t.legs?"":"na")}
       ${st(t.closed?`${t.wins}–${t.losses}`:"—", "胜负", t.closed?"":"na")}
@@ -366,12 +416,27 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById("b-season").textContent = d.season || "—";
   document.getElementById("b-day").textContent = (d.day ?? 0) + " 天";
   document.getElementById("b-kick").textContent = d.kickoff || "—";
+  // 🔴 2026-09-05 审计：asof 只在页底 footer；顶栏绿点对冻了 17 小时的数持续脉冲；全页无 ET。
+  //   顶栏用 ET（赛季跑在 ET 上，MYT 仍在 footer 与口径条）；数据年龄按 asof_iso 现算。
+  //   15 分钟 = 生产者节拍 5 分钟的 3 拍没来就是停了（刷新窗只有 MYT 21:25–04:10）。
+  document.getElementById("b-asof").textContent = d.asof_et || d.asof || "—";
+  const ageOf = () => { const t = d.asof_iso ? Date.parse(d.asof_iso) : NaN;
+    return isFinite(t) ? Math.max(0, (Date.now() - t) / 60000) : null; };
+  const ageTxtOf = m => m == null ? "" : (m >= 90 ? `${(m/60).toFixed(1)} 小时前` : `${Math.round(m)} 分钟前`);
+  const ageMin = ageOf();
+  const fresh = ageMin != null && ageMin <= 15;
+  const stale = ageMin != null && !fresh;
+  const frozen = stale ? `冻于 ${ageTxtOf(ageMin)}（${d.asof || "?"}）` : "";
+  const setAge = () => { const m = ageOf();
+    document.getElementById("b-age").textContent = m == null ? "" : " · 数据 " + ageTxtOf(m); };
+  setAge(); setInterval(setAge, 60000);
   // 事故优先于「未开赛」。没有腿有两种成因，读数完全相反：
   //   ① 还没到点 → 「未开赛」是对的；② 到了点没跑成 → 「未开赛」是谎。
   const inc = d.incident;
   document.getElementById("b-state").textContent =
     live ? "进行中" : (inc ? "今日无产出" : "未开赛");
-  document.getElementById("b-dot").className = "dot" + (live ? " on" : "");
+  // 脉冲只表示「15 分钟内刷过」；b-state 的文案（进行中/未开赛/今日无产出）保持赛季语义不动
+  document.getElementById("b-dot").className = "dot" + (live && fresh ? " on" : "");
   const box = document.getElementById("incident");
   if (inc) {
     const cand = (inc.candidates || []).length
@@ -398,10 +463,66 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
   } else {
     box.hidden = true;
   }
+
+  // 🔴 这几串都走 md()（先 esc 再把 **x** 变 <b>）——强调只能写 **x**，不许手拼标签。
+  const dl = d.incident_log || [];
+  if (dl.length) {
+    const one = x => {
+      const L = x.legs || {};
+      const what = x.kind === "lost"
+        ? `**全灭** 两条支线零腿`
+        : `**半边** 股票 ${L.equity ?? "?"} 腿 / perp ${L.perp ?? "?"} 腿`;
+      const pre = x.pre_kickoff ? " <em>· 发令前</em>" : "";
+      return `<span class="d">${md(x.date_et + "　" + what
+              + "　" + (x.n_cand || 0) + " 个候选")}${pre}</span>`;
+    };
+    document.getElementById("dmg").innerHTML =
+      `<div class="in"><span class="hd">赛季损伤记录 · ${dl.length} 天${
+         dl.filter(x => x.pre_kickoff).length
+           ? `（其中 ${dl.filter(x => x.pre_kickoff).length} 天在发令前）` : ""
+       } <em>damaged days</em></span>`
+      + dl.map(one).join("") + `</div>`;
+    document.getElementById("dmg").hidden = false;
+  }
   document.getElementById("q").innerHTML = (d.question||"")
     .split(/(?<=[，、；])/).map(x=>`<span class="cl">${esc(x)}</span>`).join("");
   document.getElementById("axis").innerHTML = md(d.axis_note || "");
   document.getElementById("f-asof").textContent = d.asof || "—";
+
+  // 🔴 读数口径 —— 这些字段工具一直在写，页面此前一个都没引用
+  const qc = d.quote_context || {};
+  const up = qc.unpriced_legs || [];
+  // 🔴 这些串都要经 md()：它先 esc() 再把 **x** 变 <b>x</b>。
+  //   所以强调**只能写成 **x****，颜色靠第三列的 class 挂到 <dd> 上 ——
+  //   在串里塞 <b>/<span> 会被 esc 成字面标签（2026-09-04 实测踩到，当晚第三次）。
+  const rows = [
+    ["定价", qc.pricing, ""],
+    ["收益", qc.returns, ""],
+    ["股票", qc.equity, ""],
+    ["perp", stale ? `**${frozen}** · ${qc.perp || ""}` : qc.perp, stale ? "warn" : ""],
+    ["跨榜", qc.caveat, ""],
+    ["并列", (d.leagues||[]).some(L => (L.teams||[]).some(t => t.tied))
+      ? "名次后带 **=** 的是**并列**（收益率到 0.01pp 相同 —— 同一批腿就会这样），并列共用名次、下一名跳号。"
+      : null, ""],
+    ["名次升降", d.rank_asof
+      ? `▲▼ 是相对 **${d.rank_asof}** 那一次的名次，不是「昨天」。更新频率变了，升降的含义就变了。`
+      : null, ""],
+    ["剔除", up.length
+      ? `${up.length} 条腿定不到价，已**剔出统计**（不猜价）：` +
+        up.map(u => `${u.symbol||"?"} — ${u.why||""}`).join("；")
+      : null, "warn"],
+  ].filter(r => r[1]);
+  document.getElementById("qc").innerHTML =
+    `<div class="qh">读数口径 how to read the numbers</div><dl>` +
+    rows.map(r => `<dt>${esc(r[0])}</dt><dd class="${esc(r[2]||"")}">${md(String(r[1]))}</dd>`).join("") + `</dl>`;
+
+  // 🔴 走 md()（生产者串里有 **），不走 esc()。没有 day_status 就不渲染 ——
+  //   有 picks 的日子由每行的「零腿」条各说各的，这里不许再插一句通用安抚。
+  if (d.day_status && d.day_status.text) {
+    const ds = document.getElementById("daystat");
+    ds.innerHTML = md(d.day_status.text);
+    ds.hidden = false;
+  }
 
   document.getElementById("boards").innerHTML = (d.leagues||[]).map(L => `
     <h2>${esc(L.name)} <em>${esc(L.id)}</em></h2>
@@ -418,7 +539,12 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
   const x = d.cross_check || {};
   document.getElementById("xc").innerHTML =
     `<p class="lede" style="margin-top:0">${esc(x.label||"")}</p><p>${md(x.why||"")}</p>` +
-    `<p class="mono" style="color:var(--faint)">当前：${x.agreement==null?"两榜都还没开赛，无从比对":esc(x.agreement)}</p>`;
+    // 🔴 这里以前把「都还没开赛」写死在三元里 —— 半边开赛时那句是**假的**
+    //   （实测 perp 已排名 +18.3%、股票榜零腿；而且判据是「满员」不是「开赛」）。
+    //   理由改由生产者写进 x.why_null，页面只显示。
+    `<p class="mono" style="color:var(--faint)">当前：${
+       x.agreement == null ? md(x.why_null || "还不能比") : esc(x.agreement)
+     }</p>`;
 
   const bd = d.read_rule_band || {};
   const BAND = bd.pp || 13.8, SPAN = Math.max(BAND*2.6, 36);   // 轴半程
@@ -437,20 +563,43 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
         height="30" fill="rgba(138,149,155,.11)"/>
       <text x="${x(0).toFixed(1)}" y="${mid-20}" fill="#5D6A76" font-size="8.5"
         font-family="JetBrains Mono,monospace" text-anchor="middle">±${BAND} 分不出来</text>`;
-    // 待发令：放到带子右外侧，别压 0 刻度
-    let marks=`<text x="${x(SPAN*0.66).toFixed(1)}" y="${mid+3.5}" fill="#3A4652" font-size="10"
-        font-family="JetBrains Mono,monospace" text-anchor="middle">待发令</text>`;
-    if (r.sel!=null && r.unsel!=null)
+    const dotSel   = v => `<circle cx="${x(v).toFixed(1)}" cy="${mid}" r="5" fill="${ink}"/>`;
+    const dotUnsel = v => `<circle cx="${x(v).toFixed(1)}" cy="${mid}" r="5" fill="#12171E" stroke="#4A5764" stroke-width="1.6"/>`;
+    let marks;
+    if (r.sel!=null && r.unsel!=null) {
       marks=`<line x1="${x(r.unsel).toFixed(1)}" y1="${mid}" x2="${x(r.sel).toFixed(1)}" y2="${mid}"
-          stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>
-        <circle cx="${x(r.unsel).toFixed(1)}" cy="${mid}" r="5" fill="#12171E" stroke="#4A5764" stroke-width="1.6"/>
-        <circle cx="${x(r.sel).toFixed(1)}" cy="${mid}" r="5" fill="${ink}"/>`;
+          stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>${dotUnsel(r.unsel)}${dotSel(r.sel)}`;
+    } else {
+      // 🔴 2026-09-05 审计：以前不看 d.state，只要一侧 null 就印「待发令」—— live 第 2 天三条轨
+      //   全印「待发令」而顶栏印「进行中」。与 incident / cross_check 那两次同形：空状态文案按
+      //   「开赛前」设计，开赛后一侧 n=0 时它变成安抚的谎。开赛后要说清是哪一侧没腿；
+      //   已有数的那一侧照画点（不连线，Δ 仍是 —）。只认真正的 0：n 为 null（生产者没跑）不当 0。
+      const z = v => v === 0;
+      const lbl = !live ? "待发令"
+        : (z(r.n_sel) && z(r.n_unsel)) ? "两侧 n=0 · 无从比"
+        : z(r.n_sel)   ? "选中侧 n=0 · 无从比"
+        : z(r.n_unsel) ? "弃子侧 n=0 · 无从比"
+        : "缺一侧 · 无从比";
+      const known = r.sel ?? r.unsel;                 // 标签放在已知点的对侧，别压住那个点
+      const side = (known != null && known > 0) ? -0.66 : 0.66;
+      marks=`<text x="${x(SPAN*side).toFixed(1)}" y="${mid+3.5}" fill="#3A4652" font-size="10"
+        font-family="JetBrains Mono,monospace" text-anchor="middle">${lbl}</text>`;
+      if (r.sel!=null)   marks += dotSel(r.sel);
+      if (r.unsel!=null) marks += dotUnsel(r.unsel);
+    }
     return `<svg class="track" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"
       role="img" aria-label="${esc(r.q)} 的判决轨">
       <line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="#1E2732" stroke-width="1"/>
       ${band}${ticks}${marks}</svg>`;
   }
 
+  // 🔴 统计范围必须在记分板**之前**看到：眼下唯一在场的腿是 perp，而记分板不计 perp，
+  //   三行于是全是 n=0 —— 读者会以为坏了，真相是这些腿本来就不在统计范围里。
+  if (d.read_rule_scope) {
+    const rs = document.getElementById("rrscope");
+    rs.innerHTML = `<b>统计范围</b>　${md(d.read_rule_scope)}`;
+    rs.hidden = false;
+  }
   document.getElementById("rr").innerHTML =
     `<p style="margin:0 0 6px">${md(bd.why||"")}</p>
      <p class="mono" style="color:var(--faint);font-size:11.5px;margin-bottom:16px">${esc(bd.note||"")}</p>` +
@@ -464,8 +613,10 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
           <span class="f">${esc(r.f)}</span></div>
         ${track(r)}
         <div class="dl">
-          <span class="sw"><i style="background:${ink}"></i>${esc(r.a)}</span>
-          <span class="sw"><i class="hollow"></i>${esc(r.b)}（弃子）</span>
+          <span class="sw"><i style="background:${ink}"></i>${esc(r.a)}${
+            r.n_sel!=null ? ` <em class="nn">n=${r.n_sel}</em>` : ""}</span>
+          <span class="sw"><i class="hollow"></i>${esc(r.b)}（弃子）${
+            r.n_unsel!=null ? ` <em class="nn">n=${r.n_unsel}</em>` : ""}</span>
           <span class="dv ${k}">${!has ? "Δ —" : (inb
             ? "Δ "+n2(r.delta)+" · 未过分辨率"
             : "Δ "+n2(r.delta))}</span>
@@ -510,6 +661,34 @@ fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById("disc").innerHTML = "<div class='scroll'><table><tbody>" +
     (d.discipline||[]).map(x=>`<tr><td class="k">${esc(x.t)}</td><td>${md(x.d)}</td></tr>`).join("") +
     "</tbody></table></div>";
+
+  // 🔴 三条不许：① 定不到价的字段印「—」**不拿建仓价冒充现价**（铁律「不猜价」）
+  //   ② 离止损用 md() 走加粗，不手拼标签  ③ 表放 .scroll 里，手机横滚在容器内
+  const op = d.open_positions || [];
+  if (op.length) {
+    const num = (v, n=2) => v == null ? "—" : Number(v).toFixed(n);
+    document.getElementById("opos").innerHTML =
+      "<div class='scroll'><table><tbody>" + op.map(x => {
+        // 🔴 2026-09-05 审计：以前 to_stop_pct 为 null 一律印「定不到价」—— 期权腿明明定到价，
+        //   只是止损字段名不同（stop_premium）。三态分开：mark 为 null 才叫「定不到价」。
+        const near = x.mark == null ? "定不到价"
+          : x.stop == null ? "无止损价"
+          : x.to_stop_pct == null ? "—"
+          : (x.to_stop_pct <= 5 ? `**离止损 ${num(x.to_stop_pct,1)}%**` : `离止损 ${num(x.to_stop_pct,1)}%`);
+        const held = x.held_days == null ? "—"
+          : `已持 ${x.held_days}/${x.max_hold_days ?? "?"} 交易日`;
+        return `<tr><td class="k">${esc(x.symbol||"?")}<br>
+          <span class="mono" style="color:var(--faint);font-size:10.5px">${esc(x.branch||"")}</span></td>
+          <td><span class="mono" title="${esc(x.mark_src||"")}">建仓 ${num(x.entry)} → ${esc(x.mark_label||"现")} ${num(x.mark)}</span>${
+            (stale && x.branch === "perp") ? `&nbsp;<span class="mono" style="color:var(--down)">（${esc(frozen)}）</span>` : ""}
+          &nbsp;·&nbsp;<span class="mono">止损 ${num(x.stop)}</span>
+          &nbsp;·&nbsp;${md(near)}&nbsp;·&nbsp;<span class="mono">${esc(held)}</span>
+          &nbsp;·&nbsp;<span class="mono" style="color:var(--faint)">归 ${esc((x.tags||[]).join(" ")||"—")}</span>
+          <br><span class="sub" style="color:var(--faint)">${esc(x.exit_rule||"")}</span></td></tr>`;
+      }).join("") + "</tbody></table></div>";
+    document.getElementById("opos").hidden = false;
+    document.getElementById("opos-h").hidden = false;
+  }
 
   const v = d.v1_archived||{};
   document.getElementById("v1").innerHTML =
