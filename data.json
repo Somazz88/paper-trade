@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-05 21:40 MYT",
+ "asof": "2026-09-05 21:50 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 2,
@@ -30,17 +30,17 @@
      "open": 2,
      "closed": 0,
      "cost": 3645.0,
-     "val": 3337.04,
-     "pct": -8.45,
+     "val": 3400.0,
+     "pct": -6.72,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      -8.45,
-      -8.45
-     ]
+      -6.72
+     ],
+     "tied": true
     },
     {
      "id": "equity-G2",
@@ -55,17 +55,17 @@
      "open": 2,
      "closed": 0,
      "cost": 3645.0,
-     "val": 3337.04,
-     "pct": -8.45,
-     "rank": 2,
-     "prev_rank": 2,
+     "val": 3400.0,
+     "pct": -6.72,
+     "rank": 1,
+     "prev_rank": 1,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
-      -8.45,
-      -8.45
-     ]
+      -6.72
+     ],
+     "tied": true
     },
     {
      "id": "equity-G3",
@@ -87,7 +87,8 @@
      "wins": 0,
      "losses": 0,
      "why_empty": null,
-     "trace": null
+     "trace": null,
+     "tied": false
     },
     {
      "id": "equity-G4",
@@ -109,7 +110,8 @@
      "wins": 0,
      "losses": 0,
      "why_empty": null,
-     "trace": null
+     "trace": null,
+     "tied": false
     }
    ]
   },
@@ -135,8 +137,8 @@
      "open": 2,
      "closed": 0,
      "cost": 400.0,
-     "val": 429.81,
-     "pct": 7.45,
+     "val": 429.48,
+     "pct": 7.37,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -144,9 +146,9 @@
      "why_empty": null,
      "trace": [
       18.29,
-      7.59,
-      7.45
-     ]
+      7.59
+     ],
+     "tied": false
     },
     {
      "id": "perp-G2",
@@ -169,9 +171,9 @@
      "losses": 0,
      "why_empty": null,
      "trace": [
-      -6.59,
-      -8.0
-     ]
+      -6.59
+     ],
+     "tied": false
     },
     {
      "id": "perp-G3",
@@ -193,7 +195,8 @@
      "wins": 0,
      "losses": 0,
      "why_empty": null,
-     "trace": null
+     "trace": null,
+     "tied": false
     },
     {
      "id": "perp-G4",
@@ -215,7 +218,8 @@
      "wins": 0,
      "losses": 0,
      "why_empty": null,
-     "trace": null
+     "trace": null,
+     "tied": false
     }
    ]
   }
@@ -224,7 +228,7 @@
   "label": "两榜顺序一致吗",
   "why": "同一个决策者在两条支线各有一支队。两榜名次顺序一致 = 那是真信号；不一致 = 至少有一榜是杠杆或运气在说话。",
   "agreement": null,
-  "why_null": "两榜都还没满员，无从比对"
+  "why_null": "两榜都还没满员；**股票联赛**有并列（收益率到 0.01pp 相同 —— 同一批腿就会这样），名次**顺序**未定义 —— 比的是名次顺序，顺序不完整就先不比"
  },
  "universe": {
   "total": 120,
@@ -246,7 +250,7 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": -9.48,
+   "sel": -7.77,
    "unsel": null,
    "delta": null,
    "n_sel": 2,
@@ -260,7 +264,7 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": -9.48,
+   "unsel": -7.77,
    "delta": null,
    "n_sel": 0,
    "n_unsel": 2
@@ -524,13 +528,13 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-05 21:35 MYT",
+ "rank_asof": "2026-09-05 21:48 MYT",
  "quote_context": {
-  "equity": "非 RTH · 上一收盘价，不是现价",
-  "perp": "OKX 24 小时实时",
-  "caveat": "两条支线的「现在」不是同一个现在：美股收盘后 perp 榜还在动、股票榜是冻的。跨榜比较只在两边都处于 RTH 时才严格成立。",
+  "equity": "非 RTH · 上一收盘 bid/ask 中点（2026-09-04 ET），不是现价 —— **零成交**（那天没有一笔成交，中点只是挂单）：TECK",
+  "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
+  "caveat": "两条支线的「现在」不是同一个现在：美股收盘后 perp **盘口**还在动，但本页两榜在 MYT 21:25–04:10（ET 09:25–16:10） 之外都是冻的。跨榜比较只在两边都处于 RTH 时才严格成立。",
   "returns": "**「投入回报」是投入资金口径**（Σ盈亏 ÷ Σ投入），**不是账面口径**。一支队只投了本金的一小部分时，这两个数会差好几倍 —— 右边的「权益」才是账面。记分板和 ±13.8pp 分辨率带都用投入口径。（另：队伍这个数是**资本加权**，而记分板三行的 Δ 是**等权**每腿收益率之差 —— 后者才与带子的两样本均值差同口径。）",
-  "pricing": "建仓与估值**都按 mid**（bid/ask 中点）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
+  "pricing": "股票腿建仓与估值**都按 bid/ask 中点**（收盘后用上一收盘的挂单中点，没有挂单就剔出、不拿 last 冒充）；perp 腿建仓按中点、估值按 OKX last（价差 ≤0.07%，可忽略）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
   "unpriced_legs": []
  },
  "incident": null,
@@ -564,9 +568,11 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 524.23,
+   "mark": 523.96,
    "stop": 405.8625,
-   "to_stop_pct": 22.58,
+   "to_stop_pct": 22.54,
+   "mark_src": "OKX last",
+   "mark_label": "现",
    "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
@@ -578,9 +584,11 @@
    "symbol": "TECK",
    "branch": "equity",
    "entry": 3.15,
-   "mark": 3.7284,
-   "stop": null,
-   "to_stop_pct": null,
+   "mark": 3.8,
+   "stop": 1.575,
+   "to_stop_pct": 58.55,
+   "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-04 ET）·非实时",
+   "mark_label": "收",
    "held_days": 1,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
@@ -593,9 +601,11 @@
    "symbol": "SNOW",
    "branch": "equity",
    "entry": 17.55,
-   "mark": 11.0,
-   "stop": null,
-   "to_stop_pct": null,
+   "mark": 11.2,
+   "stop": 8.775,
+   "to_stop_pct": 21.65,
+   "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-04 ET）·非实时",
+   "mark_label": "收",
    "held_days": 1,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
@@ -611,6 +621,8 @@
    "mark": 339.07,
    "stop": 290.304167,
    "to_stop_pct": 14.38,
+   "mark_src": "OKX last",
+   "mark_label": "现",
    "held_days": 1,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
@@ -623,5 +635,7 @@
  "day_status": {
   "kind": "weekend",
   "text": "**2026-09-05 不是交易日** —— 今天不建仓，空着是对的。"
- }
+ },
+ "asof_iso": "2026-09-05T21:50:03+08:00",
+ "asof_et": "2026-09-05 09:50 ET"
 }
