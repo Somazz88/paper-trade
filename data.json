@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-08 21:35 MYT",
+ "asof": "2026-09-08 21:40 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 3,
@@ -26,20 +26,20 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 2,
-     "open": 2,
+     "legs": 5,
+     "open": 5,
      "closed": 0,
-     "cost": 3645.0,
-     "val": 4232.5,
-     "pct": 16.12,
+     "cost": 11464.5,
+     "val": 11799.5,
+     "pct": 2.92,
      "rank": 1,
-     "prev_rank": null,
+     "prev_rank": 1,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
       -6.72,
-      16.12
+      2.92
      ],
      "tied": true
     },
@@ -52,20 +52,20 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 2,
-     "open": 2,
+     "legs": 5,
+     "open": 5,
      "closed": 0,
-     "cost": 3645.0,
-     "val": 4232.5,
-     "pct": 16.12,
+     "cost": 11464.5,
+     "val": 11799.5,
+     "pct": 2.92,
      "rank": 1,
-     "prev_rank": null,
+     "prev_rank": 1,
      "wins": 0,
      "losses": 0,
      "why_empty": null,
      "trace": [
       -6.72,
-      16.12
+      2.92
      ],
      "tied": true
     },
@@ -135,12 +135,12 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 2,
-     "open": 2,
+     "legs": 5,
+     "open": 5,
      "closed": 0,
-     "cost": 400.0,
-     "val": 424.64,
-     "pct": 6.16,
+     "cost": 1000.0,
+     "val": 1019.3,
+     "pct": 1.93,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -149,7 +149,7 @@
      "trace": [
       18.29,
       7.59,
-      6.16
+      1.93
      ],
      "tied": false
     },
@@ -162,12 +162,12 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 1,
-     "open": 1,
+     "legs": 4,
+     "open": 4,
      "closed": 0,
-     "cost": 200.0,
-     "val": 182.04,
-     "pct": -8.98,
+     "cost": 800.0,
+     "val": 775.17,
+     "pct": -3.1,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -175,7 +175,7 @@
      "why_empty": null,
      "trace": [
       -6.59,
-      -8.98
+      -3.1
      ],
      "tied": false
     },
@@ -254,10 +254,10 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": 14.3,
+   "sel": 4.0,
    "unsel": null,
    "delta": null,
-   "n_sel": 2,
+   "n_sel": 5,
    "n_unsel": 0
   },
   {
@@ -268,10 +268,10 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": 14.3,
+   "unsel": 4.0,
    "delta": null,
    "n_sel": 0,
-   "n_unsel": 2
+   "n_unsel": 5
   },
   {
    "n": "③",
@@ -479,6 +479,252 @@
    "stop_price": 290.304167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "low_seen": 335.14
+  },
+  {
+   "id": "PT2-2026-09-08-BE-E",
+   "status": "open",
+   "opened_at": "2026-09-08T21:35:29",
+   "entry_date_et": "2026-09-08",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "BE",
+   "code": "US.BE261009C270000",
+   "strike": 270.0,
+   "expiry": "2026-10-09",
+   "spot": 271.931,
+   "bid": 28.85,
+   "ask": 32.0,
+   "mid": 30.425,
+   "spread_pct": 10.4,
+   "qty": 1,
+   "cost": 3042.5,
+   "iv": 92.471,
+   "delta": 0.568756407,
+   "cycle": "Cycle6",
+   "ce_streak": 2,
+   "sector": "POWER",
+   "strength": 63,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 30.425,
+   "stop_premium": 15.2125,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-08-SPY-E",
+   "status": "open",
+   "opened_at": "2026-09-08T21:35:29",
+   "entry_date_et": "2026-09-08",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "SPY",
+   "code": "US.SPY261009C769000",
+   "strike": 769.0,
+   "expiry": "2026-10-09",
+   "spot": 768.5799,
+   "bid": 11.44,
+   "ask": 11.48,
+   "mid": 11.46,
+   "spread_pct": 0.3,
+   "qty": 2,
+   "cost": 2292.0,
+   "iv": 11.497,
+   "delta": 0.544619952,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": null,
+   "strength": null,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 11.46,
+   "stop_premium": 5.73,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-08-CRWD-E",
+   "status": "open",
+   "opened_at": "2026-09-08T21:35:29",
+   "entry_date_et": "2026-09-08",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "CRWD",
+   "code": "US.CRWD261009C210000",
+   "strike": 210.0,
+   "expiry": "2026-10-09",
+   "spot": 209.365,
+   "bid": 11.7,
+   "ask": 13.15,
+   "mid": 12.425,
+   "spread_pct": 11.7,
+   "qty": 2,
+   "cost": 2485.0,
+   "iv": 49.852,
+   "delta": 0.535240013,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": null,
+   "strength": null,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 12.425,
+   "stop_premium": 6.2125,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-08-BE-P",
+   "status": "open",
+   "opened_at": "2026-09-08T21:35:29",
+   "entry_date_et": "2026-09-08",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "BE",
+   "branch": "perp",
+   "inst_id": "BE-USDT-SWAP",
+   "side": "long",
+   "entry": 272.25,
+   "bid": 272.03,
+   "ask": 272.47,
+   "spread_pct": 0.162,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 2.2039,
+   "cycle": "Cycle6",
+   "ce_streak": 2,
+   "sector": "POWER",
+   "strength": 63,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 226.875,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "low_seen": 268.9
+  },
+  {
+   "id": "PT2-2026-09-08-SPY-P",
+   "status": "open",
+   "opened_at": "2026-09-08T21:35:29",
+   "entry_date_et": "2026-09-08",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "SPY",
+   "branch": "perp",
+   "inst_id": "SPY-USDT-SWAP",
+   "side": "long",
+   "entry": 769.445,
+   "bid": 769.44,
+   "ask": 769.45,
+   "spread_pct": 0.001,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 0.7798,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": null,
+   "strength": null,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 641.204167,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "low_seen": 768.96
+  },
+  {
+   "id": "PT2-2026-09-08-CRWD-P",
+   "status": "open",
+   "opened_at": "2026-09-08T21:35:29",
+   "entry_date_et": "2026-09-08",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "missed",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "CRWD",
+   "branch": "perp",
+   "inst_id": "CRWD-USDT-SWAP",
+   "side": "long",
+   "entry": 209.465,
+   "bid": 209.22,
+   "ask": 209.71,
+   "spread_pct": 0.234,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 2.8644,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": null,
+   "strength": null,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 174.554167,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "low_seen": 209.98
   }
  ],
  "axis_note": "场上是**两个 AI 和一个人**。P1 AI 给的是固定排名、一只都不删；烦烦 AI 和我每天都在说「这只不要」。**测的是取舍这个动作值不值钱** —— 不是测谁的技术栈更好，也不是「机器 vs 人」。P1 AI 赢，就说明后面两层取舍都是负担。",
@@ -532,7 +778,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-08 21:30 MYT",
+ "rank_asof": "2026-09-08 21:35 MYT",
  "quote_context": {
   "equity": "RTH · bid/ask 中点实时",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
@@ -565,17 +811,6 @@
     "perp": 1
    },
    "pre_kickoff": false
-  },
-  {
-   "date_et": "2026-09-08",
-   "kind": "lost",
-   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
-   "n_cand": 3,
-   "legs": {
-    "equity": 0,
-    "perp": 0
-   },
-   "pre_kickoff": false
   }
  ],
  "open_positions": [
@@ -583,9 +818,9 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 521.61,
+   "mark": 522.85,
    "stop": 405.8625,
-   "to_stop_pct": 22.19,
+   "to_stop_pct": 22.37,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 3,
@@ -616,9 +851,9 @@
    "symbol": "SNOW",
    "branch": "equity",
    "entry": 17.55,
-   "mark": 11.425,
+   "mark": 11.25,
    "stop": 8.775,
-   "to_stop_pct": 23.19,
+   "to_stop_pct": 22.0,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 2,
@@ -633,9 +868,9 @@
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 337.94,
+   "mark": 337.6,
    "stop": 290.304167,
-   "to_stop_pct": 14.1,
+   "to_stop_pct": 14.01,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 2,
@@ -645,9 +880,111 @@
     "G1",
     "G2"
    ]
+  },
+  {
+   "symbol": "BE",
+   "branch": "equity",
+   "entry": 30.425,
+   "mark": 27.725,
+   "stop": 15.2125,
+   "to_stop_pct": 45.13,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "SPY",
+   "branch": "equity",
+   "entry": 11.46,
+   "mark": 11.235,
+   "stop": 5.73,
+   "to_stop_pct": 49.0,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "CRWD",
+   "branch": "equity",
+   "entry": 12.425,
+   "mark": 12.825,
+   "stop": 6.2125,
+   "to_stop_pct": 51.56,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "BE",
+   "branch": "perp",
+   "entry": 272.25,
+   "mark": 268.9,
+   "stop": 226.875,
+   "to_stop_pct": 15.63,
+   "mark_src": "OKX last",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "SPY",
+   "branch": "perp",
+   "entry": 769.445,
+   "mark": 768.96,
+   "stop": 641.204167,
+   "to_stop_pct": 16.61,
+   "mark_src": "OKX last",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "CRWD",
+   "branch": "perp",
+   "entry": 209.465,
+   "mark": 209.98,
+   "stop": 174.554167,
+   "to_stop_pct": 16.87,
+   "mark_src": "OKX last",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
   }
  ],
  "day_status": null,
- "asof_iso": "2026-09-08T21:35:04+08:00",
- "asof_et": "2026-09-08 09:35 ET"
+ "asof_iso": "2026-09-08T21:40:04+08:00",
+ "asof_et": "2026-09-08 09:40 ET"
 }
