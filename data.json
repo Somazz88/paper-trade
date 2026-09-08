@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-09 02:30 MYT",
+ "asof": "2026-09-09 02:35 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 3,
@@ -30,8 +30,8 @@
      "open": 5,
      "closed": 0,
      "cost": 11464.5,
-     "val": 12739.5,
-     "pct": 11.12,
+     "val": 12728.0,
+     "pct": 11.02,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -39,7 +39,7 @@
      "why_empty": null,
      "trace": [
       -6.72,
-      11.12
+      11.02
      ],
      "tied": true
     },
@@ -56,8 +56,8 @@
      "open": 5,
      "closed": 0,
      "cost": 11464.5,
-     "val": 12739.5,
-     "pct": 11.12,
+     "val": 12728.0,
+     "pct": 11.02,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -65,7 +65,7 @@
      "why_empty": null,
      "trace": [
       -6.72,
-      11.12
+      11.02
      ],
      "tied": true
     },
@@ -139,8 +139,8 @@
      "open": 5,
      "closed": 0,
      "cost": 1000.0,
-     "val": 1060.07,
-     "pct": 6.01,
+     "val": 1059.97,
+     "pct": 6.0,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -149,7 +149,7 @@
      "trace": [
       18.29,
       7.59,
-      6.01
+      6.0
      ],
      "tied": false
     },
@@ -166,8 +166,8 @@
      "open": 4,
      "closed": 0,
      "cost": 800.0,
-     "val": 803.82,
-     "pct": 0.48,
+     "val": 803.04,
+     "pct": 0.38,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -175,7 +175,7 @@
      "why_empty": null,
      "trace": [
       -6.59,
-      0.48
+      0.38
      ],
      "tied": false
     },
@@ -254,7 +254,7 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": 10.82,
+   "sel": 10.83,
    "unsel": null,
    "delta": null,
    "n_sel": 5,
@@ -268,7 +268,7 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": 10.82,
+   "unsel": 10.83,
    "delta": null,
    "n_sel": 0,
    "n_unsel": 5
@@ -784,7 +784,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-09 02:25 MYT",
+ "rank_asof": "2026-09-09 02:30 MYT",
  "quote_context": {
   "equity": "RTH · bid/ask 中点实时",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
@@ -824,9 +824,9 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 532.69,
+   "mark": 533.25,
    "stop": 405.8625,
-   "to_stop_pct": 23.81,
+   "to_stop_pct": 23.89,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 3,
@@ -857,9 +857,9 @@
    "symbol": "SNOW",
    "branch": "equity",
    "entry": 17.55,
-   "mark": 10.65,
+   "mark": 10.975,
    "stop": 8.775,
-   "to_stop_pct": 17.61,
+   "to_stop_pct": 20.05,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 2,
@@ -891,9 +891,9 @@
    "symbol": "BE",
    "branch": "equity",
    "entry": 30.425,
-   "mark": 35.575,
+   "mark": 35.525,
    "stop": 15.2125,
-   "to_stop_pct": 57.24,
+   "to_stop_pct": 57.18,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 1,
@@ -908,9 +908,9 @@
    "symbol": "SPY",
    "branch": "equity",
    "entry": 11.46,
-   "mark": 10.76,
+   "mark": 10.64,
    "stop": 5.73,
-   "to_stop_pct": 46.75,
+   "to_stop_pct": 46.15,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 1,
@@ -925,9 +925,9 @@
    "symbol": "CRWD",
    "branch": "equity",
    "entry": 12.425,
-   "mark": 13.025,
+   "mark": 12.95,
    "stop": 6.2125,
-   "to_stop_pct": 52.3,
+   "to_stop_pct": 52.03,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 1,
@@ -942,9 +942,9 @@
    "symbol": "BE",
    "branch": "perp",
    "entry": 272.25,
-   "mark": 281.97,
+   "mark": 281.64,
    "stop": 226.875,
-   "to_stop_pct": 19.54,
+   "to_stop_pct": 19.45,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 1,
@@ -959,9 +959,9 @@
    "symbol": "SPY",
    "branch": "perp",
    "entry": 769.445,
-   "mark": 768.29,
+   "mark": 768.22,
    "stop": 641.204167,
-   "to_stop_pct": 16.54,
+   "to_stop_pct": 16.53,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 1,
@@ -991,6 +991,6 @@
   }
  ],
  "day_status": null,
- "asof_iso": "2026-09-09T02:30:04+08:00",
- "asof_et": "2026-09-08 14:30 ET"
+ "asof_iso": "2026-09-09T02:35:04+08:00",
+ "asof_et": "2026-09-08 14:35 ET"
 }
