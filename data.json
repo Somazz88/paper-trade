@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-10 21:30 MYT",
+ "asof": "2026-09-10 21:35 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 5,
@@ -26,24 +26,24 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 2,
-     "open": 1,
-     "closed": 1,
-     "cost": 4327.5,
-     "val": 2505.0,
-     "pct": -42.11,
+     "legs": 11,
+     "open": 9,
+     "closed": 2,
+     "cost": 44267.0,
+     "val": 35956.0,
+     "pct": -18.77,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
-     "losses": 1,
+     "losses": 2,
      "why_empty": null,
      "trace": [
       -6.72,
       0.11,
       -3.37,
-      -42.11
+      -18.77
      ],
-     "tied": true
+     "tied": false
     },
     {
      "id": "equity-G2",
@@ -54,24 +54,24 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 2,
-     "open": 1,
-     "closed": 1,
-     "cost": 4327.5,
-     "val": 2505.0,
-     "pct": -42.11,
-     "rank": 1,
+     "legs": 10,
+     "open": 8,
+     "closed": 2,
+     "cost": 36077.0,
+     "val": 27676.0,
+     "pct": -23.29,
+     "rank": 2,
      "prev_rank": 1,
      "wins": 0,
-     "losses": 1,
+     "losses": 2,
      "why_empty": null,
      "trace": [
       -6.72,
       0.11,
       -3.37,
-      -42.11
+      -23.29
      ],
-     "tied": true
+     "tied": false
     },
     {
      "id": "equity-G3",
@@ -139,12 +139,12 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 8,
-     "open": 8,
+     "legs": 10,
+     "open": 10,
      "closed": 0,
-     "cost": 1600.0,
-     "val": 1507.95,
-     "pct": -5.75,
+     "cost": 2000.0,
+     "val": 1911.93,
+     "pct": -4.4,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -155,7 +155,7 @@
       7.59,
       4.45,
       -0.34,
-      -5.75
+      -4.4
      ],
      "tied": false
     },
@@ -168,12 +168,12 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 7,
-     "open": 7,
+     "legs": 8,
+     "open": 8,
      "closed": 0,
-     "cost": 1400.0,
-     "val": 1261.19,
-     "pct": -9.91,
+     "cost": 1600.0,
+     "val": 1469.63,
+     "pct": -8.15,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -183,7 +183,7 @@
       -6.59,
       -1.42,
       -4.59,
-      -9.91
+      -8.15
      ],
      "tied": false
     },
@@ -240,7 +240,7 @@
   "label": "两榜顺序一致吗",
   "why": "同一个决策者在两条支线各有一支队。两榜名次顺序一致 = 那是真信号；不一致 = 至少有一榜是杠杆或运气在说话。",
   "agreement": null,
-  "why_null": "两榜都还没满员；**股票联赛**有并列（收益率到 0.01pp 相同 —— 同一批腿就会这样），名次**顺序**未定义 —— 比的是名次顺序，顺序不完整就先不比"
+  "why_null": "两榜都还没满员 —— 比的是名次顺序，顺序不完整就先不比"
  },
  "universe": {
   "total": 120,
@@ -262,11 +262,11 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": -43.39,
-   "unsel": null,
-   "delta": null,
-   "n_sel": 2,
-   "n_unsel": 0
+   "sel": -26.72,
+   "unsel": 1.1,
+   "delta": -27.82,
+   "n_sel": 10,
+   "n_unsel": 1
   },
   {
    "n": "②",
@@ -276,10 +276,10 @@
    "a": "G4 选中",
    "b": "G1 里我弃掉的",
    "sel": null,
-   "unsel": -43.39,
+   "unsel": -24.19,
    "delta": null,
    "n_sel": 0,
-   "n_unsel": 2
+   "n_unsel": 11
   },
   {
    "n": "③",
@@ -366,7 +366,7 @@
   },
   {
    "id": "PT2-2026-09-04-TECK-E",
-   "status": "open",
+   "status": "closed",
    "opened_at": "2026-09-04T21:35:04",
    "entry_date_et": "2026-09-04",
    "max_hold_days": 20,
@@ -404,7 +404,19 @@
    },
    "entry": 3.15,
    "stop_premium": 1.575,
-   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "exit": 1.45,
+   "exit_at": "2026-09-10T21:35:03",
+   "exit_date_et": "2026-09-10",
+   "exit_reason": "stop_touched",
+   "exit_detail": {
+    "stop": 1.575,
+    "ref": 1.45,
+    "resolution": "当日 low_price（能抓到两次轮询之间的触及）",
+    "why": "盘中触及即平（Soma 2026-09-03 拍板），成交取 min(现价, 止损价)"
+   },
+   "pnl": -1020.0,
+   "pnl_pct": -53.97
   },
   {
    "id": "PT2-2026-09-04-SNOW-E",
@@ -498,7 +510,7 @@
    },
    "stop_price": 290.304167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 328.24
+   "low_seen": 326.35
   },
   {
    "id": "PT2-2026-09-08-BE-E",
@@ -732,7 +744,7 @@
    },
    "stop_price": 641.204167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 758.75,
+   "low_seen": 758.4,
    "_participation_原始": {
     "g4": "missed",
     "g3": "missed",
@@ -1032,7 +1044,211 @@
    },
    "stop_price": 1446.6625,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 1711.99
+   "low_seen": 1697.76
+  },
+  {
+   "id": "PT2-2026-09-10-LITE-E",
+   "status": "open",
+   "opened_at": "2026-09-10T21:35:04",
+   "entry_date_et": "2026-09-10",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "all_pass",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "LITE",
+   "code": "US.LITE261009C960000",
+   "strike": 960.0,
+   "expiry": "2026-10-09",
+   "spot": 962.5,
+   "bid": 76.9,
+   "ask": 86.9,
+   "mid": 81.9,
+   "spread_pct": 12.2,
+   "qty": 1,
+   "cost": 8190.0,
+   "iv": 77.901,
+   "delta": 0.536412813,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": "PHOTONICS",
+   "strength": -10,
+   "tags": {
+    "g1": true,
+    "g2": false,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 81.9,
+   "stop_premium": 40.95,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-10-SCCO-E",
+   "status": "open",
+   "opened_at": "2026-09-10T21:35:04",
+   "entry_date_et": "2026-09-10",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "all_pass",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "SCCO",
+   "code": "US.SCCO261009C195000",
+   "strike": 195.0,
+   "expiry": "2026-10-09",
+   "spot": 195.2225,
+   "bid": 9.2,
+   "ask": 12.0,
+   "mid": 10.6,
+   "spread_pct": 26.4,
+   "qty": 2,
+   "cost": 2120.0,
+   "iv": 45.803,
+   "delta": 0.542003945,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": "COPPER",
+   "strength": 150,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 10.6,
+   "stop_premium": 5.3,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-10-MRVL-E",
+   "status": "open",
+   "opened_at": "2026-09-10T21:35:04",
+   "entry_date_et": "2026-09-10",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "all_pass",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "branch": "equity",
+   "symbol": "MRVL",
+   "code": "US.MRVL261009C230000",
+   "strike": 230.0,
+   "expiry": "2026-10-09",
+   "spot": 229.12,
+   "bid": 16.85,
+   "ask": 19.25,
+   "mid": 18.05,
+   "spread_pct": 13.3,
+   "qty": 1,
+   "cost": 1805.0,
+   "iv": 70.201,
+   "delta": 0.540337504,
+   "cycle": "Cycle1",
+   "ce_streak": 1,
+   "sector": "NETWORKING",
+   "strength": 0,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "entry": 18.05,
+   "stop_premium": 9.025,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-10-LITE-P",
+   "status": "open",
+   "opened_at": "2026-09-10T21:35:04",
+   "entry_date_et": "2026-09-10",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "all_pass",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "LITE",
+   "branch": "perp",
+   "inst_id": "LITE-USDT-SWAP",
+   "side": "long",
+   "entry": 963.125,
+   "bid": 962.88,
+   "ask": 963.37,
+   "spread_pct": 0.051,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 0.623,
+   "cycle": "Cycle1",
+   "ce_streak": 2,
+   "sector": "PHOTONICS",
+   "strength": -10,
+   "tags": {
+    "g1": true,
+    "g2": false,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 802.604167,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日"
+  },
+  {
+   "id": "PT2-2026-09-10-MRVL-P",
+   "status": "open",
+   "opened_at": "2026-09-10T21:35:04",
+   "entry_date_et": "2026-09-10",
+   "max_hold_days": 20,
+   "participation": {
+    "g4": "all_pass",
+    "g3": "missed",
+    "g2": "picked",
+    "g1": "picked"
+   },
+   "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
+   "forced_window": null,
+   "symbol": "MRVL",
+   "branch": "perp",
+   "inst_id": "MRVL-USDT-SWAP",
+   "side": "long",
+   "entry": 229.325,
+   "bid": 229.32,
+   "ask": 229.33,
+   "spread_pct": 0.004,
+   "margin": 200.0,
+   "leverage": 3,
+   "notional": 600.0,
+   "size": 2.6164,
+   "cycle": "Cycle1",
+   "ce_streak": 1,
+   "sector": "NETWORKING",
+   "strength": 0,
+   "tags": {
+    "g1": true,
+    "g2": true,
+    "g3": false,
+    "g4": false
+   },
+   "stop_price": 191.104167,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日"
   }
  ],
  "axis_note": "场上是**两个 AI 和一个人**。P1 AI 给的是固定排名、一只都不删；烦烦 AI 和我每天都在说「这只不要」。**测的是取舍这个动作值不值钱** —— 不是测谁的技术栈更好，也不是「机器 vs 人」。P1 AI 赢，就说明后面两层取舍都是负担。",
@@ -1086,45 +1302,14 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-10 21:25 MYT",
+ "rank_asof": "2026-09-10 21:30 MYT",
  "quote_context": {
   "equity": "RTH · bid/ask 中点实时",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
   "caveat": "两条支线的「现在」不是同一个现在：美股收盘后 perp **盘口**还在动，但本页两榜在 MYT 21:25–04:10（ET 09:25–16:10） 之外都是冻的。跨榜比较只在两边都处于 RTH 时才严格成立。",
   "returns": "**「投入回报」是投入资金口径**（Σ盈亏 ÷ Σ投入），**不是账面口径**。一支队只投了本金的一小部分时，这两个数会差好几倍 —— 右边的「权益」才是账面。记分板和 ±13.8pp 分辨率带都用投入口径。（另：队伍这个数是**资本加权**，而记分板三行的 Δ 是**等权**每腿收益率之差 —— 后者才与带子的两样本均值差同口径。）",
   "pricing": "股票腿建仓与估值**都按 bid/ask 中点**（收盘后用上一收盘的挂单中点，没有挂单就剔出、不拿 last 冒充）；perp 腿建仓按中点、估值按 OKX last（价差 ≤0.07%，可忽略）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
-  "unpriced_legs": [
-   {
-    "leg": "PT2-2026-09-04-TECK-E",
-    "symbol": "TECK",
-    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
-   },
-   {
-    "leg": "PT2-2026-09-08-BE-E",
-    "symbol": "BE",
-    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
-   },
-   {
-    "leg": "PT2-2026-09-08-SPY-E",
-    "symbol": "SPY",
-    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
-   },
-   {
-    "leg": "PT2-2026-09-08-CRWD-E",
-    "symbol": "CRWD",
-    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
-   },
-   {
-    "leg": "PT2-2026-09-09-SMCI-E",
-    "symbol": "SMCI",
-    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
-   },
-   {
-    "leg": "PT2-2026-09-09-SNDK-E",
-    "symbol": "SNDK",
-    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
-   }
-  ]
+  "unpriced_legs": []
  },
  "incident": null,
  "read_rule_scope": "只统计股票（期权）腿 —— ±13.8pp 那条带来自期权腿实测 SD 23.4pp；perp 腿是 3x 杠杆、SD 不同，混进来这条带就不适用。等权（每腿收益率的算术均值之差），与带子的两样本均值差同口径。",
@@ -1150,17 +1335,6 @@
     "perp": 1
    },
    "pre_kickoff": false
-  },
-  {
-   "date_et": "2026-09-10",
-   "kind": "lost",
-   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
-   "n_cand": 3,
-   "legs": {
-    "equity": 0,
-    "perp": 0
-   },
-   "pre_kickoff": false
   }
  ],
  "open_positions": [
@@ -1168,9 +1342,9 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 524.99,
+   "mark": 521.87,
    "stop": 405.8625,
-   "to_stop_pct": 22.69,
+   "to_stop_pct": 22.23,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 5,
@@ -1181,29 +1355,12 @@
    ]
   },
   {
-   "symbol": "TECK",
-   "branch": "equity",
-   "entry": 3.15,
-   "mark": null,
-   "stop": 1.575,
-   "to_stop_pct": null,
-   "mark_src": null,
-   "mark_label": "现",
-   "held_days": 4,
-   "max_hold_days": 20,
-   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
-   "tags": [
-    "G1",
-    "G2"
-   ]
-  },
-  {
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 329.84,
+   "mark": 326.35,
    "stop": 290.304167,
-   "to_stop_pct": 11.99,
+   "to_stop_pct": 11.05,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 4,
@@ -1218,10 +1375,10 @@
    "symbol": "BE",
    "branch": "equity",
    "entry": 30.425,
-   "mark": null,
+   "mark": 23.3,
    "stop": 15.2125,
-   "to_stop_pct": null,
-   "mark_src": null,
+   "to_stop_pct": 34.71,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 3,
    "max_hold_days": 20,
@@ -1235,10 +1392,10 @@
    "symbol": "SPY",
    "branch": "equity",
    "entry": 11.46,
-   "mark": null,
+   "mark": 6.615,
    "stop": 5.73,
-   "to_stop_pct": null,
-   "mark_src": null,
+   "to_stop_pct": 13.38,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 3,
    "max_hold_days": 20,
@@ -1252,10 +1409,10 @@
    "symbol": "CRWD",
    "branch": "equity",
    "entry": 12.425,
-   "mark": null,
+   "mark": 9.975,
    "stop": 6.2125,
-   "to_stop_pct": null,
-   "mark_src": null,
+   "to_stop_pct": 37.72,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 3,
    "max_hold_days": 20,
@@ -1269,9 +1426,9 @@
    "symbol": "BE",
    "branch": "perp",
    "entry": 272.25,
-   "mark": 261.79,
+   "mark": 266.0,
    "stop": 226.875,
-   "to_stop_pct": 13.34,
+   "to_stop_pct": 14.71,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 3,
@@ -1286,9 +1443,9 @@
    "symbol": "SPY",
    "branch": "perp",
    "entry": 769.445,
-   "mark": 758.75,
+   "mark": 758.4,
    "stop": 641.204167,
-   "to_stop_pct": 15.49,
+   "to_stop_pct": 15.45,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 3,
@@ -1303,9 +1460,9 @@
    "symbol": "CRWD",
    "branch": "perp",
    "entry": 209.465,
-   "mark": 206.43,
+   "mark": 205.75,
    "stop": 174.554167,
-   "to_stop_pct": 15.44,
+   "to_stop_pct": 15.16,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 3,
@@ -1320,9 +1477,9 @@
    "symbol": "NBIS",
    "branch": "equity",
    "entry": 25.725,
-   "mark": 16.3,
+   "mark": 17.125,
    "stop": 12.8625,
-   "to_stop_pct": 21.09,
+   "to_stop_pct": 24.89,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 2,
@@ -1337,10 +1494,10 @@
    "symbol": "SMCI",
    "branch": "equity",
    "entry": 3.6,
-   "mark": null,
+   "mark": 2.78,
    "stop": 1.8,
-   "to_stop_pct": null,
-   "mark_src": null,
+   "to_stop_pct": 35.25,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 2,
    "max_hold_days": 20,
@@ -1354,10 +1511,10 @@
    "symbol": "SNDK",
    "branch": "equity",
    "entry": 159.55,
-   "mark": null,
+   "mark": 130.35,
    "stop": 79.775,
-   "to_stop_pct": null,
-   "mark_src": null,
+   "to_stop_pct": 38.8,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 2,
    "max_hold_days": 20,
@@ -1371,9 +1528,9 @@
    "symbol": "NBIS",
    "branch": "perp",
    "entry": 249.74,
-   "mark": 233.71,
+   "mark": 236.33,
    "stop": 208.116667,
-   "to_stop_pct": 10.95,
+   "to_stop_pct": 11.94,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 2,
@@ -1388,9 +1545,9 @@
    "symbol": "SMCI",
    "branch": "perp",
    "entry": 39.46,
-   "mark": 38.0,
+   "mark": 38.46,
    "stop": 32.883333,
-   "to_stop_pct": 13.46,
+   "to_stop_pct": 14.5,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 2,
@@ -1405,9 +1562,9 @@
    "symbol": "SNDK",
    "branch": "perp",
    "entry": 1735.995,
-   "mark": 1718.33,
+   "mark": 1698.89,
    "stop": 1446.6625,
-   "to_stop_pct": 15.81,
+   "to_stop_pct": 14.85,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 2,
@@ -1417,9 +1574,92 @@
     "G1",
     "G2"
    ]
+  },
+  {
+   "symbol": "LITE",
+   "branch": "equity",
+   "entry": 81.9,
+   "mark": 82.8,
+   "stop": 40.95,
+   "to_stop_pct": 50.54,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1"
+   ]
+  },
+  {
+   "symbol": "SCCO",
+   "branch": "equity",
+   "entry": 10.6,
+   "mark": 10.6,
+   "stop": 5.3,
+   "to_stop_pct": 50.0,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "MRVL",
+   "branch": "equity",
+   "entry": 18.05,
+   "mark": 17.475,
+   "stop": 9.025,
+   "to_stop_pct": 48.35,
+   "mark_src": "moomoo bid/ask 中点 (RTH)",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
+  },
+  {
+   "symbol": "LITE",
+   "branch": "perp",
+   "entry": 963.125,
+   "mark": 962.14,
+   "stop": 802.604167,
+   "to_stop_pct": 16.58,
+   "mark_src": "OKX last",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1"
+   ]
+  },
+  {
+   "symbol": "MRVL",
+   "branch": "perp",
+   "entry": 229.325,
+   "mark": 229.64,
+   "stop": 191.104167,
+   "to_stop_pct": 16.78,
+   "mark_src": "OKX last",
+   "mark_label": "现",
+   "held_days": 1,
+   "max_hold_days": 20,
+   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
+   "tags": [
+    "G1",
+    "G2"
+   ]
   }
  ],
  "day_status": null,
- "asof_iso": "2026-09-10T21:30:04+08:00",
- "asof_et": "2026-09-10 09:30 ET"
+ "asof_iso": "2026-09-10T21:35:06+08:00",
+ "asof_et": "2026-09-10 09:35 ET"
 }
