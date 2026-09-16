@@ -1,12 +1,12 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-09-16 04:10 MYT",
+ "asof": "2026-09-16 21:25 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
- "day": 8,
- "season_days": 8,
- "question": "两个 AI 加一个人，一层层往上叠取舍，绩效是变好还是变坏？",
+ "day": 9,
+ "season_days": 9,
+ "question": "机器照单全收、AI 在它的候选里挑、AI 自己从头选 —— 哪一层取舍真的值钱？",
  "leagues": [
   {
    "id": "equity",
@@ -26,12 +26,12 @@
      "full": "P1research 的排名，照单全开",
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
-     "legs": 17,
-     "open": 6,
+     "legs": 14,
+     "open": 3,
      "closed": 11,
-     "cost": 56911.5,
-     "val": 34150.0,
-     "pct": -39.99,
+     "cost": 50474.0,
+     "val": 26885.0,
+     "pct": -46.73,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -44,7 +44,8 @@
       -25.13,
       -31.5,
       -43.8,
-      -39.99
+      -39.99,
+      -46.73
      ],
      "tied": false
     },
@@ -57,12 +58,12 @@
      "full": "P1 的候选 → 烦烦挑",
      "desc": "烦烦从 P1 的候选里挑，每只附一句理由。第一层取舍。",
      "color": "amber",
-     "legs": 14,
-     "open": 5,
+     "legs": 12,
+     "open": 3,
      "closed": 9,
-     "cost": 44126.5,
-     "val": 27725.0,
-     "pct": -37.17,
+     "cost": 40234.0,
+     "val": 23215.0,
+     "pct": -42.3,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -75,19 +76,20 @@
       -27.16,
       -32.56,
       -41.4,
-      -37.17
+      -37.17,
+      -42.3
      ],
      "tied": false
     },
     {
-     "id": "equity-G3",
+     "id": "equity-G5",
      "league": "equity",
-     "gid": "G3",
-     "role": "ai_human",
-     "name": "P1 + 烦烦 AI + 我",
-     "full": "P1 的候选 → 烦烦挑 → 我拍板",
-     "desc": "我在烦烦挑中的里面再拍板。两层取舍串联。",
-     "color": "violet",
+     "gid": "G5",
+     "role": "ai_solo",
+     "name": "烦烦 AI",
+     "full": "烦烦自己从全池选（不看 P1 候选）",
+     "desc": "烦烦用自己的判据从**全池**选，**不从 P1 的候选里挑**。G2 只证明烦烦会在别人给的几只里排序；**本组才检验它有没有独立的选股判据**。",
+     "color": "rose",
      "legs": 0,
      "open": 0,
      "closed": 0,
@@ -98,30 +100,7 @@
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
-     "trace": null,
-     "tied": false
-    },
-    {
-     "id": "equity-G4",
-     "league": "equity",
-     "gid": "G4",
-     "role": "human",
-     "name": "P1 + 我",
-     "full": "P1 的候选 → 我直接挑（跳过烦烦）",
-     "desc": "我直接从 P1 的候选里挑，**不看烦烦的意见**。只有我这一层取舍。🔴 必须在看到烦烦意见之前锁定。",
-     "color": "teal",
-     "legs": 0,
-     "open": 0,
-     "closed": 0,
-     "cost": 0,
-     "val": 0,
-     "pct": null,
-     "rank": null,
-     "prev_rank": null,
-     "wins": 0,
-     "losses": 0,
-     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "why_empty": "🕐 **还没上线** —— 2026-09-14 新增的第三组。上线条件（截面池覆盖 30/30）已满足，等下一次 multi_factor 采集产出即建仓。这是**还没开始**，不是「今天没选」。",
      "trace": null,
      "tied": false
     }
@@ -149,8 +128,8 @@
      "open": 10,
      "closed": 1,
      "cost": 2200.0,
-     "val": 1953.4,
-     "pct": -11.21,
+     "val": 2005.04,
+     "pct": -8.86,
      "rank": 1,
      "prev_rank": 1,
      "wins": 0,
@@ -164,7 +143,8 @@
       -8.51,
       -1.74,
       -11.33,
-      -11.21
+      -10.24,
+      -8.86
      ],
      "tied": false
     },
@@ -181,8 +161,8 @@
      "open": 7,
      "closed": 1,
      "cost": 1600.0,
-     "val": 1360.09,
-     "pct": -14.99,
+     "val": 1387.58,
+     "pct": -13.28,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -195,19 +175,20 @@
       -11.23,
       -6.89,
       -14.5,
-      -14.99
+      -14.36,
+      -13.28
      ],
      "tied": false
     },
     {
-     "id": "perp-G3",
+     "id": "perp-G5",
      "league": "perp",
-     "gid": "G3",
-     "role": "ai_human",
-     "name": "P1 + 烦烦 AI + 我",
-     "full": "P1 的候选 → 烦烦挑 → 我拍板",
-     "desc": "我在烦烦挑中的里面再拍板。两层取舍串联。",
-     "color": "violet",
+     "gid": "G5",
+     "role": "ai_solo",
+     "name": "烦烦 AI",
+     "full": "烦烦自己从全池选（不看 P1 候选）",
+     "desc": "烦烦用自己的判据从**全池**选，**不从 P1 的候选里挑**。G2 只证明烦烦会在别人给的几只里排序；**本组才检验它有没有独立的选股判据**。",
+     "color": "rose",
      "legs": 0,
      "open": 0,
      "closed": 0,
@@ -218,30 +199,7 @@
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
-     "trace": null,
-     "tied": false
-    },
-    {
-     "id": "perp-G4",
-     "league": "perp",
-     "gid": "G4",
-     "role": "human",
-     "name": "P1 + 我",
-     "full": "P1 的候选 → 我直接挑（跳过烦烦）",
-     "desc": "我直接从 P1 的候选里挑，**不看烦烦的意见**。只有我这一层取舍。🔴 必须在看到烦烦意见之前锁定。",
-     "color": "teal",
-     "legs": 0,
-     "open": 0,
-     "closed": 0,
-     "cost": 0,
-     "val": 0,
-     "pct": null,
-     "rank": null,
-     "prev_rank": null,
-     "wins": 0,
-     "losses": 0,
-     "why_empty": "没表态 —— 当日剔出比较，**不是**「他全不要」",
+     "why_empty": "🕐 **还没上线** —— 2026-09-14 新增的第三组。上线条件（截面池覆盖 30/30）已满足，等下一次 multi_factor 采集产出即建仓。这是**还没开始**，不是「今天没选」。",
      "trace": null,
      "tied": false
     }
@@ -274,47 +232,30 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": -22.24,
-   "unsel": -38.25,
-   "delta": 16.01,
-   "n_sel": 14,
-   "n_unsel": 3
+   "sel": -28.69,
+   "unsel": -61.5,
+   "delta": 32.81,
+   "n_sel": 12,
+   "n_unsel": 2
   },
   {
    "n": "②",
-   "q": "我有没有用",
-   "f": "G4 vs (G1 ∖ G4)",
-   "pen": "som",
-   "a": "G4 选中",
-   "b": "G1 里我弃掉的",
+   "q": "烦烦自己选行不行",
+   "f": "G5 vs (G1 ∖ G5)",
+   "pen": "ff",
+   "a": "G5 选中",
+   "b": "G1 里 G5 没碰的",
    "sel": null,
-   "unsel": -25.07,
+   "unsel": -33.37,
    "delta": null,
    "n_sel": 0,
-   "n_unsel": 17
-  },
-  {
-   "n": "③",
-   "q": "串联加不加分",
-   "f": "G3 vs G4",
-   "pen": "chain",
-   "a": "G3 串联",
-   "b": "G4 单层",
-   "sel": null,
-   "unsel": null,
-   "delta": null,
-   "n_sel": 0,
-   "n_unsel": 0
+   "n_unsel": 14
   }
  ],
  "discipline": [
   {
-   "t": "顺序纪律",
-   "d": "G4 必须在看到烦烦的挑选之前锁定。先看再挑，G4 就变成 G3 的变体，问题 ②③ 同时失效。简报因此分两次发。"
-  },
-  {
    "t": "先验",
-   "d": "设为「四组无差别」。要证明的是「加人的判断有用」，举证责任在那一边。≥20 个独立挑选决策之前只记不判。"
+   "d": "设为「**三组无差别**」。要证明的是「取舍有用」，举证责任在那一边。≥20 个独立挑选决策之前只记不判。"
   },
   {
    "t": "满仓约束",
@@ -342,12 +283,6 @@
    "opened_at": "2026-09-03T21:30:05",
    "entry_date_et": "2026-09-03",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "DELL",
@@ -382,12 +317,6 @@
    "opened_at": "2026-09-04T21:35:04",
    "entry_date_et": "2026-09-04",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "picked",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -436,12 +365,6 @@
    "opened_at": "2026-09-04T21:35:04",
    "entry_date_et": "2026-09-04",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "picked",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -490,12 +413,6 @@
    "opened_at": "2026-09-04T21:35:04",
    "entry_date_et": "2026-09-04",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "picked",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "SNOW",
@@ -522,7 +439,7 @@
    },
    "stop_price": 290.304167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 320.44
+   "low_seen": 319.49
   },
   {
    "id": "PT2-2026-09-08-BE-E",
@@ -530,12 +447,6 @@
    "opened_at": "2026-09-08T21:35:29",
    "entry_date_et": "2026-09-08",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -565,13 +476,6 @@
    "entry": 30.425,
    "stop_premium": 15.2125,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
-   "_participation_原始": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
-   "_participation_修正": "🔴 2026-09-09 08:3x 修正: 建仓时(21:35)记的是 g4='missed', 但那是**读不到**造成的假记录 —— bot 后端接通后读到 Soma 本人 **2026-09-08T13:04:56Z(ET 09:04) 的原话「g4 none」**, **早于建仓窗 8.5 小时**。按 participation() 定义, 表态了全不要 = **all_pass**(是判断, 计入比较), 不是 missed(剔出比较)。",
    "exit": 13.45,
    "exit_at": "2026-09-14T21:35:05",
    "exit_date_et": "2026-09-14",
@@ -591,12 +495,6 @@
    "opened_at": "2026-09-08T21:35:29",
    "entry_date_et": "2026-09-08",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -626,13 +524,6 @@
    "entry": 11.46,
    "stop_premium": 5.73,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
-   "_participation_原始": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
-   "_participation_修正": "🔴 2026-09-09 08:3x 修正: 建仓时(21:35)记的是 g4='missed', 但那是**读不到**造成的假记录 —— bot 后端接通后读到 Soma 本人 **2026-09-08T13:04:56Z(ET 09:04) 的原话「g4 none」**, **早于建仓窗 8.5 小时**。按 participation() 定义, 表态了全不要 = **all_pass**(是判断, 计入比较), 不是 missed(剔出比较)。",
    "exit": 5.73,
    "exit_at": "2026-09-14T22:30:03",
    "exit_date_et": "2026-09-14",
@@ -652,12 +543,6 @@
    "opened_at": "2026-09-08T21:35:29",
    "entry_date_et": "2026-09-08",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -686,14 +571,7 @@
    },
    "entry": 12.425,
    "stop_premium": 6.2125,
-   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
-   "_participation_原始": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
-   "_participation_修正": "🔴 2026-09-09 08:3x 修正: 建仓时(21:35)记的是 g4='missed', 但那是**读不到**造成的假记录 —— bot 后端接通后读到 Soma 本人 **2026-09-08T13:04:56Z(ET 09:04) 的原话「g4 none」**, **早于建仓窗 8.5 小时**。按 participation() 定义, 表态了全不要 = **all_pass**(是判断, 计入比较), 不是 missed(剔出比较)。"
+   "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
   },
   {
    "id": "PT2-2026-09-08-BE-P",
@@ -701,12 +579,6 @@
    "opened_at": "2026-09-08T21:35:29",
    "entry_date_et": "2026-09-08",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "BE",
@@ -733,14 +605,7 @@
    },
    "stop_price": 226.875,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 249.83,
-   "_participation_原始": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
-   "_participation_修正": "🔴 2026-09-09 08:3x 修正: 建仓时(21:35)记的是 g4='missed', 但那是**读不到**造成的假记录 —— bot 后端接通后读到 Soma 本人 **2026-09-08T13:04:56Z(ET 09:04) 的原话「g4 none」**, **早于建仓窗 8.5 小时**。按 participation() 定义, 表态了全不要 = **all_pass**(是判断, 计入比较), 不是 missed(剔出比较)。"
+   "low_seen": 249.83
   },
   {
    "id": "PT2-2026-09-08-SPY-P",
@@ -748,12 +613,6 @@
    "opened_at": "2026-09-08T21:35:29",
    "entry_date_et": "2026-09-08",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "SPY",
@@ -780,14 +639,7 @@
    },
    "stop_price": 641.204167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 757.31,
-   "_participation_原始": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
-   "_participation_修正": "🔴 2026-09-09 08:3x 修正: 建仓时(21:35)记的是 g4='missed', 但那是**读不到**造成的假记录 —— bot 后端接通后读到 Soma 本人 **2026-09-08T13:04:56Z(ET 09:04) 的原话「g4 none」**, **早于建仓窗 8.5 小时**。按 participation() 定义, 表态了全不要 = **all_pass**(是判断, 计入比较), 不是 missed(剔出比较)。"
+   "low_seen": 757.31
   },
   {
    "id": "PT2-2026-09-08-CRWD-P",
@@ -795,12 +647,6 @@
    "opened_at": "2026-09-08T21:35:29",
    "entry_date_et": "2026-09-08",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "CRWD",
@@ -827,14 +673,7 @@
    },
    "stop_price": 174.554167,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 203.94,
-   "_participation_原始": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
-   "_participation_修正": "🔴 2026-09-09 08:3x 修正: 建仓时(21:35)记的是 g4='missed', 但那是**读不到**造成的假记录 —— bot 后端接通后读到 Soma 本人 **2026-09-08T13:04:56Z(ET 09:04) 的原话「g4 none」**, **早于建仓窗 8.5 小时**。按 participation() 定义, 表态了全不要 = **all_pass**(是判断, 计入比较), 不是 missed(剔出比较)。"
+   "low_seen": 203.94
   },
   {
    "id": "PT2-2026-09-09-NBIS-E",
@@ -842,12 +681,6 @@
    "opened_at": "2026-09-09T21:35:04",
    "entry_date_et": "2026-09-09",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -896,12 +729,6 @@
    "opened_at": "2026-09-09T21:35:04",
    "entry_date_et": "2026-09-09",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -950,12 +777,6 @@
    "opened_at": "2026-09-09T21:35:04",
    "entry_date_et": "2026-09-09",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1004,12 +825,6 @@
    "opened_at": "2026-09-09T21:35:04",
    "entry_date_et": "2026-09-09",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "NBIS",
@@ -1056,12 +871,6 @@
    "opened_at": "2026-09-09T21:35:04",
    "entry_date_et": "2026-09-09",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "SMCI",
@@ -1096,12 +905,6 @@
    "opened_at": "2026-09-09T21:35:04",
    "entry_date_et": "2026-09-09",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "SNDK",
@@ -1136,12 +939,6 @@
    "opened_at": "2026-09-10T21:35:04",
    "entry_date_et": "2026-09-10",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1190,12 +987,6 @@
    "opened_at": "2026-09-10T21:35:04",
    "entry_date_et": "2026-09-10",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1244,12 +1035,6 @@
    "opened_at": "2026-09-10T21:35:04",
    "entry_date_et": "2026-09-10",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1298,12 +1083,6 @@
    "opened_at": "2026-09-10T21:35:04",
    "entry_date_et": "2026-09-10",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "LITE",
@@ -1338,12 +1117,6 @@
    "opened_at": "2026-09-10T21:35:04",
    "entry_date_et": "2026-09-10",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "MRVL",
@@ -1378,12 +1151,6 @@
    "opened_at": "2026-09-11T21:35:05",
    "entry_date_et": "2026-09-11",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1420,12 +1187,6 @@
    "opened_at": "2026-09-11T21:35:05",
    "entry_date_et": "2026-09-11",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1462,12 +1223,6 @@
    "opened_at": "2026-09-14T21:35:05",
    "entry_date_et": "2026-09-14",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1516,12 +1271,6 @@
    "opened_at": "2026-09-14T21:35:05",
    "entry_date_et": "2026-09-14",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "all_pass",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "symbol": "AAPL",
@@ -1556,12 +1305,6 @@
    "opened_at": "2026-09-15T21:35:05",
    "entry_date_et": "2026-09-15",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1598,12 +1341,6 @@
    "opened_at": "2026-09-15T21:35:05",
    "entry_date_et": "2026-09-15",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1640,12 +1377,6 @@
    "opened_at": "2026-09-15T21:35:05",
    "entry_date_et": "2026-09-15",
    "max_hold_days": 20,
-   "participation": {
-    "g4": "missed",
-    "g3": "missed",
-    "g2": "picked",
-    "g1": "picked"
-   },
    "signal_rule": "信号 = CE 新翻多（ceStreak ≤ 2），按评分排序取前 3。这是**事件**不是排名 —— 用排名选人会每天选到同一批（实测换手 0/3）。",
    "forced_window": null,
    "branch": "equity",
@@ -1677,7 +1408,7 @@
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日"
   }
  ],
- "axis_note": "场上是**两个 AI 和一个人**。P1 AI 给的是固定排名、一只都不删；烦烦 AI 和我每天都在说「这只不要」。**测的是取舍这个动作值不值钱** —— 不是测谁的技术栈更好，也不是「机器 vs 人」。P1 AI 赢，就说明后面两层取舍都是负担。",
+ "axis_note": "场上是**同一个机器排名 + 同一个 AI 的两种用法**。P1 AI 给固定排名、一只都不删；烦烦 AI 一边在 P1 的候选里说「这只不要」（G2），一边**自己从全池选**（G5）。**测的是取舍这个动作值不值钱** —— P1 AI 赢，就说明两种取舍都是负担；G5 赢过 G2，就说明烦烦的价值在选股本身而不只是排序。",
  "signal": {
   "rule": "CE 新翻多（ceStreak ≤ 2），按评分排序取前 3",
   "why": "原设计是「排名 Top 3」，实测**换手 0/3** —— 明天还是同一批票。因为评分一半来自持续态（CE 连续天数、未实现盈亏），而那些只涨不跌，榜首会被同几只锁死。信号必须是**事件**，不是水平值。",
@@ -1728,31 +1459,32 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-09-16 04:05 MYT",
+ "rank_asof": "2026-09-16 16:23 MYT",
  "quote_context": {
   "equity": "非 RTH · 上一收盘 bid/ask 中点（2026-09-15 ET），不是现价",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
   "caveat": "两条支线的「现在」不是同一个现在：美股收盘后 perp **盘口**还在动，但本页两榜在 MYT 21:25–04:10（ET 09:25–16:10） 之外都是冻的。跨榜比较只在两边都处于 RTH 时才严格成立。",
   "returns": "**「投入回报」是投入资金口径**（Σ盈亏 ÷ Σ投入），**不是账面口径**。一支队只投了本金的一小部分时，这两个数会差好几倍 —— 右边的「权益」才是账面。记分板和 ±13.8pp 分辨率带都用投入口径。（另：队伍这个数是**资本加权**，而记分板三行的 Δ 是**等权**每腿收益率之差 —— 后者才与带子的两样本均值差同口径。）",
   "pricing": "股票腿建仓与估值**都按 bid/ask 中点**（收盘后用上一收盘的挂单中点，没有挂单就剔出、不拿 last 冒充）；perp 腿建仓按中点、估值按 OKX last（价差 ≤0.07%，可忽略）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
-  "unpriced_legs": []
- },
- "incident": {
-  "date_et": "2026-09-15",
-  "kind": "partial",
-  "at": "2026-09-15T21:35:05",
-  "why": "perp支线零腿（股票 3 腿 / perp 0 腿）。信号出了、建仓窗也到了，是这条支线没跑成。",
-  "candidates": [
-   "SNAP",
-   "MRNA",
-   "ACVA"
-  ],
-  "opened_legs": [
-   "SNAP",
-   "MRNA",
-   "ACVA"
+  "unpriced_legs": [
+   {
+    "leg": "PT2-2026-09-11-NET-E",
+    "symbol": "NET",
+    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
+   },
+   {
+    "leg": "PT2-2026-09-15-MRNA-E",
+    "symbol": "MRNA",
+    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
+   },
+   {
+    "leg": "PT2-2026-09-15-ACVA-E",
+    "symbol": "ACVA",
+    "why": "moomoo 无报价（无 bid/ask，不拿 last 冒充）"
+   }
   ]
  },
+ "incident": null,
  "read_rule_scope": "只统计股票（期权）腿 —— ±13.8pp 那条带来自期权腿实测 SD 23.4pp；perp 腿是 3x 杠杆、SD 不同，混进来这条带就不适用。等权（每腿收益率的算术均值之差），与带子的两样本均值差同口径。",
  "incident_log": [
   {
@@ -1798,6 +1530,17 @@
     "perp": 0
    },
    "pre_kickoff": false
+  },
+  {
+   "date_et": "2026-09-16",
+   "kind": "lost",
+   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
+   "n_cand": 3,
+   "legs": {
+    "equity": 0,
+    "perp": 0
+   },
+   "pre_kickoff": false
   }
  ],
  "open_positions": [
@@ -1805,12 +1548,12 @@
    "symbol": "DELL",
    "branch": "perp",
    "entry": 487.035,
-   "mark": 544.51,
+   "mark": 553.07,
    "stop": 405.8625,
-   "to_stop_pct": 25.46,
+   "to_stop_pct": 26.62,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 8,
+   "held_days": 9,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1821,12 +1564,12 @@
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 322.67,
+   "mark": 319.49,
    "stop": 290.304167,
-   "to_stop_pct": 10.03,
+   "to_stop_pct": 9.14,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 7,
+   "held_days": 8,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1843,7 +1586,7 @@
    "to_stop_pct": 82.63,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-15 ET）·非实时",
    "mark_label": "收",
-   "held_days": 6,
+   "held_days": 7,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -1855,12 +1598,12 @@
    "symbol": "BE",
    "branch": "perp",
    "entry": 272.25,
-   "mark": 259.7,
+   "mark": 268.75,
    "stop": 226.875,
-   "to_stop_pct": 12.64,
+   "to_stop_pct": 15.58,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 6,
+   "held_days": 7,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1872,12 +1615,12 @@
    "symbol": "SPY",
    "branch": "perp",
    "entry": 769.445,
-   "mark": 758.67,
+   "mark": 760.72,
    "stop": 641.204167,
-   "to_stop_pct": 15.48,
+   "to_stop_pct": 15.71,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 6,
+   "held_days": 7,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1889,12 +1632,12 @@
    "symbol": "CRWD",
    "branch": "perp",
    "entry": 209.465,
-   "mark": 241.9,
+   "mark": 238.39,
    "stop": 174.554167,
-   "to_stop_pct": 27.84,
+   "to_stop_pct": 26.78,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 6,
+   "held_days": 7,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1906,12 +1649,12 @@
    "symbol": "SMCI",
    "branch": "perp",
    "entry": 39.46,
-   "mark": 35.75,
+   "mark": 35.8,
    "stop": 32.883333,
-   "to_stop_pct": 8.02,
+   "to_stop_pct": 8.15,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 5,
+   "held_days": 6,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1923,12 +1666,12 @@
    "symbol": "SNDK",
    "branch": "perp",
    "entry": 1735.995,
-   "mark": 1531.63,
+   "mark": 1553.04,
    "stop": 1446.6625,
-   "to_stop_pct": 5.55,
+   "to_stop_pct": 6.85,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 5,
+   "held_days": 6,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1940,12 +1683,12 @@
    "symbol": "LITE",
    "branch": "perp",
    "entry": 963.125,
-   "mark": 841.15,
+   "mark": 860.4,
    "stop": 802.604167,
-   "to_stop_pct": 4.58,
+   "to_stop_pct": 6.72,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 4,
+   "held_days": 5,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1956,12 +1699,12 @@
    "symbol": "MRVL",
    "branch": "perp",
    "entry": 229.325,
-   "mark": 221.86,
+   "mark": 226.95,
    "stop": 191.104167,
-   "to_stop_pct": 13.86,
+   "to_stop_pct": 15.79,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 4,
+   "held_days": 5,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -1973,12 +1716,12 @@
    "symbol": "NET",
    "branch": "equity",
    "entry": 18.975,
-   "mark": 26.2,
+   "mark": null,
    "stop": 9.4875,
-   "to_stop_pct": 63.79,
-   "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-15 ET）·非实时",
+   "to_stop_pct": null,
+   "mark_src": null,
    "mark_label": "收",
-   "held_days": 3,
+   "held_days": 4,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -1995,7 +1738,7 @@
    "to_stop_pct": 43.29,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-15 ET）·非实时",
    "mark_label": "收",
-   "held_days": 3,
+   "held_days": 4,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2007,12 +1750,12 @@
    "symbol": "AAPL",
    "branch": "perp",
    "entry": 332.315,
-   "mark": 331.48,
+   "mark": 332.37,
    "stop": 276.929167,
-   "to_stop_pct": 16.46,
+   "to_stop_pct": 16.68,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 2,
+   "held_days": 3,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2028,7 +1771,7 @@
    "to_stop_pct": 44.2,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-15 ET）·非实时",
    "mark_label": "收",
-   "held_days": 1,
+   "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2040,12 +1783,12 @@
    "symbol": "MRNA",
    "branch": "equity",
    "entry": 12.725,
-   "mark": 13.775,
+   "mark": null,
    "stop": 6.3625,
-   "to_stop_pct": 53.81,
-   "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-15 ET）·非实时",
+   "to_stop_pct": null,
+   "mark_src": null,
    "mark_label": "收",
-   "held_days": 1,
+   "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2056,12 +1799,12 @@
    "symbol": "ACVA",
    "branch": "equity",
    "entry": 0.475,
-   "mark": 0.45,
+   "mark": null,
    "stop": 0.2375,
-   "to_stop_pct": 47.22,
-   "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-15 ET）·非实时",
+   "to_stop_pct": null,
+   "mark_src": null,
    "mark_label": "收",
-   "held_days": 1,
+   "held_days": 2,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2071,6 +1814,6 @@
   }
  ],
  "day_status": null,
- "asof_iso": "2026-09-16T04:10:03+08:00",
- "asof_et": "2026-09-15 16:10 ET"
+ "asof_iso": "2026-09-16T21:25:03+08:00",
+ "asof_et": "2026-09-16 09:25 ET"
 }
