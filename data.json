@@ -1,11 +1,11 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-10-01 04:10 MYT",
+ "asof": "2026-10-01 21:25 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
- "day": 19,
- "season_days": 19,
+ "day": 20,
+ "season_days": 20,
  "question": "机器照单全收、AI 在它的候选里挑、AI 自己从头选 —— 哪一层取舍真的值钱？",
  "leagues": [
   {
@@ -55,6 +55,7 @@
       -19.17,
       -16.43,
       -19.55,
+      -21.29,
       -21.29
      ],
      "tied": false
@@ -97,6 +98,7 @@
       -32.14,
       -28.05,
       -32.0,
+      -30.13,
       -30.13
      ],
      "tied": false
@@ -145,14 +147,14 @@
      "desc": "P1 的排名照单全开，**不针对当天做任何取舍**。对照组 —— 它赢就说明后面每一层取舍都是负担。",
      "color": "steel",
      "legs": 11,
-     "open": 10,
-     "closed": 1,
+     "open": 9,
+     "closed": 2,
      "cost": 2200.0,
-     "val": 2430.69,
-     "pct": 10.49,
+     "val": 2458.85,
+     "pct": 11.77,
      "rank": 1,
      "prev_rank": 1,
-     "wins": 0,
+     "wins": 1,
      "losses": 1,
      "why_empty": null,
      "trace": [
@@ -174,7 +176,8 @@
       13.17,
       5.48,
       10.74,
-      10.49
+      10.49,
+      11.77
      ],
      "tied": false
     },
@@ -191,8 +194,8 @@
      "open": 7,
      "closed": 1,
      "cost": 1600.0,
-     "val": 1759.62,
-     "pct": 9.98,
+     "val": 1783.21,
+     "pct": 11.45,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -216,7 +219,8 @@
       12.01,
       4.16,
       10.54,
-      9.98
+      9.98,
+      11.45
      ],
      "tied": false
     },
@@ -319,7 +323,7 @@
  "positions": [
   {
    "id": "PT2-2026-09-03-DELL-P",
-   "status": "open",
+   "status": "closed",
    "opened_at": "2026-09-03T21:30:05",
    "entry_date_et": "2026-09-03",
    "max_hold_days": 20,
@@ -349,7 +353,18 @@
    },
    "stop_price": 405.8625,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "low_seen": 485.55
+   "low_seen": 485.55,
+   "exit": 542.19,
+   "exit_at": "2026-10-01T21:25:01",
+   "exit_date_et": "2026-10-01",
+   "exit_reason": "max_hold",
+   "exit_detail": {
+    "held_trading_days": 20,
+    "max": 20,
+    "resolution": "轮询分辨率（perp 只有 last，靠 low_seen 水位）"
+   },
+   "pnl": 67.95,
+   "pnl_pct": 33.97
   },
   {
    "id": "PT2-2026-09-04-TECK-E",
@@ -1863,7 +1878,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-10-01 04:05 MYT",
+ "rank_asof": "2026-10-01 04:10 MYT",
  "quote_context": {
   "equity": "非 RTH · 上一收盘 bid/ask 中点（2026-09-30 ET），不是现价",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
@@ -1872,18 +1887,7 @@
   "pricing": "股票腿建仓与估值**都按 bid/ask 中点**（收盘后用上一收盘的挂单中点，没有挂单就剔出、不拿 last 冒充）；perp 腿建仓按中点、估值按 OKX last（价差 ≤0.07%，可忽略）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
   "unpriced_legs": []
  },
- "incident": {
-  "date_et": "2026-09-30",
-  "kind": "partial",
-  "at": "2026-09-30T21:35:04",
-  "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）。信号出了、建仓窗也到了，是这条支线没跑成。",
-  "candidates": [
-   "DPRO",
-   "NTES",
-   "TLN"
-  ],
-  "opened_legs": []
- },
+ "incident": null,
  "read_rule_scope": "只统计股票（期权）腿 —— ±13.8pp 那条带来自期权腿实测 SD 23.4pp；perp 腿是 3x 杠杆、SD 不同，混进来这条带就不适用。等权（每腿收益率的算术均值之差），与带子的两样本均值差同口径。",
  "incident_log": [
   {
@@ -2050,35 +2054,30 @@
     "perp": 0
    },
    "pre_kickoff": false
+  },
+  {
+   "date_et": "2026-10-01",
+   "kind": "lost",
+   "why": "股票/perp支线零腿（股票 0 腿 / perp 0 腿）",
+   "n_cand": 3,
+   "legs": {
+    "equity": 0,
+    "perp": 0
+   },
+   "pre_kickoff": false
   }
  ],
  "open_positions": [
   {
-   "symbol": "DELL",
-   "branch": "perp",
-   "entry": 487.035,
-   "mark": 539.73,
-   "stop": 405.8625,
-   "to_stop_pct": 24.8,
-   "mark_src": "OKX last",
-   "mark_label": "现",
-   "held_days": 19,
-   "max_hold_days": 20,
-   "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
-   "tags": [
-    "G1"
-   ]
-  },
-  {
    "symbol": "SNOW",
    "branch": "perp",
    "entry": 348.365,
-   "mark": 340.03,
+   "mark": 343.08,
    "stop": 290.304167,
-   "to_stop_pct": 14.62,
+   "to_stop_pct": 15.38,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 18,
+   "held_days": 19,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2095,7 +2094,7 @@
    "to_stop_pct": 88.89,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 17,
+   "held_days": 18,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2107,12 +2106,12 @@
    "symbol": "BE",
    "branch": "perp",
    "entry": 272.25,
-   "mark": 278.6,
+   "mark": 285.93,
    "stop": 226.875,
-   "to_stop_pct": 18.57,
+   "to_stop_pct": 20.65,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 17,
+   "held_days": 18,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2124,12 +2123,12 @@
    "symbol": "SPY",
    "branch": "perp",
    "entry": 769.445,
-   "mark": 764.09,
+   "mark": 765.01,
    "stop": 641.204167,
-   "to_stop_pct": 16.08,
+   "to_stop_pct": 16.18,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 17,
+   "held_days": 18,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2141,12 +2140,12 @@
    "symbol": "CRWD",
    "branch": "perp",
    "entry": 209.465,
-   "mark": 264.63,
+   "mark": 261.96,
    "stop": 174.554167,
-   "to_stop_pct": 34.04,
+   "to_stop_pct": 33.37,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 17,
+   "held_days": 18,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2158,12 +2157,12 @@
    "symbol": "SMCI",
    "branch": "perp",
    "entry": 39.46,
-   "mark": 40.88,
+   "mark": 41.02,
    "stop": 32.883333,
-   "to_stop_pct": 19.56,
+   "to_stop_pct": 19.84,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 16,
+   "held_days": 17,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2175,12 +2174,12 @@
    "symbol": "SNDK",
    "branch": "perp",
    "entry": 1735.995,
-   "mark": 1740.2,
+   "mark": 1747.6,
    "stop": 1446.6625,
-   "to_stop_pct": 16.87,
+   "to_stop_pct": 17.22,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 16,
+   "held_days": 17,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2192,12 +2191,12 @@
    "symbol": "LITE",
    "branch": "perp",
    "entry": 963.125,
-   "mark": 970.46,
+   "mark": 976.97,
    "stop": 802.604167,
-   "to_stop_pct": 17.3,
+   "to_stop_pct": 17.85,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 15,
+   "held_days": 16,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2208,12 +2207,12 @@
    "symbol": "MRVL",
    "branch": "perp",
    "entry": 229.325,
-   "mark": 263.35,
+   "mark": 265.04,
    "stop": 191.104167,
-   "to_stop_pct": 27.43,
+   "to_stop_pct": 27.9,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 15,
+   "held_days": 16,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2230,7 +2229,7 @@
    "to_stop_pct": 72.58,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 14,
+   "held_days": 15,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2242,12 +2241,12 @@
    "symbol": "AAPL",
    "branch": "perp",
    "entry": 332.315,
-   "mark": 333.19,
+   "mark": 331.8,
    "stop": 276.929167,
-   "to_stop_pct": 16.89,
+   "to_stop_pct": 16.54,
    "mark_src": "OKX last",
    "mark_label": "现",
-   "held_days": 13,
+   "held_days": 14,
    "max_hold_days": 20,
    "exit_rule": "保证金 −50%（标的 −16.7%）· 最多 20 个交易日",
    "tags": [
@@ -2263,7 +2262,7 @@
    "to_stop_pct": 87.96,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 12,
+   "held_days": 13,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2279,7 +2278,7 @@
    "to_stop_pct": 57.62,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 11,
+   "held_days": 12,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2296,7 +2295,7 @@
    "to_stop_pct": 32.84,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 11,
+   "held_days": 12,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2312,7 +2311,7 @@
    "to_stop_pct": 60.74,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 11,
+   "held_days": 12,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2329,7 +2328,7 @@
    "to_stop_pct": 67.72,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 10,
+   "held_days": 11,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2345,7 +2344,7 @@
    "to_stop_pct": 23.2,
    "mark_src": "moomoo 上一收盘 bid/ask 中点（2026-09-30 ET）·非实时",
    "mark_label": "收",
-   "held_days": 4,
+   "held_days": 5,
    "max_hold_days": 20,
    "exit_rule": "权利金 −50% 硬止损（entry×0.5）· 无固定止盈 · 最多 20 个交易日",
    "tags": [
@@ -2355,6 +2354,6 @@
   }
  ],
  "day_status": null,
- "asof_iso": "2026-10-01T04:10:03+08:00",
- "asof_et": "2026-09-30 16:10 ET"
+ "asof_iso": "2026-10-01T21:25:04+08:00",
+ "asof_et": "2026-10-01 09:25 ET"
 }
