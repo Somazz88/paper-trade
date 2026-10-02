@@ -1,705 +1,221 @@
 <!doctype html>
-<html lang="zh-Hans">
+<html lang="zh">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>三笔记录仪</title>
-<meta name="description" content="两个 AI 加一个人，一层层往上叠取舍，绩效是变好还是变坏。">
-<!-- 🔴 2026-09-04：公网页 console 一直报 favicon.ico 404（GitHub Pages 会去根目录找）。
-     用内联 data URI，不新增文件、不再有 404。三根竖条 = 三支笔，取的是页面自己的
-     三个身份色：P1 #43C6E8 / 烦烦 #F0A23C / 我 #E85D9E，底色 --void #0A0D11。 -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230A0D11%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%222.2%22%20fill%3D%22%2343C6E8%22%2F%3E%3Crect%20x%3D%2213.75%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%222.2%22%20fill%3D%22%23F0A23C%22%2F%3E%3Crect%20x%3D%2220.5%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%222.2%22%20fill%3D%22%23E85D9E%22%2F%3E%3C%2Fsvg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Trade</title>
 <style>
-/* ═══ 三笔记录仪 ═══
-   场上只有三支笔：P1(机器·青) / 烦烦(AI·琥珀) / 我(人·品红)。
-   四支队 = 笔架上插了哪几支。每行左边的色带就是那支队的笔链。
-   G4 的色带中间是断的 —— 它跳过烦烦。断口本身是信息，不是装饰。
-   涨跌另用绿红（美股惯例），刻意不与笔色重合，免得读混。 */
 :root{
-  --void:#0A0D11; --panel:#12171E; --panel-2:#161C25;
-  --rule:#1E2732; --rule-hi:#2C3846;
-  --text:#E4E9EE; --dim:#A6B1BC; --faint:#78848F;
-  --p1:#43C6E8; --ff:#F0A23C; --som:#E85D9E;
-  --up:#35D07F; --down:#F2545B;
-  --grid:rgba(120,160,200,.055);
-  --disp:"Barlow Condensed","Microsoft YaHei","PingFang SC",sans-serif;
-  --body:"Barlow","Microsoft YaHei","PingFang SC",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
-  --w:1080px;
+  --bg:#f7f6f2;--card:#fff;--ink:#1d1d1b;--mute:#6b6a65;--line:#e4e2db;
+  --up:#1f7a4d;--down:#b23b3b;--p1:#2f7fa3;--ff:#c47a1c;--warn:#a86a00;--chip:#efede6;
 }
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141413;--card:#1d1d1b;--ink:#ecebe6;--mute:#9b9a94;--line:#2f2e2b;
+  --up:#4cc38a;--down:#e5676b;--p1:#5fb6d9;--ff:#f0a23c;--warn:#e0a63a;--chip:#2a2926;}}
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--void);color:var(--text);
-  font:15px/1.7 var(--body);
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),
-                   linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:52px 52px;
-}
-.wrap{max-width:var(--w);margin:0 auto;padding:0 22px 90px}
-a{color:var(--p1)}
-b,strong{font-weight:600;color:#fff}
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-
-/* ── 仪器顶栏 ── */
-.bar{
-  border-bottom:1px solid var(--rule);background:rgba(10,13,17,.9);
-  backdrop-filter:blur(8px);position:sticky;top:0;z-index:20;
-}
-.bar-in{
-  max-width:var(--w);margin:0 auto;padding:11px 22px;
-  display:flex;gap:26px;align-items:baseline;flex-wrap:wrap;
-}
-.brand{font:700 21px/1 var(--disp);letter-spacing:.06em;text-transform:uppercase}
-.brand i{font-style:normal;color:var(--p1)}
-.brand u{text-decoration:none;color:var(--ff)}
-.brand s{text-decoration:none;color:var(--som)}
-.bar dl{display:flex;gap:7px;align-items:baseline;margin:0}
-.bar dt{font:600 10px/1 var(--disp);letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
-.bar dd{margin:0;font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums}
-.live{margin-left:auto;display:flex;align-items:center;gap:7px;
-  font:600 10px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--faint)}
-.dot.on{background:var(--up);box-shadow:0 0 0 0 rgba(53,208,127,.6);animation:pulse 2.2s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(53,208,127,0)}100%{box-shadow:0 0 0 0 rgba(53,208,127,0)}}
-
-/* ── 开场 ── */
-.hero{padding:62px 0 40px;border-bottom:1px solid var(--rule)}
-.eyebrow{font:600 11px/1 var(--disp);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:20px}
-h1{
-  font:700 clamp(30px,5.1vw,52px)/1.14 var(--disp);
-  margin:0 0 22px;text-wrap:balance;letter-spacing:.004em;max-width:16em;
-}
-.hero p{max-width:660px;color:var(--dim);margin:0}
-h1 .cl{display:inline-block}
-
-/* ── 笔 ── */
-.pens{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:34px 0 0}
-@media(min-width:720px){.pens{grid-template-columns:repeat(3,1fr)}}
-.pen{background:var(--panel);padding:17px 18px 18px;position:relative}
-.pen::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--c)}
-.pen h3{font:700 15px/1.2 var(--disp);letter-spacing:.09em;text-transform:uppercase;margin:5px 0 3px;color:var(--c)}
-.pen .who{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.04em}
-.pen p{margin:9px 0 0;font-size:13.5px;color:var(--dim);line-height:1.62}
-
-/* ── 段落 ── */
-h2{
-  font:700 12px/1 var(--disp);letter-spacing:.22em;text-transform:uppercase;
-  color:var(--faint);margin:62px 0 4px;
-  padding-bottom:11px;border-bottom:1px solid var(--rule);
-  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
-}
-h2 em{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:none;color:var(--rule-hi)}
-.lede{font:600 clamp(19px,2.5vw,25px)/1.35 var(--disp);margin:19px 0 16px;color:var(--text);text-wrap:balance}
-.note{font-size:13.5px;color:var(--dim);max-width:700px;margin:0 0 22px}
-
-/* ── 联赛台 ── */
-.league{margin-top:22px;border:1px solid var(--rule);background:var(--panel)}
-.lg-head{
-  display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;
-  padding:13px 17px;border-bottom:1px solid var(--rule);background:var(--panel-2);
-}
-.lg-head h3{font:700 17px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;margin:0}
-.lg-head .meta{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.03em}
-.lg-head .cap{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
-
-.row{display:grid;grid-template-columns:6px 62px minmax(0,1fr);border-top:1px solid var(--rule)}
-@media(min-width:880px){.row{grid-template-columns:6px 62px minmax(0,1fr) 246px}}
-.row:first-of-type{border-top:0}
-.rail{background:var(--chain)}
-/* 🔴 2026-09-05 审计：390px 下 .row 只有 3 列，.stats 被 grid 自动放置塞进第 1 列（6px 色带列），
-   四格数字挤在行的左 55%，色带也不盖统计区。让色带跨两行、统计区落到第 2 行的 slot+main 列。 */
-.rail{grid-row:span 2}
-.stats{grid-column:2/-1}
-@media(min-width:880px){.rail{grid-row:auto}.stats{grid-column:auto}}
-.slot{
-  border-right:1px solid var(--rule);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:4px;padding:14px 0;
-}
-.slot .gid{font:700 23px/1 var(--disp);letter-spacing:.03em;color:var(--dim);font-variant-numeric:tabular-nums}
-.slot .gid.placed{color:#fff;font-size:29px}
-.slot .mv{font-family:var(--mono);font-size:10px;color:var(--rule-hi)}
-.slot .mv.u{color:var(--up)} .slot .mv.d{color:var(--down)}
-.main{padding:14px 18px 15px;min-width:0}
-.nml{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.chain{display:flex;gap:4px;align-items:center;flex:none}
-.chain i{width:10px;height:10px;border-radius:50%;display:block}
-.chain i.gap{background:repeating-linear-gradient(45deg,var(--rule-hi) 0 1.5px,transparent 1.5px 3.5px)}
-.nm{font:700 20px/1.1 var(--disp);letter-spacing:.03em}
-.tag{
-  font-family:var(--mono);font-size:10px;letter-spacing:.07em;
-  color:var(--faint);border:1px solid var(--rule-hi);padding:2px 7px;white-space:nowrap;
-}
-.desc{margin-top:8px;font-size:13px;color:var(--dim);line-height:1.62;max-width:70ch}
-/* 🔴 2026-09-04：零腿的队为什么空。原本八支队里七支显示同一个「—」，
-   而背后是五种不同状态（该开没开成 / 没表态 / 无载体 / 全不要 / 无候选）。
-   把真缺口和合法空仓显示成同一个字符，等于让读者读不出实验有没有在跑。
-   左侧竖线用 --down，因为「该开而没开成」是缺陷；文字仍用 dim，不抢记分板的注意力。 */
-.wempty{margin-top:9px;padding:7px 11px;border-left:2px solid var(--down);
-  background:rgba(242,84,91,.055);border-radius:0 4px 4px 0;
-  font-size:12.5px;line-height:1.6;color:var(--dim);max-width:70ch}
-.wempty b{color:var(--text)}
-.wempty .k{font:600 9.5px/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--down);margin-right:8px;vertical-align:1px}
-/* 🔴 2026-09-04：Δ 旁边必须有分母。整页都在讲「先量尺子再看数」，
-   而这三条结论此前只印 Δ 不印 n —— n=1 vs n=1 和 n=20 vs n=20 长得一模一样。
-   一个不报分母的 Δ，正是这块板自己在防的那种数。 */
-/* 🔴 2026-09-04：读数口径条。pt_update_page 一直在写 quote_context / rank_asof /
-   unpriced_legs，而**页面从来没有引用过它们** —— 那个工具的 docstring 甚至明写
-   「这一条不许在页面上被抹平」。它不是被抹平，是从没上过页。
-   名次画了 ▲▼ 却不说相对什么时候，也是同一个洞。 */
-#qc .qh{font:600 10px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--faint);margin-bottom:10px}
-#qc dl{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;margin:0;font-size:12.5px;line-height:1.6}
-#qc dt{font-family:var(--mono);font-size:10.5px;color:var(--faint);white-space:nowrap;padding-top:2px}
-#qc dd{margin:0;color:var(--dim)}
-#qc dd b{color:var(--text)}
-#qc dd.warn{color:var(--down)}
-#qc dd.warn b{color:var(--down)}
-em.nn{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--faint);
-  letter-spacing:.02em;margin-left:3px}
-.strip{margin-top:12px}
-.trace{width:100%;height:26px;display:block}
-/* 🔴 手机原本是 repeat(4,1fr): 375px 下每格内容区只剩 ~11px,
-   「投入回报」「持仓 / 已结」「胜负」全被压成**每行一个字的竖条**(2026-09-04 实拍)。
-   桌面反而一直是 2x2。改成两处都 2x2 —— 每格 ~170px, 标签一行放得下。 */
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);
-  border-top:1px solid var(--rule)}
-@media(min-width:880px){.stats{border-top:0;border-left:1px solid var(--rule)}}
-.st{background:var(--panel);padding:10px 12px;text-align:right;
-  display:flex;flex-direction:column;justify-content:center}
-.st b{display:block;font:700 18px/1.15 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
-.st b.na{color:#4A5764;font-weight:400;font-size:17px}
-.st b.up{color:var(--up)} .st b.down{color:var(--down)}
-.st span{display:block;margin-top:3px;font:600 9.5px/1 var(--disp);
-  letter-spacing:.15em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
-
-/* ── 卡 / 表 ── */
-.card{border:1px solid var(--rule);background:var(--panel);padding:17px 19px;margin-top:20px}
-.card p{margin:0 0 10px;font-size:13.5px;color:var(--dim)}
-.card p:last-child{margin-bottom:0}
-.grid2{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:20px}
-@media(min-width:700px){.grid2{grid-template-columns:1fr 1fr}}
-.cell{background:var(--panel);padding:16px 18px}
-.cell h4{font:700 13px/1.3 var(--disp);letter-spacing:.11em;text-transform:uppercase;margin:0 0 8px;color:var(--dim)}
-.cell p{margin:0;font-size:13.5px;color:var(--dim)}
-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:18px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
-th{font:600 10px/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
-td.k{white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--p1)}
-.scroll{overflow-x:auto}
-.dumb{padding:16px 0;border-bottom:1px solid var(--rule)}
-.dumb:last-child{border-bottom:0}
-.dh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:11px}
-.dh .n{font:700 19px/1 var(--disp);color:var(--rule-hi);flex:none;width:22px}
-.dh .txt{font:700 17px/1.25 var(--disp);letter-spacing:.02em}
-.dh .f{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--p1);white-space:nowrap}
-.track{width:100%;height:52px;display:block}
-.dl{display:flex;gap:16px;margin-top:7px;font-family:var(--mono);font-size:10.5px;
-  color:var(--faint);flex-wrap:wrap;align-items:center}
-.dl .sw{display:inline-flex;align-items:center;gap:5px}
-.dl .sw i{width:9px;height:9px;border-radius:50%;display:block}
-.dl .sw i.hollow{background:none;border:1.5px solid var(--rule-hi)}
-.dl .dv{margin-left:auto;font-weight:700;font-size:14px;color:var(--rule-hi)}
-.dl .dv.up{color:var(--up)} .dl .dv.down{color:var(--down)}
-.dl .dv.inband{color:var(--faint)}
-.q{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline}
-.q:last-child{border-bottom:0}
-.q .n{font:700 20px/1 var(--disp);color:var(--rule-hi);flex:none;width:24px}
-.q .txt{font:600 16px/1.3 var(--disp);flex:1}
-.q .f{font-family:var(--mono);font-size:12px;color:var(--p1);white-space:nowrap}
-.flag{border-left:2px solid var(--down);padding-left:13px}
-#incident{background:rgba(242,84,91,.09);border-bottom:1px solid rgba(242,84,91,.35)}
-#incident .in{max-width:1080px;margin:0 auto;padding:13px 26px;
-  display:flex;gap:13px;align-items:baseline;flex-wrap:wrap}
-#incident .tag{font:600 10px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--down);border:1px solid rgba(242,84,91,.5);padding:4px 8px;white-space:nowrap}
-#incident .txt{font-size:13px;color:var(--text);line-height:1.65;flex:1;min-width:240px}
-#incident .txt b{color:var(--down)}
-#incident .sub{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.03em}
-/* 赛季损伤记录：**历史**坏掉的日子。刻意做成灰的 ——
-   红色是「今天是坏的」的专用信号，历史损伤是读记分板时要带着的上下文。 */
-#dmg{border-bottom:1px solid var(--rule);background:rgba(255,255,255,.012)}
-#dmg .in{max-width:1080px;margin:0 auto;padding:9px 26px;
-  display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
-#dmg .hd{font:600 9.5px/1 var(--disp);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--faint);white-space:nowrap}
-#dmg .d{font:11.5px/1.5 var(--mono);color:#8A98A6;white-space:nowrap}
-#dmg .d b{color:#C2CCD6;font-weight:600}
-#dmg .d em{font-style:normal;color:var(--faint)}
-footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
-  font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.9}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:24px;margin:0 0 4px}
+h2{font-size:17px;margin:34px 0 10px}
+.sub{color:var(--mute);font-size:13px}
+.status{margin-top:14px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid var(--line);font-size:14px}
+.status.warn{border-left:4px solid var(--warn)}
+.status.bad{border-left:4px solid var(--down)}
+.leagues{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.league{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.league h3{margin:0;font-size:15px}
+.league .rule{color:var(--mute);font-size:12px;margin:2px 0 10px}
+.team{display:grid;grid-template-columns:4px 1fr auto;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.team:first-of-type{border-top:0}
+.bar{border-radius:2px}
+.bar.p1{background:var(--p1)}.bar.ff{background:var(--ff)}
+.bar.mix{background:linear-gradient(var(--p1) 50%,var(--ff) 50%)}
+.tname{font-weight:600}
+.tdesc{color:var(--mute);font-size:12px}
+.tnum{text-align:right}
+.big{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.small{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.down{color:var(--down)}
+.idle{color:var(--mute);font-size:13px;grid-column:2/4}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;text-align:left;font-size:13px;border-top:1px solid var(--line);white-space:nowrap}
+th{background:var(--chip);color:var(--mute);font-weight:600;border-top:0}
+td.n,th.n{text-align:right}
+.tw{overflow-x:auto;border-radius:12px}
+.chip{display:inline-block;padding:0 6px;border-radius:6px;background:var(--chip);font-size:11px;color:var(--mute);margin-right:3px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+details p,details li{font-size:13px;color:var(--mute)}
+.zd{font-size:13px;margin:4px 0}
+.zd .k{display:inline-block;min-width:84px;color:var(--mute)}
+footer{margin-top:40px;color:var(--mute);font-size:12px}
+@media (max-width:720px){.leagues{grid-template-columns:1fr}h1{font-size:21px}}
 </style>
 </head>
 <body>
-
-<div class="bar"><div class="bar-in">
-  <div class="brand"><i>●</i><u>●</u><s>●</s> 三笔记录仪</div>
-  <dl><dt>赛季</dt><dd id="b-season">—</dd></dl>
-  <dl><dt>第</dt><dd id="b-day">—</dd></dl>
-  <dl><dt>发令</dt><dd id="b-kick">—</dd></dl>
-  <dl><dt>数据</dt><dd id="b-asof">—</dd></dl>
-  <div class="live"><span class="dot" id="b-dot"></span><span id="b-state">载入中</span><span id="b-age"></span></div>
-</div></div>
-
-<!-- 事故条。空状态原本被刻意写成「笔还没动」，开赛日丢掉之后那套文案就变成了
-     一句安抚的谎。这条横幅是唯一能说「今天是坏的，不是还没开始」的地方。 -->
-<div id="incident" hidden></div>
-
-<!-- 赛季损伤记录。事故条只说「今天」——ET 09-04 一正常，09-03 那次 partial 就消失了，
-     而少掉的那批腿会永远留在记分板上没有解释。这条负责让六周里坏掉的日子一直可见。 -->
-<div id="dmg" hidden></div>
-
 <div class="wrap">
+  <h1>Paper Trade <span id="season"></span></h1>
+  <div class="sub" id="meta">—</div>
+  <div class="status" id="today" hidden></div>
 
-<section class="hero">
-  <div class="eyebrow">Paper Trade S1 · 决策层对照实验</div>
-  <h1 id="q">两个 AI 加一个人，一层层往上叠取舍，绩效是变好还是变坏？</h1>
-  <p id="axis"></p>
-  <div class="pens">
-    <div class="pen" style="--c:var(--p1)">
-      <div class="who">PEN 1 · MACHINE</div>
-      <h3>P1 AI</h3>
-      <p>P1research 的排名。它只给候选，<b>从不说「这只不要」</b>。所有队的候选都从这支笔出来。</p>
-    </div>
-    <div class="pen" style="--c:var(--ff)">
-      <div class="who">PEN 2 · AI</div>
-      <h3>烦烦 AI</h3>
-      <p>从 P1 的候选里挑，每只写一句理由。<b>第一层取舍</b>。</p>
-    </div>
-    <div class="pen" style="--c:var(--som)">
-      <div class="who">PEN 3 · HUMAN</div>
-      <h3>我</h3>
-      <p>拍板。既能在烦烦挑完之后接着挑（G3），也能<b>完全不看烦烦</b>直接挑（G4）。</p>
-    </div>
-  </div>
-  <p class="note" style="margin-top:18px">
-    四支队 = 笔架上插了哪几支笔。每行左边那条色带就是它的笔链 ——
-    <b>G4 的色带中间是断的</b>，因为它跳过烦烦。测的不是谁选股准，是<b>「取舍」这个动作本身值不值钱</b>。
-  </p>
-</section>
+  <h2>S2 · 当前账本 <span class="sub" id="s2-sub"></span></h2>
+  <div class="league" id="s2"></div>
 
-<!-- 日状态。一支队零腿有三种原因，这里只说**日级**那一种（今天还没到建仓时刻 /
-     不是交易日）。逐队的差异由每行的「零腿」条负责。 -->
-<p class="note" id="daystat" hidden></p>
-<div id="boards"></div>
-<div class="card" id="qc"></div>
+  <h2>S1 · 收尾中 <span class="sub" id="s1-sub"></span></h2>
+  <div class="leagues" id="boards"></div>
 
-<!-- 在场持仓。纪律区块列的是**规则**，这里列的是规则**此刻作用在什么上** ——
-     止损价、离止损多远、还剩几天。这三件读者自己算不出来。 -->
-<h2 id="opos-h" hidden>在场持仓 <em>open positions</em></h2>
-<div class="card" id="opos" hidden></div>
+  <h2>在场持仓 <span class="sub" id="open-n"></span></h2>
+  <div class="tw"><table id="open"></table></div>
 
-<h2>两榜顺序一致吗 <em>cross-check</em></h2>
-<div class="card" id="xc"></div>
+  <h2>已平仓 <span class="sub" id="closed-n"></span></h2>
+  <div class="tw"><table id="closed"></table></div>
 
-<h2>怎么读 <em>read rule · 预注册</em></h2>
-<p class="note">🔴 比的是<b>「选中 vs 没选中」</b>，不是子集比全集 —— G2 本来就在 G1 里面，直接比会被重叠稀释成一摊糊。</p>
-<p class="note" id="rrscope" hidden></p>
-<div class="card" id="rr"></div>
+  <h2>有候选却零腿的日子</h2>
+  <div id="zero"></div>
 
-<h2>这把尺子有多细 <em>resolution · 开跑前先量尺子</em></h2>
-<p class="lede" id="rz-h">—</p>
-<div class="card" id="rz"></div>
+  <details>
+    <summary>口径与实验设计</summary>
+    <ul id="notes"></ul>
+  </details>
 
-<h2>信号从哪来 <em>signal</em></h2>
-<p class="lede" id="sig-lede">—</p>
-<div class="card" id="signal"></div>
-
-<h2>候选池与评分 <em>universe · scoring</em></h2>
-<div class="grid2" id="uni"></div>
-
-<h2>纪律 <em>pre-committed</em></h2>
-<div class="card" id="disc"></div>
-
-<h2>上一季存档 <em>v1 archive</em></h2>
-<div class="card" id="v1"></div>
-
-<footer>
-  <div>数据由 <span class="mono">tools/pt_update_page.py</span> 写入 · 报价 moomoo（股）/ OKX（perp）· 从不猜价</div>
-  <div>最后更新 <span id="f-asof">—</span></div>
-</footer>
+  <footer>数据：<span class="mono">tools/pt_update_page.py</span> · 报价 moomoo（股票）/ OKX（perp）· 从不猜价 · 最后更新 <span id="asof">—</span></footer>
 </div>
-
 <script>
-const CHAIN = {machine:["p1"], ai:["p1","ff"], ai_human:["p1","ff","som"], human:["p1",null,"som"]};
-const INK   = {p1:"#43C6E8", ff:"#F0A23C", som:"#E85D9E"};
-const esc = s => String(s==null?"":s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
-const md  = s => esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
-const n2  = v => v==null ? "—" : (v>=0?"+":"") + Number(v).toFixed(2) + "%";
+const esc=s=>String(s==null?"":s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+const fmt=(x,d=2)=>x==null||isNaN(x)?"—":Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const sign=(x,d=1)=>x==null||isNaN(x)?"—":(x>0?"+":x<0?"−":"")+fmt(Math.abs(x),d)+"%";
+const cls=x=>x>0?"up":x<0?"down":"";
+const BAR={G1:"p1",G2:"mix",G5:"ff"};
+const REASON={stop_touched:"止损",max_hold:"到期（20 日）",expiry:"期权到期"};
 
-/* 笔链色带：填充的位置用该笔的墨色，跳过的位置留成底色 —— 断口要看得见 */
-function railCss(role){
-  const c = CHAIN[role] || ["p1"], seg = 100 / c.length, stops = [];
-  c.forEach((p,i) => {
-    const col = p ? INK[p] : "transparent";
-    stops.push(`${col} ${i*seg}%`, `${col} ${(i+1)*seg}%`);
-  });
-  return `linear-gradient(180deg,${stops.join(",")})`;
-}
-function chainDots(role){
-  return (CHAIN[role]||[]).map(p =>
-    p ? `<i style="background:${INK[p]}"></i>` : `<i class="gap"></i>`).join("");
-}
-
-/* 记录纸。开赛前画的是【已上纸、笔还没动】—— 刻度在、基线在、笔尖停在原点。
-   空状态要看着像「还没发令」，不能像「坏了」。 */
-function trace(pts, role){
-  const W=600,H=26,c=(CHAIN[role]||["p1"]).filter(Boolean),col=INK[c[c.length-1]];
-  const ticks = Array.from({length:25},(_,i)=>{
-    const x=(i/24)*W, tall=i%6===0;
-    return `<line x1="${x.toFixed(1)}" y1="${tall?0:H*.36}" x2="${x.toFixed(1)}" y2="${tall?H:H*.64}"
-      stroke="#1B242E" stroke-width="1"/>`;
-  }).join("");
-  if(!pts || pts.length<2){
-    return `<svg class="trace" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"
-      role="img" aria-label="记录纸已就位，笔还没动">${ticks}
-      <line x1="0" y1="${H/2}" x2="${W}" y2="${H/2}" stroke="#2C3846" stroke-width="1" stroke-dasharray="1 7"/>
-      <circle cx="3.5" cy="${H/2}" r="3" fill="${col}"/></svg>`;
-  }
-  const lo=Math.min(...pts), hi=Math.max(...pts), sp=(hi-lo)||1;
-  const y = v => (H-3-((v-lo)/sp)*(H-6)).toFixed(1);
-  const d = pts.map((v,i)=>`${((i/(pts.length-1))*W).toFixed(1)},${y(v)}`).join(" ");
-  return `<svg class="trace" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="权益曲线">
-    ${ticks}<line x1="0" y1="${y(pts[0])}" x2="${W}" y2="${y(pts[0])}" stroke="#2C3846" stroke-width="1"/>
-    <polyline points="${d}" fill="none" stroke="${col}" stroke-width="1.7"
-      stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="${W-2}" cy="${y(pts[pts.length-1])}" r="3" fill="${col}"/></svg>`;
-}
-
-const money = (v,cur) => cur==="USD"
-  ? "$" + Math.round(v).toLocaleString()
-  : Math.round(v).toLocaleString() + "U";
-
-const TAG = {machine:"对照组 · 零取舍", ai:"一层取舍", ai_human:"两层串联", human:"一层 · 跳过烦烦"};
-
-function teamRow(t, L){
-  const placed = t.rank != null;
-  const cls = t.pct==null ? "na" : (t.pct>=0 ? "up" : "down");
-  let mv = "—";
-  if (placed && t.prev_rank != null && t.prev_rank !== t.rank)
-    mv = t.prev_rank > t.rank
-      ? `<span class="mv u">▲${t.prev_rank-t.rank}</span>`
-      : `<span class="mv d">▼${t.rank-t.prev_rank}</span>`;
-  const st = (v, label, k="") =>
-    `<div class="st"><b class="${k}">${v}</b><span>${label}</span></div>`;
-  return `<div class="row" style="--chain:${railCss(t.role)}">
-    <div class="rail"></div>
-    <div class="slot">
-      <span class="gid ${placed?"placed":""}">${placed ? (t.rank + (t.tied ? "=" : ""))
-        : ((L.teams||[]).some(x=>x.rank!=null) ? "—" : esc(t.gid))}</span>
-      <span class="mv">${mv}</span>
-    </div>
-    <div class="main">
-      <div class="nml">
-        <span class="chain">${chainDots(t.role)}</span>
-        <span class="nm">${esc(t.name)}</span>
-        <span class="tag">${esc(TAG[t.role]||"")}</span>
-      </div>
-      <div class="desc">${md(t.desc)}</div>
-      ${t.why_empty ? `<div class="wempty"><span class="k">零腿</span>${md(t.why_empty)}</div>` : ""}
-      <div class="strip">${trace(t.trace, t.role)}</div>
-    </div>
-    <div class="stats">
-      ${st(t.pct==null?"—":n2(t.pct), "投入回报", t.pct==null?"na":cls)}
-      ${st(money((L.capital_per_team||0)-(t.cost||0)+(t.val||0), L.currency), "权益")}
-      ${st(t.legs?`${t.open}/${t.closed}`:"—", "持仓 / 已结", t.legs?"":"na")}
-      ${st(t.closed?`${t.wins}–${t.losses}`:"—", "胜负", t.closed?"":"na")}
-    </div></div>`;
-}
-
-fetch("data.json?v="+Date.now()).then(r=>r.json()).then(d=>{
-  const live = d.state !== "pre_season";
-  document.getElementById("b-season").textContent = d.season || "—";
-  document.getElementById("b-day").textContent = (d.day ?? 0) + " 天";
-  document.getElementById("b-kick").textContent = d.kickoff || "—";
-  // 🔴 2026-09-05 审计：asof 只在页底 footer；顶栏绿点对冻了 17 小时的数持续脉冲；全页无 ET。
-  //   顶栏用 ET（赛季跑在 ET 上，MYT 仍在 footer 与口径条）；数据年龄按 asof_iso 现算。
-  //   15 分钟 = 生产者节拍 5 分钟的 3 拍没来就是停了（刷新窗只有 MYT 21:25–04:10）。
-  document.getElementById("b-asof").textContent = d.asof_et || d.asof || "—";
-  const ageOf = () => { const t = d.asof_iso ? Date.parse(d.asof_iso) : NaN;
-    return isFinite(t) ? Math.max(0, (Date.now() - t) / 60000) : null; };
-  const ageTxtOf = m => m == null ? "" : (m >= 90 ? `${(m/60).toFixed(1)} 小时前` : `${Math.round(m)} 分钟前`);
-  const ageMin = ageOf();
-  const fresh = ageMin != null && ageMin <= 15;
-  const stale = ageMin != null && !fresh;
-  const frozen = stale ? `冻于 ${ageTxtOf(ageMin)}（${d.asof || "?"}）` : "";
-  const setAge = () => { const m = ageOf();
-    document.getElementById("b-age").textContent = m == null ? "" : " · 数据 " + ageTxtOf(m); };
-  setAge(); setInterval(setAge, 60000);
-  // 事故优先于「未开赛」。没有腿有两种成因，读数完全相反：
-  //   ① 还没到点 → 「未开赛」是对的；② 到了点没跑成 → 「未开赛」是谎。
-  const inc = d.incident;
-  document.getElementById("b-state").textContent =
-    live ? "进行中" : (inc ? "今日无产出" : "未开赛");
-  // 脉冲只表示「15 分钟内刷过」；b-state 的文案（进行中/未开赛/今日无产出）保持赛季语义不动
-  document.getElementById("b-dot").className = "dot" + (live && fresh ? " on" : "");
-  const box = document.getElementById("incident");
-  if (inc) {
-    const cand = (inc.candidates || []).length
-      ? `当天有候选：${inc.candidates.join("、")} —— 信号是出了的，是建仓没跑成。`
-      : "当天没产出候选。";
-    // 🔴 2026-09-04：正文原本写死「这一天没有任何一组建成仓」。
-    //   对 partial（一条支线建成、另一条零腿）那种日子，**这句是假的** ——
-    //   2026-09-03 perp 确实建成了 DELL，只有股票联赛零腿。
-    //   一条把真缺陷说小的事故条，和不亮的事故条一样坏。按 kind 分文案。
-    const K = inc.kind;
-    const built = (inc.opened_legs || []).length
-      ? `已建成：${(inc.opened_legs || []).join("、")}` : "";
-    const tag = K === "lost" ? "今日丢了" : (K === "partial" ? "半边没跑成" : "读不到");
-    const head = K === "partial"
-      ? `${esc(inc.date_et || "")} 这一天只有一条支线建成，另一条零腿 —— 不是「还没开赛」，也不是「今天全丢」。`
-      : `${esc(inc.date_et || "")} 这一天没有任何一组建成仓 —— 不是「还没开赛」，是这一天坏了。`;
-    box.innerHTML = `<div class="in">
-      <span class="tag">${esc(tag)}</span>
-      <div class="txt"><b>${head}</b><br>
-        ${esc(inc.why || "")}<br><span class="sub">${esc(cand)}${
-          built ? " · " + esc(built) : ""}${
-          inc.at ? " · 记于 " + esc(inc.at) : ""}</span></div></div>`;
-    box.hidden = false;
-  } else {
-    box.hidden = true;
-  }
-
-  // 🔴 这几串都走 md()（先 esc 再把 **x** 变 <b>）——强调只能写 **x**，不许手拼标签。
-  const dl = d.incident_log || [];
-  if (dl.length) {
-    const one = x => {
-      const L = x.legs || {};
-      const what = x.kind === "lost"
-        ? `**全灭** 两条支线零腿`
-        : `**半边** 股票 ${L.equity ?? "?"} 腿 / perp ${L.perp ?? "?"} 腿`;
-      const pre = x.pre_kickoff ? " <em>· 发令前</em>" : "";
-      return `<span class="d">${md(x.date_et + "　" + what
-              + "　" + (x.n_cand || 0) + " 个候选")}${pre}</span>`;
-    };
-    document.getElementById("dmg").innerHTML =
-      `<div class="in"><span class="hd">赛季损伤记录 · ${dl.length} 天${
-         dl.filter(x => x.pre_kickoff).length
-           ? `（其中 ${dl.filter(x => x.pre_kickoff).length} 天在发令前）` : ""
-       } <em>damaged days</em></span>`
-      + dl.map(one).join("") + `</div>`;
-    document.getElementById("dmg").hidden = false;
-  }
-  document.getElementById("q").innerHTML = (d.question||"")
-    .split(/(?<=[，、；])/).map(x=>`<span class="cl">${esc(x)}</span>`).join("");
-  document.getElementById("axis").innerHTML = md(d.axis_note || "");
-  document.getElementById("f-asof").textContent = d.asof || "—";
-
-  // 🔴 读数口径 —— 这些字段工具一直在写，页面此前一个都没引用
-  const qc = d.quote_context || {};
-  const up = qc.unpriced_legs || [];
-  // 🔴 这些串都要经 md()：它先 esc() 再把 **x** 变 <b>x</b>。
-  //   所以强调**只能写成 **x****，颜色靠第三列的 class 挂到 <dd> 上 ——
-  //   在串里塞 <b>/<span> 会被 esc 成字面标签（2026-09-04 实测踩到，当晚第三次）。
-  const rows = [
-    ["定价", qc.pricing, ""],
-    ["收益", qc.returns, ""],
-    ["股票", qc.equity, ""],
-    ["perp", stale ? `**${frozen}** · ${qc.perp || ""}` : qc.perp, stale ? "warn" : ""],
-    ["跨榜", qc.caveat, ""],
-    ["并列", (d.leagues||[]).some(L => (L.teams||[]).some(t => t.tied))
-      ? "名次后带 **=** 的是**并列**（收益率到 0.01pp 相同 —— 同一批腿就会这样），并列共用名次、下一名跳号。"
-      : null, ""],
-    ["名次升降", d.rank_asof
-      ? `▲▼ 是相对 **${d.rank_asof}** 那一次的名次，不是「昨天」。更新频率变了，升降的含义就变了。`
-      : null, ""],
-    ["剔除", up.length
-      ? `${up.length} 条腿定不到价，已**剔出统计**（不猜价）：` +
-        up.map(u => `${u.symbol||"?"} — ${u.why||""}`).join("；")
-      : null, "warn"],
-  ].filter(r => r[1]);
-  document.getElementById("qc").innerHTML =
-    `<div class="qh">读数口径 how to read the numbers</div><dl>` +
-    rows.map(r => `<dt>${esc(r[0])}</dt><dd class="${esc(r[2]||"")}">${md(String(r[1]))}</dd>`).join("") + `</dl>`;
-
-  // 🔴 走 md()（生产者串里有 **），不走 esc()。没有 day_status 就不渲染 ——
-  //   有 picks 的日子由每行的「零腿」条各说各的，这里不许再插一句通用安抚。
-  if (d.day_status && d.day_status.text) {
-    const ds = document.getElementById("daystat");
-    ds.innerHTML = md(d.day_status.text);
-    ds.hidden = false;
-  }
-
-  document.getElementById("boards").innerHTML = (d.leagues||[]).map(L => `
-    <h2>${esc(L.name)} <em>${esc(L.id)}</em></h2>
-    <div class="league">
-      <div class="lg-head">
-        <h3>${esc(L.name)}</h3>
-        <span class="meta">${esc(L.venue)}</span>
-        <span class="cap">每队 ${Number(L.capital_per_team).toLocaleString()} ${esc(L.currency)}
-          · 每腿 ${Number(L.per_leg).toLocaleString()} · 上限 ${L.max_legs} 腿</span>
-      </div>
-      ${(L.teams||[]).map(t=>teamRow(t,L)).join("")}
-    </div>`).join("");
-
-  const x = d.cross_check || {};
-  document.getElementById("xc").innerHTML =
-    `<p class="lede" style="margin-top:0">${esc(x.label||"")}</p><p>${md(x.why||"")}</p>` +
-    // 🔴 这里以前把「都还没开赛」写死在三元里 —— 半边开赛时那句是**假的**
-    //   （实测 perp 已排名 +18.3%、股票榜零腿；而且判据是「满员」不是「开赛」）。
-    //   理由改由生产者写进 x.why_null，页面只显示。
-    `<p class="mono" style="color:var(--faint)">当前：${
-       x.agreement == null ? md(x.why_null || "还不能比") : esc(x.agreement)
-     }</p>`;
-
-  const bd = d.read_rule_band || {};
-  const BAND = bd.pp || 13.8, SPAN = Math.max(BAND*2.6, 36);   // 轴半程
-
-  /* 判决轨：横轴 Δ = 选中 − 弃子。灰带 = 这把尺子分不出来的范围。
-     带子在开赛前就画好，所以先看见「差多少才算数」，再看差了多少。 */
-  function track(r){
-    const W=600,H=52,mid=H*0.52,x=v=>W/2+(v/SPAN)*(W/2-14);
-    const ink={ff:INK.ff,som:INK.som,chain:INK.som}[r.pen]||INK.p1;
-    const ticks=[-SPAN,-SPAN/2,0,SPAN/2,SPAN].map(v=>
-      `<line x1="${x(v).toFixed(1)}" y1="${mid-9}" x2="${x(v).toFixed(1)}" y2="${mid+9}"
-        stroke="${v===0?"#4A5764":"#1E2732"}" stroke-width="1"/>
-       <text x="${x(v).toFixed(1)}" y="${H-4}" fill="#5D6A76" font-size="9"
-        font-family="JetBrains Mono,monospace" text-anchor="middle">${v>0?"+":""}${v.toFixed(0)}</text>`).join("");
-    const band=`<rect x="${x(-BAND).toFixed(1)}" y="${mid-15}" width="${(x(BAND)-x(-BAND)).toFixed(1)}"
-        height="30" fill="rgba(138,149,155,.11)"/>
-      <text x="${x(0).toFixed(1)}" y="${mid-20}" fill="#5D6A76" font-size="8.5"
-        font-family="JetBrains Mono,monospace" text-anchor="middle">±${BAND} 分不出来</text>`;
-    const dotSel   = v => `<circle cx="${x(v).toFixed(1)}" cy="${mid}" r="5" fill="${ink}"/>`;
-    const dotUnsel = v => `<circle cx="${x(v).toFixed(1)}" cy="${mid}" r="5" fill="#12171E" stroke="#4A5764" stroke-width="1.6"/>`;
-    let marks;
-    if (r.sel!=null && r.unsel!=null) {
-      marks=`<line x1="${x(r.unsel).toFixed(1)}" y1="${mid}" x2="${x(r.sel).toFixed(1)}" y2="${mid}"
-          stroke="${ink}" stroke-width="2.4" stroke-linecap="round"/>${dotUnsel(r.unsel)}${dotSel(r.sel)}`;
-    } else {
-      // 🔴 2026-09-05 审计：以前不看 d.state，只要一侧 null 就印「待发令」—— live 第 2 天三条轨
-      //   全印「待发令」而顶栏印「进行中」。与 incident / cross_check 那两次同形：空状态文案按
-      //   「开赛前」设计，开赛后一侧 n=0 时它变成安抚的谎。开赛后要说清是哪一侧没腿；
-      //   已有数的那一侧照画点（不连线，Δ 仍是 —）。只认真正的 0：n 为 null（生产者没跑）不当 0。
-      const z = v => v === 0;
-      const lbl = !live ? "待发令"
-        : (z(r.n_sel) && z(r.n_unsel)) ? "两侧 n=0 · 无从比"
-        : z(r.n_sel)   ? "选中侧 n=0 · 无从比"
-        : z(r.n_unsel) ? "弃子侧 n=0 · 无从比"
-        : "缺一侧 · 无从比";
-      const known = r.sel ?? r.unsel;                 // 标签放在已知点的对侧，别压住那个点
-      const side = (known != null && known > 0) ? -0.66 : 0.66;
-      marks=`<text x="${x(SPAN*side).toFixed(1)}" y="${mid+3.5}" fill="#3A4652" font-size="10"
-        font-family="JetBrains Mono,monospace" text-anchor="middle">${lbl}</text>`;
-      if (r.sel!=null)   marks += dotSel(r.sel);
-      if (r.unsel!=null) marks += dotUnsel(r.unsel);
-    }
-    return `<svg class="track" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"
-      role="img" aria-label="${esc(r.q)} 的判决轨">
-      <line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="#1E2732" stroke-width="1"/>
-      ${band}${ticks}${marks}</svg>`;
-  }
-
-  // 🔴 统计范围必须在记分板**之前**看到：眼下唯一在场的腿是 perp，而记分板不计 perp，
-  //   三行于是全是 n=0 —— 读者会以为坏了，真相是这些腿本来就不在统计范围里。
-  if (d.read_rule_scope) {
-    const rs = document.getElementById("rrscope");
-    rs.innerHTML = `<b>统计范围</b>　${md(d.read_rule_scope)}`;
-    rs.hidden = false;
-  }
-  document.getElementById("rr").innerHTML =
-    `<p style="margin:0 0 6px">${md(bd.why||"")}</p>
-     <p class="mono" style="color:var(--faint);font-size:11.5px;margin-bottom:16px">${esc(bd.note||"")}</p>` +
-    (d.read_rule||[]).map(r => {
-      const has = r.delta != null;
-      const inb = has && Math.abs(r.delta) <= BAND;
-      const k = !has ? "" : inb ? "inband" : (r.delta>0 ? "up" : "down");
-      const ink = {ff:INK.ff, som:INK.som, chain:INK.som}[r.pen] || INK.p1;
-      return `<div class="dumb">
-        <div class="dh"><span class="n">${esc(r.n)}</span><span class="txt">${esc(r.q)}</span>
-          <span class="f">${esc(r.f)}</span></div>
-        ${track(r)}
-        <div class="dl">
-          <span class="sw"><i style="background:${ink}"></i>${esc(r.a)}${
-            r.n_sel!=null ? ` <em class="nn">n=${r.n_sel}</em>` : ""}</span>
-          <span class="sw"><i class="hollow"></i>${esc(r.b)}（弃子）${
-            r.n_unsel!=null ? ` <em class="nn">n=${r.n_unsel}</em>` : ""}</span>
-          <span class="dv ${k}">${!has ? "Δ —" : (inb
-            ? "Δ "+n2(r.delta)+" · 未过分辨率"
-            : "Δ "+n2(r.delta))}</span>
-        </div></div>`;
-    }).join("");
-
-  const rz = d.resolution || {};
-  if (rz.headline) {
-    document.getElementById("rz-h").textContent = rz.headline;
-    document.getElementById("rz").innerHTML =
-      `<p>${md(rz.why||"")}</p>` +
-      `<div class="scroll"><table><thead><tr><th>主终点</th><th>单腿 SD</th>
-         <th>6 周能测出</th><th>12 周</th><th>半年</th><th>想测 10pp 要</th></tr></thead><tbody>` +
-      (rz.rows||[]).map(r=>`<tr><td class="k">${esc(r.e)}</td><td class="mono">${esc(r.sd)}</td>
-         <td class="mono">${esc(r.w6)}</td><td class="mono">${esc(r.w12)}</td>
-         <td class="mono">${esc(r.half)}</td><td class="mono">${esc(r.d10)}</td></tr>`).join("") +
-      `</tbody></table></div><p style="margin-top:14px">${md(rz.amplify||"")}</p>` +
-      `<p class="flag">${md(rz.guard||"")}</p>` +
-      `<p class="mono" style="color:var(--faint);font-size:11.5px">${md(rz.method||"")}</p>`;
-  }
-
-  const sg = d.signal || {};
-  if (sg.rule) {
-    document.getElementById("sig-lede").textContent = sg.rule;
-    const m = sg.measured_2026_09_01 || {};
-    document.getElementById("signal").innerHTML =
-      `<p class="flag"><b>为什么改：</b>${md(sg.why||"")}</p>` +
-      `<p class="mono">实测 · ${Object.entries(m).map(([k,v])=>esc(k)+" "+esc(v)).join("　·　")}</p>` +
-      `<p style="color:var(--faint)">${esc(sg.found_by||"")}</p>`;
-  }
-
-  const u = d.universe||{}, sc = d.scoring||{};
-  document.getElementById("uni").innerHTML =
-    `<div class="cell"><h4>候选池 ${u.total} 只</h4>
-       <p class="mono" style="margin-bottom:7px">P1 追踪 ${u.p1} · 我补 ${u.added}</p>
-       <p>${md(u.rule||"")}</p></div>
-     <div class="cell"><h4>评分 满分 ${sc.max}</h4>
-       <p class="mono" style="margin-bottom:7px">${esc(sc.formula||"")}</p>
-       <p class="flag">${md(sc.backtest||"")}</p>
-       <p style="margin-top:9px">${md(sc.note||"")}</p></div>`;
-
-  document.getElementById("disc").innerHTML = "<div class='scroll'><table><tbody>" +
-    (d.discipline||[]).map(x=>`<tr><td class="k">${esc(x.t)}</td><td>${md(x.d)}</td></tr>`).join("") +
-    "</tbody></table></div>";
-
-  // 🔴 三条不许：① 定不到价的字段印「—」**不拿建仓价冒充现价**（铁律「不猜价」）
-  //   ② 离止损用 md() 走加粗，不手拼标签  ③ 表放 .scroll 里，手机横滚在容器内
-  const op = d.open_positions || [];
-  if (op.length) {
-    const num = (v, n=2) => v == null ? "—" : Number(v).toFixed(n);
-    document.getElementById("opos").innerHTML =
-      "<div class='scroll'><table><tbody>" + op.map(x => {
-        // 🔴 2026-09-05 审计：以前 to_stop_pct 为 null 一律印「定不到价」—— 期权腿明明定到价，
-        //   只是止损字段名不同（stop_premium）。三态分开：mark 为 null 才叫「定不到价」。
-        const near = x.mark == null ? "定不到价"
-          : x.stop == null ? "无止损价"
-          : x.to_stop_pct == null ? "—"
-          : (x.to_stop_pct <= 5 ? `**离止损 ${num(x.to_stop_pct,1)}%**` : `离止损 ${num(x.to_stop_pct,1)}%`);
-        const held = x.held_days == null ? "—"
-          : `已持 ${x.held_days}/${x.max_hold_days ?? "?"} 交易日`;
-        return `<tr><td class="k">${esc(x.symbol||"?")}<br>
-          <span class="mono" style="color:var(--faint);font-size:10.5px">${esc(x.branch||"")}</span></td>
-          <td><span class="mono" title="${esc(x.mark_src||"")}">建仓 ${num(x.entry)} → ${esc(x.mark_label||"现")} ${num(x.mark)}</span>${
-            (stale && x.branch === "perp") ? `&nbsp;<span class="mono" style="color:var(--down)">（${esc(frozen)}）</span>` : ""}
-          &nbsp;·&nbsp;<span class="mono">止损 ${num(x.stop)}</span>
-          &nbsp;·&nbsp;${md(near)}&nbsp;·&nbsp;<span class="mono">${esc(held)}</span>
-          &nbsp;·&nbsp;<span class="mono" style="color:var(--faint)">归 ${esc((x.tags||[]).join(" ")||"—")}</span>
-          <br><span class="sub" style="color:var(--faint)">${esc(x.exit_rule||"")}</span></td></tr>`;
-      }).join("") + "</tbody></table></div>";
-    document.getElementById("opos").hidden = false;
-    document.getElementById("opos-h").hidden = false;
-  }
-
-  const v = d.v1_archived||{};
-  document.getElementById("v1").innerHTML =
-    `<p class="mono">${v.legs} 腿 · ${esc(v.opened)} 开</p>
-     <p style="font:600 17px/1.4 var(--disp);color:var(--text)">${md(v.result||"")}</p>
-     <p class="flag">${md(v.caveat||"")}</p>`;
-}).catch(e => {
-  document.getElementById("b-state").textContent = "数据读不到";
-  document.getElementById("boards").innerHTML =
-    `<div class="card flag">data.json 读取失败：${esc(e.message)}</div>`;
+fetch("data.json?"+Date.now()).then(r=>r.json()).then(render).catch(e=>{
+  document.getElementById("meta").textContent="读不到 data.json："+e;
 });
+
+function legPct(l){            // 在场腿浮动：股票腿 = 权利金涨跌；perp 腿 = 保证金涨跌（3x）
+  if(l.mark==null||!l.entry) return null;
+  const r=l.mark/l.entry-1;
+  return (l.branch==="perp"?3:1)*r*100;
+}
+
+function render(d){
+  document.getElementById("season").textContent="";
+  const age=d.asof_iso?Math.round((Date.now()-new Date(d.asof_iso))/36e5*10)/10:null;
+  document.getElementById("meta").innerHTML=
+    `S1 开赛 ${esc(d.kickoff||"—")} · 数据 ${esc(d.asof_et||d.asof||"—")}`+
+    (age!=null?`（${age} 小时前）`:"");
+  document.getElementById("asof").textContent=d.asof||"—";
+
+  // ── 今日一行：只说一件事 ──
+  const z=d.zero_days||[], last=z[z.length-1];
+  const T=document.getElementById("today");
+  let line=null, kind="";
+  if(d.day_status&&d.day_status.kind==="pre_signal"){
+    line="今天的信号还没出（ET 09:32 / MYT 21:32 建仓）。";
+  }
+  if(last){
+    const w=Object.entries(last.why||{}).map(([b,t])=>(b==="perp"?"perp":"股票")+"："+t).join("；");
+    const head=last.kind==="fail"?`🔴 ${last.date_et} 有候选却没建成`:`${last.date_et} 零腿 —— 规则挡下，不是故障`;
+    line=(line?line+"<br>":"")+`<b>上一个建仓日</b> ${esc(head)}（${esc(w)}）`;
+    kind=last.kind==="fail"?"bad":"warn";
+  }
+  if(line){T.innerHTML=line;T.className="status "+kind;T.hidden=false;}
+
+  // ── 记分板 ──
+  const pos=d.positions||[];
+  const openL=d.open_positions||[];
+  const S=d.seasons||{}, S2=S.S2||{}, S1=S.S1||{};
+  const upDown=(gid,season,branch)=>{
+    const m=openL.filter(l=>(l.tags||[]).includes(gid)&&(l.season||"S1")===season&&(!branch||(branch==="perp")===(l.branch==="perp")));
+    const u=m.filter(l=>(legPct(l)||0)>0).length; return [u,m.length-u];
+  };
+  // S2：一个账户（股票 + perp 合计）
+  const nav=S2.account||10000;
+  document.getElementById("s2-sub").textContent=S2.from?`${S2.from} 起的腿 · 独立风控`:"";
+  document.getElementById("s2").innerHTML=`<div class="rule">${esc(S2.rules||"")}</div>`+
+    (S2.teams||[]).map(t=>{
+      const T=t.total;
+      if(!T){return `<div class="team"><div class="bar ${BAR[t.gid]||"ff"}"></div><div><div class="tname">${esc(t.gid)} · ${esc(t.name||"")}</div>
+        <div class="tdesc">还没开过一腿</div></div><div class="tnum small">—</div></div>`;}
+      const eq=nav-T.cost+T.val, eqPct=(eq/nav-1)*100, [u,dn]=upDown(t.gid,"S2");
+      const br=Object.entries(t.by_branch||{}).map(([k,b])=>`${k==="perp"?"perp":"股票"} ${b.legs} 腿 ${sign(b.cost?(b.val/b.cost-1)*100:null)}`).join(" · ");
+      return `<div class="team"><div class="bar ${BAR[t.gid]||"ff"}"></div>
+        <div><div class="tname">${esc(t.gid)} · ${esc(t.name||"")}</div><div class="tdesc">${md(t.full||"")}</div>
+        <div class="small">已平 ${T.wins}胜 ${T.losses}负 · 在场 ${u}涨 ${dn}跌 · ${esc(br)}</div></div>
+        <div class="tnum"><div class="big ${cls(eqPct)}">${sign(eqPct)}</div>
+        <div class="small">账户 ${fmt(eq,0)} / ${fmt(nav,0)} USD</div></div></div>`;
+    }).join("")+(S2.legs?"":`<div class="small" style="margin-top:6px">S2 还没有腿。下一次建仓：ET 09:32 / MYT 21:32。</div>`);
+
+  // S1：原来两条联赛、各自的尺子；只算 S1 的腿
+  const S1T={}; (S1.teams||[]).forEach(t=>S1T[t.gid]=t);
+  document.getElementById("s1-sub").textContent=S1.until?`${S1.until} 之前开的腿 · 照旧规则跑到出场`:"";
+  document.getElementById("boards").innerHTML=(d.leagues||[]).map(L=>{
+    const cap=L.capital_per_team||0;
+    const rows=(L.teams||[]).map(t=>{
+      const b=((S1T[t.gid]||{}).by_branch||{})[L.id];
+      if(!b||!b.cost){
+        return `<div class="team"><div class="bar ${BAR[t.gid]||"ff"}"></div>
+          <div><div class="tname">${esc(t.gid)} · ${esc(t.name)}</div>
+          <div class="tdesc">S1 没开过腿</div></div><div class="tnum small">—</div></div>`;
+      }
+      const eq=cap-b.cost+b.val, eqPct=cap?(eq/cap-1)*100:null, [u,dn]=upDown(t.gid,"S1",L.id);
+      return `<div class="team"><div class="bar ${BAR[t.gid]||"ff"}"></div>
+        <div><div class="tname">${esc(t.gid)} · ${esc(t.name)}</div>
+        <div class="small">已平 ${b.wins}胜 ${b.losses}负 · 在场 ${u}涨 ${dn}跌</div></div>
+        <div class="tnum"><div class="big ${cls(eqPct)}">${sign(eqPct)}</div>
+        <div class="small">权益 ${fmt(eq,0)} / ${fmt(cap,0)} ${esc(L.currency)}</div>
+        <div class="small">投入回报 ${sign(b.cost?(b.val/b.cost-1)*100:null)}</div></div></div>`;
+    }).join("");
+    return `<div class="league"><h3>${esc(L.name)} <span class="sub">${esc(L.venue)}</span></h3>
+      <div class="rule">每队 ${fmt(cap,0)} ${esc(L.currency)} · 每腿 ${fmt(L.per_leg,0)} · 上限 ${L.max_legs} 腿</div>${rows}</div>`;
+  }).join("");
+
+  // ── 在场持仓 ──
+  const og=[...openL].sort((a,b)=>(b.held_days||0)-(a.held_days||0));
+  document.getElementById("open-n").textContent=og.length+" 腿";
+  document.getElementById("open").innerHTML=`<tr><th>标的</th><th>支线</th><th>归属</th>
+    <th class="n">建仓</th><th class="n">现</th><th class="n">浮动</th><th class="n">离止损</th><th class="n">已持</th></tr>`+
+    og.map(l=>{const p=legPct(l);return `<tr><td><b>${esc(l.symbol)}</b></td>
+      <td>${l.branch==="perp"?"perp 3x":"1 月 ATM call"}</td>
+      <td><span class="chip">${esc(l.season||"S1")}</span>${(l.tags||[]).map(g=>`<span class="chip">${esc(g)}</span>`).join("")}</td>
+      <td class="n">${fmt(l.entry)}</td><td class="n">${fmt(l.mark)}</td>
+      <td class="n ${cls(p)}">${sign(p)}</td><td class="n">${l.to_stop_pct==null?"—":fmt(l.to_stop_pct,1)+"%"}</td>
+      <td class="n">${l.held_days??"—"}/${l.max_hold_days??20}</td></tr>`}).join("");
+
+  // ── 已平仓 ──
+  const cl=pos.filter(l=>l.status==="closed").sort((a,b)=>String(b.exit_date_et).localeCompare(String(a.exit_date_et)));
+  const tg=l=>Object.entries(l.tags||{}).filter(([k,v])=>v).map(([k])=>k.toUpperCase());
+  const wins=cl.filter(l=>(l.pnl||0)>0).length;
+  document.getElementById("closed-n").textContent=`${cl.length} 腿 · 赚 ${wins} 亏 ${cl.length-wins}`;
+  document.getElementById("closed").innerHTML=`<tr><th>平仓日</th><th>标的</th><th>支线</th><th>归属</th>
+    <th class="n">建仓 → 平仓</th><th class="n">盈亏</th><th>原因</th></tr>`+
+    cl.map(l=>`<tr><td>${esc(l.exit_date_et)}</td><td><b>${esc(l.symbol)}</b></td>
+      <td>${l.branch==="perp"?"perp":"call"}</td><td><span class="chip">${String(l.entry_date_et||"")>=(S2.from||"9999")?"S2":"S1"}</span>${tg(l).map(g=>`<span class="chip">${g}</span>`).join("")}</td>
+      <td class="n">${fmt(l.entry)} → ${fmt(l.exit)}</td><td class="n ${cls(l.pnl_pct)}">${sign(l.pnl_pct)}</td>
+      <td>${esc(REASON[l.exit_reason]||l.exit_reason||"")}</td></tr>`).join("");
+
+  // ── 零腿日 ──
+  const rule=z.filter(x=>x.kind==="rule"), fail=z.filter(x=>x.kind==="fail");
+  const cats={};
+  rule.forEach(x=>Object.values(x.why||{}).forEach(t=>String(t).split(" · ").forEach(s=>{const k=s.replace(/×\d+$/,"");cats[k]=(cats[k]||0)+1;})));
+  document.getElementById("zero").innerHTML=
+    `<div class="status ${fail.length?"bad":""}">共 ${z.length} 天：<b>${rule.length} 天规则挡下</b>（按「支线×天」数：${
+      Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,n])=>esc(k)+" "+n).join(" · ")||"—"}），`+
+    `<b>${fail.length} 天真故障</b>${fail.length?"："+fail.map(x=>esc(x.date_et)+" "+esc(Object.values(x.why).find(t=>!/上限|预算|已持有|到期日|永续/.test(t))||"")).join("；"):""}</div>`+
+    `<details><summary>逐日明细</summary>`+z.map(x=>`<div class="zd"><span class="k">${esc(x.date_et)}</span>${x.kind==="fail"?"🔴 ":""}`+
+      `股票 ${x.legs.equity} 腿 / perp ${x.legs.perp} 腿 · `+Object.entries(x.why||{}).map(([b,t])=>(b==="perp"?"perp":"股票")+"："+esc(t)).join("；")+`</div>`).join("")+`</details>`;
+
+  // ── 口径（折叠）──
+  const q=d.quote_context||{}, notes=[];
+  if(d.question) notes.push("<b>问的是</b>："+md(d.question));
+  if(q.returns) notes.push(md(q.returns));
+  if(q.pricing) notes.push(md(q.pricing));
+  if(q.equity) notes.push("股票报价："+md(q.equity));
+  if(q.perp) notes.push("perp 报价："+md(q.perp));
+  notes.push("「已平 x胜 y负」只算平掉的腿：股票腿按规则 −50% 止损、无止盈、最多 20 天，赢的腿要拿到第 20 天才平，所以已平一栏天然偏向输家 —— 同时看「在场 涨/跌」。");
+  document.getElementById("notes").innerHTML=notes.map(n=>`<li>${n}</li>`).join("");
+}
 </script>
 </body>
 </html>
