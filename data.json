@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-10-04 00:35 MYT",
+ "asof": "2026-10-04 00:40 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 21,
@@ -152,8 +152,8 @@
      "open": 8,
      "closed": 3,
      "cost": 2200.0,
-     "val": 2618.87,
-     "pct": 19.04,
+     "val": 2618.26,
+     "pct": 19.01,
      "rank": 1,
      "prev_rank": 1,
      "wins": 1,
@@ -197,8 +197,8 @@
      "open": 6,
      "closed": 2,
      "cost": 1600.0,
-     "val": 1869.9,
-     "pct": 16.87,
+     "val": 1869.26,
+     "pct": 16.83,
      "rank": 2,
      "prev_rank": 2,
      "wins": 0,
@@ -1997,7 +1997,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-10-04 00:30 MYT",
+ "rank_asof": "2026-10-04 00:35 MYT",
  "quote_context": {
   "equity": "非 RTH · 上一收盘 bid/ask 中点（2026-10-02 ET），不是现价 —— **零成交**（那天没有一笔成交，中点只是挂单）：NET",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
@@ -2221,9 +2221,9 @@
    "symbol": "BE",
    "branch": "perp",
    "entry": 272.25,
-   "mark": 287.07,
+   "mark": 286.94,
    "stop": 226.875,
-   "to_stop_pct": 20.97,
+   "to_stop_pct": 20.93,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 19,
@@ -2240,9 +2240,9 @@
    "symbol": "SPY",
    "branch": "perp",
    "entry": 769.445,
-   "mark": 770.99,
+   "mark": 771.09,
    "stop": 641.204167,
-   "to_stop_pct": 16.83,
+   "to_stop_pct": 16.84,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 19,
@@ -2278,9 +2278,9 @@
    "symbol": "SMCI",
    "branch": "perp",
    "entry": 39.46,
-   "mark": 43.56,
+   "mark": 43.54,
    "stop": 32.883333,
-   "to_stop_pct": 24.51,
+   "to_stop_pct": 24.48,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 18,
@@ -2297,9 +2297,9 @@
    "symbol": "SNDK",
    "branch": "perp",
    "entry": 1735.995,
-   "mark": 1717.1,
+   "mark": 1716.6,
    "stop": 1446.6625,
-   "to_stop_pct": 15.75,
+   "to_stop_pct": 15.73,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 18,
@@ -2316,7 +2316,7 @@
    "symbol": "LITE",
    "branch": "perp",
    "entry": 963.125,
-   "mark": 1089.7,
+   "mark": 1089.71,
    "stop": 802.604167,
    "to_stop_pct": 26.35,
    "mark_src": "OKX last",
@@ -2334,7 +2334,7 @@
    "symbol": "MRVL",
    "branch": "perp",
    "entry": 229.325,
-   "mark": 272.3,
+   "mark": 272.32,
    "stop": 191.104167,
    "to_stop_pct": 29.82,
    "mark_src": "OKX last",
@@ -2372,7 +2372,7 @@
    "symbol": "AAPL",
    "branch": "perp",
    "entry": 332.315,
-   "mark": 333.52,
+   "mark": 333.53,
    "stop": 276.929167,
    "to_stop_pct": 16.97,
    "mark_src": "OKX last",
@@ -2501,8 +2501,8 @@
   "kind": "weekend",
   "text": "**2026-10-03 不是交易日** —— 今天不建仓，空着是对的。"
  },
- "asof_iso": "2026-10-04T00:35:03+08:00",
- "asof_et": "2026-10-03 12:35 ET",
+ "asof_iso": "2026-10-04T00:40:04+08:00",
+ "asof_et": "2026-10-03 12:40 ET",
  "zero_days": [
   {
    "date_et": "2026-09-03",
@@ -2779,7 +2779,7 @@
        "wins": 1,
        "losses": 2,
        "cost": 2200.0,
-       "val": 2618.87
+       "val": 2618.26
       }
      },
      "total": {
@@ -2789,7 +2789,7 @@
       "wins": 1,
       "losses": 21,
       "cost": 75223.0,
-      "val": 57662.37
+      "val": 57661.76
      }
     },
     {
@@ -2813,7 +2813,7 @@
        "wins": 0,
        "losses": 2,
        "cost": 1600.0,
-       "val": 1869.9
+       "val": 1869.26
       }
      },
      "total": {
@@ -2823,7 +2823,7 @@
       "wins": 0,
       "losses": 17,
       "cost": 56164.0,
-      "val": 40008.9
+      "val": 40008.26
      }
     },
     {
