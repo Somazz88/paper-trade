@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-10-06 22:55 MYT",
+ "asof": "2026-10-06 23:00 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 23,
@@ -30,8 +30,8 @@
      "open": 8,
      "closed": 20,
      "cost": 74338.0,
-     "val": 60923.5,
-     "pct": -18.05,
+     "val": 60878.5,
+     "pct": -18.11,
      "rank": 1,
      "prev_rank": 1,
      "wins": 1,
@@ -59,7 +59,7 @@
       -23.94,
       -24.39,
       -17.26,
-      -18.05
+      -18.11
      ],
      "tied": false
     },
@@ -76,8 +76,8 @@
      "open": 3,
      "closed": 16,
      "cost": 54564.0,
-     "val": 42164.0,
-     "pct": -22.73,
+     "val": 42004.0,
+     "pct": -23.02,
      "rank": 2,
      "prev_rank": 2,
      "wins": 1,
@@ -105,7 +105,7 @@
       -29.04,
       -30.1,
       -28.04,
-      -22.73
+      -23.02
      ],
      "tied": false
     },
@@ -156,8 +156,8 @@
      "open": 7,
      "closed": 8,
      "cost": 3000.0,
-     "val": 3509.86,
-     "pct": 17.0,
+     "val": 3503.91,
+     "pct": 16.8,
      "rank": 1,
      "prev_rank": 1,
      "wins": 5,
@@ -186,7 +186,7 @@
       14.85,
       18.9,
       16.09,
-      17.0
+      16.8
      ],
      "tied": false
     },
@@ -203,8 +203,8 @@
      "open": 5,
      "closed": 7,
      "cost": 2400.0,
-     "val": 2742.18,
-     "pct": 14.26,
+     "val": 2736.17,
+     "pct": 14.01,
      "rank": 2,
      "prev_rank": 2,
      "wins": 4,
@@ -232,7 +232,7 @@
       13.13,
       16.88,
       13.42,
-      14.26
+      14.01
      ],
      "tied": false
     },
@@ -288,9 +288,9 @@
    "pen": "ff",
    "a": "G2 选中",
    "b": "G1 里烦烦弃掉的",
-   "sel": -9.27,
-   "unsel": 10.2,
-   "delta": -19.47,
+   "sel": -9.71,
+   "unsel": 10.62,
+   "delta": -20.33,
    "n_sel": 19,
    "n_unsel": 9
   },
@@ -302,7 +302,7 @@
    "a": "G5 选中",
    "b": "G1 里 G5 没碰的",
    "sel": null,
-   "unsel": -3.01,
+   "unsel": -3.17,
    "delta": null,
    "n_sel": 0,
    "n_unsel": 28
@@ -2251,7 +2251,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-10-06 22:50 MYT",
+ "rank_asof": "2026-10-06 22:55 MYT",
  "quote_context": {
   "equity": "RTH · bid/ask 中点实时",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
@@ -2481,9 +2481,9 @@
    "symbol": "LITE",
    "branch": "perp",
    "entry": 963.125,
-   "mark": 1120.38,
+   "mark": 1120.43,
    "stop": 802.604167,
-   "to_stop_pct": 28.36,
+   "to_stop_pct": 28.37,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 19,
@@ -2499,9 +2499,9 @@
    "symbol": "MRVL",
    "branch": "perp",
    "entry": 229.325,
-   "mark": 291.23,
+   "mark": 289.6,
    "stop": 191.104167,
-   "to_stop_pct": 34.38,
+   "to_stop_pct": 34.01,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 19,
@@ -2518,9 +2518,9 @@
    "symbol": "NET",
    "branch": "equity",
    "entry": 18.975,
-   "mark": 44.575,
+   "mark": 43.125,
    "stop": 9.4875,
-   "to_stop_pct": 78.72,
+   "to_stop_pct": 78.0,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 18,
@@ -2537,9 +2537,9 @@
    "symbol": "AAPL",
    "branch": "perp",
    "entry": 332.315,
-   "mark": 333.29,
+   "mark": 333.31,
    "stop": 276.929167,
-   "to_stop_pct": 16.91,
+   "to_stop_pct": 16.92,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 17,
@@ -2555,9 +2555,9 @@
    "symbol": "MRNA",
    "branch": "equity",
    "entry": 12.725,
-   "mark": 52.3,
+   "mark": 53.1,
    "stop": 6.3625,
-   "to_stop_pct": 87.83,
+   "to_stop_pct": 88.02,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 16,
@@ -2592,9 +2592,9 @@
    "symbol": "PANW",
    "branch": "equity",
    "entry": 21.025,
-   "mark": 43.875,
+   "mark": 43.725,
    "stop": 10.5125,
-   "to_stop_pct": 76.04,
+   "to_stop_pct": 75.96,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 15,
@@ -2611,9 +2611,9 @@
    "symbol": "TEM",
    "branch": "equity",
    "entry": 6.15,
-   "mark": 5.0,
+   "mark": 4.85,
    "stop": 3.075,
-   "to_stop_pct": 38.5,
+   "to_stop_pct": 36.6,
    "mark_src": "moomoo bid/ask 中点 (RTH)",
    "mark_label": "现",
    "held_days": 14,
@@ -2683,9 +2683,9 @@
    "symbol": "COHR",
    "branch": "perp",
    "entry": 335.7,
-   "mark": 340.27,
+   "mark": 338.86,
    "stop": 279.75,
-   "to_stop_pct": 17.79,
+   "to_stop_pct": 17.44,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 2,
@@ -2721,9 +2721,9 @@
    "symbol": "TSLA",
    "branch": "perp",
    "entry": 382.915,
-   "mark": 381.27,
+   "mark": 381.19,
    "stop": 319.095833,
-   "to_stop_pct": 16.31,
+   "to_stop_pct": 16.29,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 1,
@@ -2740,9 +2740,9 @@
    "symbol": "AAOI",
    "branch": "perp",
    "entry": 126.815,
-   "mark": 128.66,
+   "mark": 128.85,
    "stop": 105.679167,
-   "to_stop_pct": 17.86,
+   "to_stop_pct": 17.98,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 1,
@@ -2757,8 +2757,8 @@
   }
  ],
  "day_status": null,
- "asof_iso": "2026-10-06T22:55:04+08:00",
- "asof_et": "2026-10-06 10:55 ET",
+ "asof_iso": "2026-10-06T23:00:05+08:00",
+ "asof_et": "2026-10-06 11:00 ET",
  "zero_days": [
   {
    "date_et": "2026-09-03",
@@ -2998,7 +2998,7 @@
        "wins": 0,
        "losses": 0,
        "cost": 800.0,
-       "val": 830.13
+       "val": 828.38
       }
      },
      "total": {
@@ -3008,7 +3008,7 @@
       "wins": 0,
       "losses": 0,
       "cost": 2115.0,
-      "val": 2277.63
+      "val": 2275.88
      }
     },
     {
@@ -3023,7 +3023,7 @@
        "wins": 0,
        "losses": 0,
        "cost": 800.0,
-       "val": 830.13
+       "val": 828.38
       }
      },
      "total": {
@@ -3033,7 +3033,7 @@
       "wins": 0,
       "losses": 0,
       "cost": 800.0,
-      "val": 830.13
+      "val": 828.38
      }
     },
     {
@@ -3065,7 +3065,7 @@
        "wins": 1,
        "losses": 19,
        "cost": 73023.0,
-       "val": 59476.0
+       "val": 59431.0
       },
       "perp": {
        "legs": 11,
@@ -3074,7 +3074,7 @@
        "wins": 5,
        "losses": 3,
        "cost": 2200.0,
-       "val": 2679.73
+       "val": 2675.53
       }
      },
      "total": {
@@ -3084,7 +3084,7 @@
       "wins": 6,
       "losses": 22,
       "cost": 75223.0,
-      "val": 62155.73
+      "val": 62106.53
      }
     },
     {
@@ -3099,7 +3099,7 @@
        "wins": 1,
        "losses": 15,
        "cost": 54564.0,
-       "val": 42164.0
+       "val": 42004.0
       },
       "perp": {
        "legs": 8,
@@ -3108,7 +3108,7 @@
        "wins": 4,
        "losses": 3,
        "cost": 1600.0,
-       "val": 1912.05
+       "val": 1907.79
       }
      },
      "total": {
@@ -3118,7 +3118,7 @@
       "wins": 5,
       "losses": 18,
       "cost": 56164.0,
-      "val": 44076.05
+      "val": 43911.79
      }
     },
     {
