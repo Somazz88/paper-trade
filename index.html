@@ -58,7 +58,10 @@ footer{margin-top:40px;color:var(--mute);font-size:12px}
   <div class="sub" id="meta">—</div>
   <div class="status" id="today" hidden></div>
 
-  <h2>S2 · 当前账本 <span class="sub" id="s2-sub"></span></h2>
+  <h2>S3 · 计分中 <span class="sub" id="s3-sub"></span></h2>
+  <div class="league" id="s3"></div>
+
+  <h2>S2 · 收尾中 <span class="sub" id="s2-sub"></span></h2>
   <div class="league" id="s2"></div>
 
   <h2>S1 · 收尾中 <span class="sub" id="s1-sub"></span></h2>
@@ -87,7 +90,11 @@ const fmt=(x,d=2)=>x==null||isNaN(x)?"—":Number(x).toLocaleString("en-US",{min
 const sign=(x,d=1)=>x==null||isNaN(x)?"—":(x>0?"+":x<0?"−":"")+fmt(Math.abs(x),d)+"%";
 const cls=x=>x>0?"up":x<0?"down":"";
 const BAR={G1:"p1",G2:"mix",G5:"ff"};
-const REASON={stop_touched:"止损",max_hold:"到期（20 日）",expiry:"期权到期"};
+const REASON={stop_touched:"止损",max_hold:"满 20 交易日",expiry:"期权到期",expired:"期权到期",
+  expired_worthless:"到期归零",expired_intrinsic:"到期（按内在值）"};
+const seasonOf=(l,S)=>l.season||(String(l.entry_date_et||"")>=((S.S3||{}).from||"9999")?"S3":
+  String(l.entry_date_et||"")>=((S.S2||{}).from||"9999")?"S2":"S1");
+const veh=l=>l.branch==="perp"?"perp 3x":(l.vehicle==="call_spread"?`${fmt(l.strike,l.strike%1?1:0)}/${fmt(l.strike2,l.strike2%1?1:0)}C 价差`:"1 月 ATM call");
 
 fetch("data.json?"+Date.now()).then(r=>r.json()).then(render).catch(e=>{
   document.getElementById("meta").textContent="读不到 data.json："+e;
@@ -125,27 +132,31 @@ function render(d){
   // ── 记分板 ──
   const pos=d.positions||[];
   const openL=d.open_positions||[];
-  const S=d.seasons||{}, S2=S.S2||{}, S1=S.S1||{};
+  const S=d.seasons||{}, S3=S.S3||{}, S2=S.S2||{}, S1=S.S1||{};
   const upDown=(gid,season,branch)=>{
     const m=openL.filter(l=>(l.tags||[]).includes(gid)&&(l.season||"S1")===season&&(!branch||(branch==="perp")===(l.branch==="perp")));
     const u=m.filter(l=>(legPct(l)||0)>0).length; return [u,m.length-u];
   };
-  // S2：一个账户（股票 + perp 合计）
-  const nav=S2.account||10000;
-  document.getElementById("s2-sub").textContent=S2.from?`${S2.from} 起的腿 · 独立风控`:"";
-  document.getElementById("s2").innerHTML=`<div class="rule">${esc(S2.rules||"")}</div>`+
-    (S2.teams||[]).map(t=>{
+  // S3 / S2：同一个账户（股票 + perp 合计）；每块只算本季自己的腿，数字 = 本季盈亏占账户的比例
+  const board=(Sx,sid,empty)=>{
+    const nav=Sx.account||10000;
+    return `<div class="rule">${esc(Sx.rules||"")}</div>`+(Sx.teams||[]).map(t=>{
       const T=t.total;
       if(!T){return `<div class="team"><div class="bar ${BAR[t.gid]||"ff"}"></div><div><div class="tname">${esc(t.gid)} · ${esc(t.name||"")}</div>
         <div class="tdesc">还没开过一腿</div></div><div class="tnum small">—</div></div>`;}
-      const eq=nav-T.cost+T.val, eqPct=(eq/nav-1)*100, [u,dn]=upDown(t.gid,"S2");
+      const pnl=T.val-T.cost, pct=pnl/nav*100, [u,dn]=upDown(t.gid,sid);
       const br=Object.entries(t.by_branch||{}).map(([k,b])=>`${k==="perp"?"perp":"股票"} ${b.legs} 腿 ${sign(b.cost?(b.val/b.cost-1)*100:null)}`).join(" · ");
       return `<div class="team"><div class="bar ${BAR[t.gid]||"ff"}"></div>
         <div><div class="tname">${esc(t.gid)} · ${esc(t.name||"")}</div><div class="tdesc">${md(t.full||"")}</div>
         <div class="small">已平 ${T.wins}胜 ${T.losses}负 · 在场 ${u}涨 ${dn}跌 · ${esc(br)}</div></div>
-        <div class="tnum"><div class="big ${cls(eqPct)}">${sign(eqPct)}</div>
-        <div class="small">账户 ${fmt(eq,0)} / ${fmt(nav,0)} USD</div></div></div>`;
-    }).join("")+(S2.legs?"":`<div class="small" style="margin-top:6px">S2 还没有腿。下一次建仓：ET 09:32 / MYT 21:32。</div>`);
+        <div class="tnum"><div class="big ${cls(pct)}">${sign(pct)}</div>
+        <div class="small">本季 ${pnl<0?"−":"+"}${fmt(Math.abs(pnl),0)} / 账户 ${fmt(nav,0)} USD</div></div></div>`;
+    }).join("")+(Sx.legs?"":`<div class="small" style="margin-top:6px">${empty}</div>`);
+  };
+  document.getElementById("s3-sub").textContent=S3.from?`${S3.from} 起的腿 · 毕业契约从这里重新计分`:"";
+  document.getElementById("s3").innerHTML=board(S3,"S3",`S3 还没有腿。第一次建仓：ET ${esc(S3.from||"")} 09:32 / MYT 21:32。`);
+  document.getElementById("s2-sub").textContent=S2.from?`${S2.from} 起${S2.until?"、"+S2.until+" 之前":""}开的腿 · 不再开新腿，在场的跑到出场`:"";
+  document.getElementById("s2").innerHTML=board(S2,"S2","S2 没有腿。");
 
   // S1：原来两条联赛、各自的尺子；只算 S1 的腿
   const S1T={}; (S1.teams||[]).forEach(t=>S1T[t.gid]=t);
@@ -177,7 +188,7 @@ function render(d){
   document.getElementById("open").innerHTML=`<tr><th>标的</th><th>支线</th><th>归属</th>
     <th class="n">建仓</th><th class="n">现</th><th class="n">浮动</th><th class="n">离止损</th><th class="n">已持</th></tr>`+
     og.map(l=>{const p=legPct(l);return `<tr><td><b>${esc(l.symbol)}</b></td>
-      <td>${l.branch==="perp"?"perp 3x":"1 月 ATM call"}</td>
+      <td>${esc(veh(l))}</td>
       <td><span class="chip">${esc(l.season||"S1")}</span>${(l.tags||[]).map(g=>`<span class="chip">${esc(g)}</span>`).join("")}</td>
       <td class="n">${fmt(l.entry)}</td><td class="n">${fmt(l.mark)}</td>
       <td class="n ${cls(p)}">${sign(p)}</td><td class="n">${l.to_stop_pct==null?"—":fmt(l.to_stop_pct,1)+"%"}</td>
@@ -191,7 +202,7 @@ function render(d){
   document.getElementById("closed").innerHTML=`<tr><th>平仓日</th><th>标的</th><th>支线</th><th>归属</th>
     <th class="n">建仓 → 平仓</th><th class="n">盈亏</th><th>原因</th></tr>`+
     cl.map(l=>`<tr><td>${esc(l.exit_date_et)}</td><td><b>${esc(l.symbol)}</b></td>
-      <td>${l.branch==="perp"?"perp":"call"}</td><td><span class="chip">${String(l.entry_date_et||"")>=(S2.from||"9999")?"S2":"S1"}</span>${tg(l).map(g=>`<span class="chip">${g}</span>`).join("")}</td>
+      <td>${esc(veh(l))}</td><td><span class="chip">${seasonOf(l,S)}</span>${tg(l).map(g=>`<span class="chip">${g}</span>`).join("")}</td>
       <td class="n">${fmt(l.entry)} → ${fmt(l.exit)}</td><td class="n ${cls(l.pnl_pct)}">${sign(l.pnl_pct)}</td>
       <td>${esc(REASON[l.exit_reason]||l.exit_reason||"")}</td></tr>`).join("");
 
