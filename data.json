@@ -1,7 +1,7 @@
 {
  "version": "v2",
  "season": "S1",
- "asof": "2026-10-10 04:10 MYT",
+ "asof": "2026-10-10 21:25 MYT",
  "state": "live",
  "kickoff": "2026-09-03 21:30 MYT",
  "day": 26,
@@ -134,7 +134,7 @@
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "选了 RSP、IWM、DIA，**建仓没跑成**",
+     "why_empty": "🕐 **还没上线** —— 2026-09-14 新增的第三组。上线条件（截面池覆盖 30/30）已满足，等下一次 multi_factor 采集产出即建仓。这是**还没开始**，不是「今天没选」。",
      "trace": null,
      "tied": false
     }
@@ -162,8 +162,8 @@
      "open": 4,
      "closed": 12,
      "cost": 3200.0,
-     "val": 3561.68,
-     "pct": 11.3,
+     "val": 3554.77,
+     "pct": 11.09,
      "rank": 1,
      "prev_rank": 1,
      "wins": 7,
@@ -212,8 +212,8 @@
      "open": 4,
      "closed": 9,
      "cost": 2600.0,
-     "val": 2805.47,
-     "pct": 7.9,
+     "val": 2798.56,
+     "pct": 7.64,
      "rank": 2,
      "prev_rank": 2,
      "wins": 5,
@@ -267,7 +267,7 @@
      "prev_rank": null,
      "wins": 0,
      "losses": 0,
-     "why_empty": "选了 RSP、IWM、DIA，**建仓没跑成**",
+     "why_empty": "🕐 **还没上线** —— 2026-09-14 新增的第三组。上线条件（截面池覆盖 30/30）已满足，等下一次 multi_factor 采集产出即建仓。这是**还没开始**，不是「今天没选」。",
      "trace": null,
      "tied": false
     }
@@ -2521,7 +2521,7 @@
   "why": "灰带 = 这把尺子在 6 周尺度上分不出来的范围。**Δ 落在带内，数字保持中性灰、标「未过分辨率」，不上涨跌色、不发名次。** 带子在开赛前就画好了 —— 所以你能先看见「差多少才算数」，再去看差了多少。",
   "note": "没有第二块记分板会画自己的误差带，因为别的比赛比分是精确的。这块不是。"
  },
- "rank_asof": "2026-10-10 04:05 MYT",
+ "rank_asof": "2026-10-10 04:10 MYT",
  "quote_context": {
   "equity": "非 RTH · 上一收盘 bid/ask 中点（2026-10-09 ET），不是现价 —— **零成交**（那天没有一笔成交，中点只是挂单）：U",
   "perp": "OKX 24 小时有盘口，**但本页只在 MYT 21:25–04:10（ET 09:25–16:10） 每 5 分钟取一次**；其余时段 perp 数字冻在「最后更新」那一刻，不是现价。",
@@ -2530,23 +2530,7 @@
   "pricing": "股票腿建仓与估值**都按 bid/ask 中点**（收盘后用上一收盘的挂单中点，没有挂单就剔出、不拿 last 冒充）；perp 腿建仓按中点、估值按 OKX last（价差 ≤0.07%，可忽略）。口径自洽，但价差成本在 P&L 里隐形。实测：perp 价差 0.068%，而月度 ATM call 可达 18.8%（n=1，2026-09-03 TECK） —— 半个价差 ≈ 9.4pp，与 ±13.8pp 分辨率带同量级。**组间比较不受影响**（同一批腿、价差抵消）；**绝对收益被高估**，不可当实盘读。",
   "unpriced_legs": []
  },
- "incident": {
-  "date_et": "2026-10-09",
-  "kind": "partial",
-  "at": "2026-10-09T21:35:04",
-  "why": "perp支线零腿（股票 1 腿 / perp 0 腿）。信号出了、建仓窗也到了，是这条支线没跑成。",
-  "candidates": [
-   "MRVL",
-   "AVBP",
-   "MRNA",
-   "ABBV",
-   "HCA",
-   "TT"
-  ],
-  "opened_legs": [
-   "MRNA"
-  ]
- },
+ "incident": null,
  "read_rule_scope": "只统计股票（期权）腿 —— ±13.8pp 那条带来自期权腿实测 SD 23.4pp；perp 腿是 3x 杠杆、SD 不同，混进来这条带就不适用。等权（每腿收益率的算术均值之差），与带子的两样本均值差同口径。",
  "incident_log": [
   {
@@ -2915,9 +2899,9 @@
    "symbol": "COHR",
    "branch": "perp",
    "entry": 335.7,
-   "mark": 312.56,
+   "mark": 310.93,
    "stop": 279.75,
-   "to_stop_pct": 10.5,
+   "to_stop_pct": 10.03,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 5,
@@ -2939,9 +2923,9 @@
    "symbol": "TEAM",
    "branch": "perp",
    "entry": 191.075,
-   "mark": 207.41,
+   "mark": 206.48,
    "stop": 159.229167,
-   "to_stop_pct": 23.23,
+   "to_stop_pct": 22.88,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 5,
@@ -2963,9 +2947,9 @@
    "symbol": "TSLA",
    "branch": "perp",
    "entry": 382.915,
-   "mark": 383.04,
+   "mark": 382.65,
    "stop": 319.095833,
-   "to_stop_pct": 16.69,
+   "to_stop_pct": 16.61,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 4,
@@ -3011,9 +2995,9 @@
    "symbol": "XLE",
    "branch": "perp",
    "entry": 64.435,
-   "mark": 65.16,
+   "mark": 65.11,
    "stop": 53.695833,
-   "to_stop_pct": 17.59,
+   "to_stop_pct": 17.53,
    "mark_src": "OKX last",
    "mark_label": "现",
    "held_days": 3,
@@ -3078,9 +3062,12 @@
    ]
   }
  ],
- "day_status": null,
- "asof_iso": "2026-10-10T04:10:03+08:00",
- "asof_et": "2026-10-09 16:10 ET",
+ "day_status": {
+  "kind": "weekend",
+  "text": "**2026-10-10 不是交易日** —— 今天不建仓，空着是对的。"
+ },
+ "asof_iso": "2026-10-10T21:25:03+08:00",
+ "asof_et": "2026-10-10 09:25 ET",
  "zero_days": [
   {
    "date_et": "2026-09-03",
@@ -3393,7 +3380,7 @@
        "wins": 0,
        "losses": 1,
        "cost": 1000.0,
-       "val": 915.7
+       "val": 908.79
       }
      },
      "total": {
@@ -3403,7 +3390,7 @@
       "wins": 0,
       "losses": 1,
       "cost": 2682.0,
-      "val": 2861.2
+      "val": 2854.29
      }
     },
     {
@@ -3427,7 +3414,7 @@
        "wins": 0,
        "losses": 1,
        "cost": 1000.0,
-       "val": 915.7
+       "val": 908.79
       }
      },
      "total": {
@@ -3437,7 +3424,7 @@
       "wins": 0,
       "losses": 1,
       "cost": 1367.0,
-      "val": 1385.7
+      "val": 1378.79
      }
     },
     {
